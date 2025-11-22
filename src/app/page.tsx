@@ -6,7 +6,7 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import Chatbot from '@/components/Chatbot';
+import ChatDock from '@/components/ChatDock';
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppButton />
-      <Chatbot />
+      <ChatDock />
     </>
   );
 }

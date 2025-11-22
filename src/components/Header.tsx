@@ -36,10 +36,10 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md'
-            : 'bg-transparent'
-        }`}
+  isScrolled
+    ? 'bg-gray-900/95 backdrop-blur-md shadow-xl'
+    : 'bg-gray-900 shadow-md'
+}`}
       >
         <nav className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -52,7 +52,7 @@ export default function Header() {
               <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center transform transition-transform group-hover:scale-110">
                 <span className="text-white font-bold text-xl">CB</span>
               </div>
-              <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+              <span className="text-xl md:text-2xl font-bold text-white">
                 CiberByte
               </span>
             </Link>
@@ -63,10 +63,10 @@ export default function Header() {
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors relative group"
+                  className="text-gray-200 hover:text-primary-400 font-medium transition-colors relative group"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 transition-all group-hover:w-full"></span>
                 </button>
               ))}
               <a
@@ -80,7 +80,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors"
+              className="md:hidden p-2 text-white hover:text-primary-400 transition-colors"
               aria-label="Toggle menu"
               aria-expanded={isMobileMenuOpen}
             >

@@ -6,8 +6,8 @@ import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
   
-  // Cambia este número por el tuyo (formato: código país + número sin +)
-  const phoneNumber = '56912345678'; // Ejemplo: +56 9 1234 5678
+  // NUMERO WSP
+  const phoneNumber = '56979693753'; 
   const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios.');
 
   const quickMessages = [

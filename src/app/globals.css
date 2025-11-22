@@ -10,7 +10,13 @@
   --text-secondary: #666666;
   --bg-white: #ffffff;
   --bg-light: #f8fafc;
+  --bg-lighter: #fafbfc;
+  --bg-subtle: #f7f9fb;
   --border-light: #e2e8f0;
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 * {
@@ -27,7 +33,7 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
-  background-color: var(--bg-white);
+  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 50%, #fafbfc 100%);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -72,16 +78,34 @@ body {
       padding-right: 2rem;
     }
   }
+
+  /* Patrón de puntos sutil para fondos */
+  .bg-dots-pattern {
+    background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, #f3f4f6 1px, transparent 1px),
+                      linear-gradient(to bottom, #f3f4f6 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
 }
 
 /* Componentes reutilizables */
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg 
+           shadow-md hover:shadow-lg transition-all duration-200 
+           hover:bg-primary-700 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
   
   .btn-secondary {
-    @apply px-6 py-3 bg-white text-primary-600 font-medium rounded-lg border-2 border-primary-600 transition-colors hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply px-6 py-3 bg-white text-primary-600 font-medium rounded-lg 
+           border-2 border-primary-600 shadow-md hover:shadow-lg
+           transition-all duration-200 hover:bg-primary-50 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
   
   .section-padding {
@@ -89,7 +113,8 @@ body {
   }
   
   .card {
-    @apply bg-white rounded-xl shadow-md p-6 transition-shadow hover:shadow-lg;
+    @apply bg-white rounded-xl shadow-md hover:shadow-xl 
+           transition-all duration-300 p-6 border border-gray-100;
   }
 }
 
@@ -124,6 +149,7 @@ img {
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
+  
   }
   50% {
     opacity: 0.5;
@@ -133,3 +159,4 @@ img {
 .loading {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+

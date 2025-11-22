@@ -18,10 +18,15 @@ export default function Hero() {
   ];
 
   return (
-    <section
-      id="inicio"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-accent-50 pt-20"
-    >
+<section
+  id="inicio"
+  className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden animate-gradient"
+  style={{
+    background: 'linear-gradient(-45deg, #f8f9fa, #e3e7eb, #f0f4f8, #ffffff)',
+    backgroundSize: '400% 400%'
+  }}
+>
+
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -90,11 +95,9 @@ export default function Hero() {
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-3xl md:text-4xl font-bold text-primary-600">
-                  &lt;1s
+                  
                 </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  Carga de Páginas
-                </div>
+
               </div>
             </div>
           </div>
@@ -107,10 +110,10 @@ export default function Hero() {
                 const Icon = service.icon;
                 return (
                   <div
-                    key={index}
-                    className="card group hover:scale-105 transition-transform duration-300"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
+  key={index}
+  className="card group hover:scale-105 transition-transform duration-300 border-2 border-gray-900"
+  style={{ animationDelay: `${index * 0.1}s` }}
+>
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Icon className="w-8 h-8 text-white" />
@@ -124,15 +127,6 @@ export default function Hero() {
               })}
             </div>
 
-            {/* Floating Badge */}
-            <div className="absolute -top-6 -right-6 bg-white px-6 py-3 rounded-full shadow-lg animate-bounce-slow hidden lg:block">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="font-bold text-primary-600">
-                  Carga Ultra-Rápida
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

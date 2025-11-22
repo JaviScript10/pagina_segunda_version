@@ -1,0 +1,1 @@
+export const WA_PHONE = "56979693753"; // NÚMERO DE WHATSAPP
