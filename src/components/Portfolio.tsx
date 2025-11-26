@@ -84,7 +84,7 @@ export default function Portfolio() {
           <span className="inline-block px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-semibold mb-4">
             Nuestro Trabajo
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             Proyectos que{' '}
             <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
               Transforman Negocios
@@ -103,11 +103,10 @@ export default function Portfolio() {
               <button
                 key={cat.id}
                 onClick={() => setActiveFilter(cat.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
-                  activeFilter === cat.id
-                    ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-lg scale-105'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
-                }`}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${activeFilter === cat.id
+                  ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-lg scale-105'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
+                  }`}
               >
                 <span className="flex items-center space-x-2">
                   {Icon && <Icon className="w-4 h-4" />}
@@ -133,7 +132,7 @@ export default function Portfolio() {
                   {project.category === 'landing' && <FaRocket />}
                   {project.category === 'web' && <FaCode />}
                 </div>
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6">
                   <a

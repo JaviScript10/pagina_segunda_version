@@ -33,8 +33,21 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simular envío (aquí conectarías con tu backend o servicio de email)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Crear el mensaje para Gmail
+    const subject = `Contacto CiberByte - ${formData.service || 'Consulta'}`;
+    const body = `
+Nombre: ${formData.name}
+Email: ${formData.email}
+Teléfono: ${formData.phone || 'No proporcionado'}
+Servicio: ${formData.service}
+
+Mensaje:
+${formData.message}
+  `.trim();
+
+    // Abrir Gmail con los datos
+    const mailtoLink = `mailto:jera.bkr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
 
     setIsSubmitting(false);
     setIsSuccess(true);
@@ -51,7 +64,6 @@ export default function Contact() {
     // Ocultar mensaje de éxito después de 5 segundos
     setTimeout(() => setIsSuccess(false), 5000);
   };
-
   const contactInfo = [
     {
       icon: FaEnvelope,
@@ -62,13 +74,13 @@ export default function Contact() {
     {
       icon: FaPhone,
       title: 'Teléfono',
-      value: '+56 9 1234 5678',
-      link: 'tel:+56912345678',
+      value: '+56 9 7969 3753',
+      link: 'tel:+56979693753',
     },
     {
       icon: FaMapMarkerAlt,
       title: 'Ubicación',
-      value: 'Santiago, Chile',
+      value: 'Valparaíso, Chile',
       link: '#',
     },
   ];
@@ -81,7 +93,7 @@ export default function Contact() {
           <span className="inline-block px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-semibold mb-4">
             Contáctanos
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             ¿Listo para{' '}
             <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
               Empezar tu Proyecto?
@@ -208,7 +220,7 @@ export default function Contact() {
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-gray-900 bg-white"
                 >
                   <option value="">Selecciona un servicio</option>
                   <option value="landing">Landing Page</option>
@@ -233,7 +245,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none text-gray-900 bg-white"
                   placeholder="Cuéntanos sobre tu proyecto..."
                 />
               </div>

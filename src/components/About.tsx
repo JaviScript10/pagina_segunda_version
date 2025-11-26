@@ -41,7 +41,7 @@ export default function About() {
           <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
             Sobre Nosotros
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             Tu Socio en{' '}
             <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
               Transformación Digital

@@ -55,7 +55,7 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .container-custom {
     width: 100%;
     max-width: 1280px;
@@ -64,14 +64,14 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   @media (min-width: 640px) {
     .container-custom {
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
-  
+
   @media (min-width: 1024px) {
     .container-custom {
       padding-left: 2rem;
@@ -87,7 +87,7 @@ body {
 
   .bg-grid-pattern {
     background-image: linear-gradient(to right, #f3f4f6 1px, transparent 1px),
-                      linear-gradient(to bottom, #f3f4f6 1px, transparent 1px);
+      linear-gradient(to bottom, #f3f4f6 1px, transparent 1px);
     background-size: 40px 40px;
   }
 }
@@ -95,26 +95,19 @@ body {
 /* Componentes reutilizables */
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg 
-           shadow-md hover:shadow-lg transition-all duration-200 
-           hover:bg-primary-700 hover:-translate-y-0.5
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:bg-primary-700 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
-  
+
   .btn-secondary {
-    @apply px-6 py-3 bg-white text-primary-600 font-medium rounded-lg 
-           border-2 border-primary-600 shadow-md hover:shadow-lg
-           transition-all duration-200 hover:bg-primary-50 hover:-translate-y-0.5
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply px-6 py-3 bg-white text-primary-600 font-medium rounded-lg border-2 border-primary-600 shadow-md hover:shadow-lg transition-all duration-200 hover:bg-primary-50 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
-  
+
   .section-padding {
     @apply py-12 md:py-20 lg:py-24;
   }
-  
+
   .card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-xl 
-           transition-all duration-300 p-6 border border-gray-100;
+    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100;
   }
 }
 
@@ -147,10 +140,13 @@ img {
 
 /* Loading states */
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
-  
+
   }
+
   50% {
     opacity: 0.5;
   }
@@ -160,3 +156,17 @@ img {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Fix de contraste para gradientes en títulos */
+.bg-gradient-to-r {
+  /* Asegurar que el gradiente sea visible */
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Mejorar contraste de gradientes */
+h1 .bg-gradient-to-r,
+h2 .bg-gradient-to-r,
+h3 .bg-gradient-to-r {
+  background-image: linear-gradient(to right, #0052cc, #0ea5e9) !important;
+}

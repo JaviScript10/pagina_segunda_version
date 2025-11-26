@@ -18,48 +18,56 @@ export default function Hero() {
   ];
 
   return (
-<section
-  id="inicio"
-  className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden animate-gradient"
-  style={{
-    background: 'linear-gradient(-45deg, #f8f9fa, #e3e7eb, #f0f4f8, #ffffff)',
-    backgroundSize: '400% 400%'
-  }}
->
+    <section
+      id="inicio"
+      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
+    >
+      {/* Imagen de fondo */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url("/fondo1.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'brightness(1.05) contrast(0.95)',
+        }}
+      />
 
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-      </div>
+      {/* Overlay equilibrado */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background:
+            'linear-gradient(135deg, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.80) 100%)',
+        }}
+      />
 
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
+          {/* Texto */}
           <div className="text-center lg:text-left space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-md">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              <span className="text-sm font-medium text-gray-700">
+            {/* Badge flotante */}
+            <div className="inline-flex items-center space-x-2 bg-green-50 border-2 border-green-200 px-4 py-2 rounded-full shadow-lg">
+              <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="text-sm font-semibold text-green-700">
                 Disponible para nuevos proyectos
               </span>
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
               Transforma tu{' '}
               <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
                 Presencia Digital
               </span>
             </h1>
 
-            {/* Description */}
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl text-gray-800 font-medium max-w-2xl mx-auto lg:mx-0">
               Creamos soluciones web modernas, rápidas y optimizadas para impulsar
               tu negocio. Desde landing pages hasta e-commerce completos.
             </p>
 
-            {/* CTA Buttons */}
+            {/* BOTONES CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={handleScrollToContact}
@@ -67,72 +75,40 @@ export default function Hero() {
               >
                 Comenzar Proyecto
               </button>
-              <a
-                href="#proyectos"
-                className="btn-secondary text-lg px-8 py-4"
-              >
+
+              <a href="#proyectos" className="btn-secondary text-lg px-8 py-4">
                 Ver Proyectos
               </a>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200">
-              <div className="text-center lg:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-primary-600">
-                  50+
-                </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  Proyectos Completados
-                </div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-primary-600">
-                  100%
-                </div>
-                <div className="text-sm text-gray-600 mt-1">
-                  Clientes Satisfechos
-                </div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-primary-600">
-                  
-                </div>
-
-              </div>
-            </div>
           </div>
 
-          {/* Visual Element */}
+          {/* SERVICIOS */}
           <div className="relative">
-            {/* Services Grid */}
             <div className="grid grid-cols-2 gap-6">
               {services.map((service, index) => {
                 const Icon = service.icon;
                 return (
                   <div
-  key={index}
-  className="card group hover:scale-105 transition-transform duration-300 border-2 border-gray-900"
-  style={{ animationDelay: `${index * 0.1}s` }}
->
+                    key={index}
+                    className="card group hover:scale-105 transition-transform duration-300 border-2 border-gray-900"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Icon className="w-8 h-8 text-white" />
                       </div>
-                      <h3 className="font-semibold text-gray-800">
-                        {service.label}
-                      </h3>
+                      <h3 className="font-semibold text-gray-800">{service.label}</h3>
                     </div>
                   </div>
                 );
               })}
             </div>
-
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
+      {/* SCROLL INDICATOR */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block z-10">
         <a
           href="#servicios"
           className="flex flex-col items-center space-y-2 text-gray-400 hover:text-primary-600 transition-colors"
