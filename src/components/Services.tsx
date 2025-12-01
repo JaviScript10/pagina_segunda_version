@@ -62,7 +62,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="servicios" className="section-padding bg-white">
+    <section id="servicios" className="pt-24 pb-12 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="container-custom">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

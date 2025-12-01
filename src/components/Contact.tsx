@@ -35,26 +35,26 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     // Crear mensaje de WhatsApp
     const whatsappMessage = `
-*Nuevo contacto desde CiberByte*
-
-*Nombre:* ${formData.name}
-*Email:* ${formData.email}
-*Teléfono:* ${formData.phone}
-*Servicio:* ${formData.service}
-*Mensaje:* ${formData.message}
+  *Nuevo contacto desde CiberByte*
+  
+  *Nombre:* ${formData.name}
+  *Email:* ${formData.email}
+  *Teléfono:* ${formData.phone}
+  *Servicio:* ${formData.service}
+  *Mensaje:* ${formData.message}
     `.trim();
-
+  
     // Número de WhatsApp (reemplazar con tu número real)
-    const whatsappNumber = '56979693753'; // Sin espacios ni símbolos
+    const whatsappNumber = '56912345678'; // Sin espacios ni símbolos
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    // Abrir WhatsApp
-    window.open(whatsappURL, '_blank');
-
+  
+    // Abrir WhatsApp en la misma pestaña
+    window.location.href = whatsappURL;
+  
     // Limpiar formulario
     setFormData({
       name: '',
@@ -75,7 +75,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contacto" className="section-padding bg-gradient-to-br from-gray-50 to-white">
+    <section id="contacto" className="pt-24 pb-12 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="container-custom">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

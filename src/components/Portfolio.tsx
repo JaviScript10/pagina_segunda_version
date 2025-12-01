@@ -264,7 +264,7 @@ export default function Portfolio() {
   };
 
   return (
-    <section id="proyectos" className="section-padding bg-white">
+    <section id="proyectos" className="pt-24 pb-12 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-white">
       <div className="container-custom">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
