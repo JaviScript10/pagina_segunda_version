@@ -157,16 +157,19 @@ img {
 }
 
 /* Fix de contraste para gradientes en títulos */
-.bg-gradient-to-r {
-  /* Asegurar que el gradiente sea visible */
+.bg-gradient-to-r.bg-clip-text {
+  /* Solo aplicar a elementos con ambas clases */
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
 
-/* Mejorar contraste de gradientes */
-h1 .bg-gradient-to-r,
-h2 .bg-gradient-to-r,
-h3 .bg-gradient-to-r {
+/* Mejorar contraste de gradientes solo en textos */
+h1 .bg-clip-text,
+h2 .bg-clip-text,
+h3 .bg-clip-text {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
   background-image: linear-gradient(to right, #0052cc, #0ea5e9) !important;
 }

@@ -6,7 +6,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,7 +16,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
+  const navLinks = [
     { label: 'Inicio', href: '#inicio' },
     { label: 'Servicios', href: '#servicios' },
     { label: 'Proyectos', href: '#proyectos' },
@@ -25,7 +25,7 @@ export default function Header() {
   ];
 
   const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false);
+    setIsMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -35,14 +35,14 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-  isScrolled
-    ? 'bg-gray-900/95 backdrop-blur-md shadow-xl'
-    : 'bg-gray-900 shadow-md'
-}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+            ? 'bg-gray-900/95 backdrop-blur-md shadow-xl'
+            : 'bg-gray-900 shadow-md'
+          }`}
       >
         <nav className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
+
             {/* Logo */}
             <Link
               href="/"
@@ -59,7 +59,7 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
+              {navLinks.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
@@ -79,81 +79,59 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-white hover:text-primary-400 transition-colors"
               aria-label="Toggle menu"
-              aria-expanded={isMobileMenuOpen}
+              aria-expanded={isMenuOpen}
             >
-              {isMobileMenuOpen ? (
-                <FaTimes className="w-6 h-6" />
-              ) : (
-                <FaBars className="w-6 h-6" />
-              )}
+              {isMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
             </button>
           </div>
         </nav>
       </header>
 
-      {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          isMobileMenuOpen
-            ? 'visible opacity-100'
-            : 'invisible opacity-0 pointer-events-none'
-        }`}
-      >
-        {/* Overlay */}
-        <div
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-        
-        {/* Menu Panel */}
-        <div
-          className={`absolute top-0 right-0 bottom-0 w-72 bg-white shadow-2xl transform transition-transform duration-300 ${
-            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
-          <div className="flex flex-col h-full">
-            {/* Menu Header */}
-            <div className="flex items-center justify-between p-6 border-b">
-              <span className="text-xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-                Menú
-              </span>
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 text-gray-700 hover:text-primary-600 transition-colors"
-                aria-label="Cerrar menú"
-              >
-                <FaTimes className="w-6 h-6" />
-              </button>
-            </div>
+      {/* --- MOBILE MENU NUEVO (TU VERSIÓN) --- */}
+      {isMenuOpen && (
+        <>
+          {/* Overlay oscuro */}
+          <div
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={() => setIsMenuOpen(false)}
+          />
 
-            {/* Menu Items */}
-            <nav className="flex-1 overflow-y-auto py-6">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleNavClick(item.href)}
-                  className="w-full text-left px-6 py-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors font-medium"
+          {/* Panel del menú */}
+          <div className="fixed top-16 left-0 right-0 bottom-0 bg-gray-50 z-50 md:hidden overflow-y-auto p-6">
+            <div className="space-y-3">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-all hover:scale-[1.02] active:scale-95"
                 >
-                  {item.label}
-                </button>
+                  <span className="text-lg font-semibold text-gray-900">
+                    {link.label}
+                  </span>
+                  <div className="h-1 w-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-full mt-2" />
+                </a>
               ))}
-            </nav>
 
-            {/* Menu Footer */}
-            <div className="p-6 border-t">
+              {/* Botón CTA en móvil */}
               <button
-                onClick={() => handleNavClick('#contacto')}
-                className="btn-primary w-full"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  const element = document.querySelector('#contacto');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all mt-6"
               >
                 Cotizar Proyecto
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
+      {/* --- FIN MOBILE MENU --- */}
     </>
   );
 }

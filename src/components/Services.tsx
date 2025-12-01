@@ -88,7 +88,7 @@ export default function Services() {
             return (
               <div
                 key={index}
-                className="card group hover:shadow-2xl transition-all duration-300"
+                className="bg-white rounded-xl p-8 border-2 border-gray-900 shadow-md hover:shadow-2xl hover:border-primary-600 hover:-translate-y-1 transition-all duration-300 group"
               >
                 {/* Icon */}
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
