@@ -1,20 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const pathname = usePathname();
 
   const navLinks = [
     { label: 'Inicio', href: '#inicio' },
@@ -24,104 +15,125 @@ export default function Header() {
     { label: 'Contacto', href: '#contacto' },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (pathname === '/') {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      window.location.href = `/${href}`;
     }
   };
 
   return (
-    <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-            ? 'bg-gray-900/95 backdrop-blur-md shadow-xl'
-            : 'bg-gray-900 shadow-md'
-          }`}
-      >
-        <nav className="container-custom">
-          <div className="flex items-center justify-between h-16 md:h-20">
-
-            {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center space-x-2 group"
-              aria-label="CiberByte - Inicio"
-            >
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center transform transition-transform group-hover:scale-110">
-                <span className="text-white font-bold text-xl">CB</span>
-              </div>
-              <span className="text-xl md:text-2xl font-bold text-white">
-                CiberByte
-              </span>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-gray-200 hover:text-primary-400 font-medium transition-colors relative group"
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 transition-all group-hover:w-full"></span>
-                </button>
-              ))}
-              <a
-                href="#contacto"
-                className="btn-primary"
-              >
-                Cotizar Proyecto
-              </a>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg">
+      <nav className="container-custom">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <a
+            href="/"
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl">CB</span>
             </div>
+            <span className="text-2xl font-bold text-white">CiberByte</span>
+          </a>
 
-            {/* Mobile Menu Button */}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="relative group text-gray-300 font-medium px-1 transition-colors hover:text-white"
+              >
+                {link.label}
+                {/* Línea animada */}
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-600 transition-all group-hover:w-full"></span>
+              </a>
+            ))}
+
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-white hover:text-primary-400 transition-colors"
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
+              onClick={(e) => {
+                if (pathname === '/') {
+                  e.preventDefault();
+                  const element = document.querySelector('#contacto');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                } else {
+                  window.location.href = '/#contacto';
+                }
+              }}
+              className="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
             >
-              {isMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+              Cotizar Proyecto
             </button>
           </div>
-        </nav>
-      </header>
 
-      {/* --- MOBILE MENU NUEVO (TU VERSIÓN) --- */}
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <>
-          {/* Overlay oscuro */}
           <div
             className="fixed inset-0 bg-black/50 z-40 md:hidden"
             onClick={() => setIsMenuOpen(false)}
           />
-
-          {/* Panel del menú */}
           <div className="fixed top-16 left-0 right-0 bottom-0 bg-gray-50 z-50 md:hidden overflow-y-auto p-6">
             <div className="space-y-3">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-all hover:scale-[1.02] active:scale-95"
                 >
-                  <span className="text-lg font-semibold text-gray-900">
-                    {link.label}
-                  </span>
+                  <span className="text-lg font-semibold text-gray-900">{link.label}</span>
                   <div className="h-1 w-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-full mt-2" />
                 </a>
               ))}
-
-              {/* Botón CTA en móvil */}
               <button
-                onClick={() => {
+                onClick={(e) => {
                   setIsMenuOpen(false);
-                  const element = document.querySelector('#contacto');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  if (pathname === '/') {
+                    e.preventDefault();
+                    const element = document.querySelector('#contacto');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  } else {
+                    window.location.href = '/#contacto';
+                  }
                 }}
                 className="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all mt-6"
               >
@@ -131,7 +143,6 @@ export default function Header() {
           </div>
         </>
       )}
-      {/* --- FIN MOBILE MENU --- */}
-    </>
+    </header>
   );
 }

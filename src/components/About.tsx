@@ -53,14 +53,14 @@ export default function About() {
           </p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        {/* Stats - CON CONTENEDORES NEGROS */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={index}
-                className="text-center group hover:scale-105 transition-transform"
+                className="bg-white rounded-xl p-6 border-2 border-gray-900 shadow-md hover:shadow-2xl hover:border-primary-600 hover:-translate-y-1 transition-all duration-300 group text-center"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Icon className="w-8 h-8 text-white" />
@@ -68,21 +68,21 @@ export default function About() {
                 <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-sm text-gray-700 font-medium">{stat.label}</div>
               </div>
             );
           })}
         </div>
 
-        {/* Values Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        {/* Values Grid - CON BORDE NEGRO Y HOVER */}
+        <div className="grid md:grid-cols-2 gap-8 mb-20">
           {values.map((value, index) => (
             <div
               key={index}
-              className="card hover:shadow-xl transition-all"
+              className="bg-white rounded-xl p-8 border-2 border-gray-900 shadow-md hover:shadow-2xl hover:border-primary-600 hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                   <svg
                     className="w-6 h-6 text-primary-600"
                     fill="currentColor"
@@ -96,10 +96,10 @@ export default function About() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {value.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed">
                     {value.description}
                   </p>
                 </div>
@@ -108,36 +108,59 @@ export default function About() {
           ))}
         </div>
 
-        {/* Story */}
-        <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-8 md:p-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-              Nuestra Historia
-            </h3>
-            <div className="space-y-4 text-gray-700 leading-relaxed text-left md:text-center">
-              <p>
-                CiberByte nació de la pasión por crear soluciones digitales que realmente
-                marquen la diferencia. Sabemos que cada proyecto es único y merece atención
-                personalizada.
-              </p>
-              <p>
-                Trabajamos con startups, PyMEs y empresas establecidas, ayudándolas a
-                establecer o mejorar su presencia en línea con tecnología de punta y diseño
-                excepcional.
-              </p>
-              <p>
-                Nuestro enfoque combina creatividad, tecnología y estrategia para entregar
-                productos que no solo se ven bien, sino que funcionan perfectamente y
-                generan resultados medibles.
-              </p>
-            </div>
-            <div className="mt-8">
-              <a
-                href="#contacto"
-                className="btn-primary text-lg px-8 py-4 inline-block"
-              >
-                Trabajemos Juntos
-              </a>
+        {/* Nuestra Historia - CON IMAGEN historia.jpg DE FONDO */}
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+          {/* Imagen de fondo */}
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: 'url("/historia.jpg")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'brightness(1.05) contrast(0.95)',
+            }}
+          />
+
+          {/* Overlay equilibrado - igual que Hero */}
+          <div
+            className="absolute inset-0 z-[1]"
+            style={{
+              background:
+                'linear-gradient(135deg, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.80) 100%)',
+            }}
+          />
+
+          {/* Contenido */}
+          <div className="relative z-10 p-8 md:p-12">
+            <div className="max-w-3xl mx-auto text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Nuestra Historia
+              </h3>
+              <div className="space-y-4 text-gray-800 leading-relaxed text-left md:text-center font-medium">
+                <p>
+                  CiberByte nació de la pasión por crear soluciones digitales que realmente
+                  marquen la diferencia. Sabemos que cada proyecto es único y merece atención
+                  personalizada.
+                </p>
+                <p>
+                  Trabajamos con startups, PyMEs y empresas establecidas, ayudándolas a
+                  establecer o mejorar su presencia en línea con tecnología de punta y diseño
+                  excepcional.
+                </p>
+                <p>
+                  Nuestro enfoque combina creatividad, tecnología y estrategia para entregar
+                  productos que no solo se ven bien, sino que funcionan perfectamente y
+                  generan resultados medibles.
+                </p>
+              </div>
+              <div className="mt-8">
+                <a
+                  href="#contacto"
+                  className="inline-block bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl hover:scale-105 transition-all"
+                >
+                  Trabajemos Juntos
+                </a>
+              </div>
             </div>
           </div>
         </div>

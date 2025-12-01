@@ -1,13 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  FaEnvelope,
-  FaPhone,
-  FaMapMarkerAlt,
-  FaPaperPlane,
-  FaCheckCircle,
-} from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,8 +11,59 @@ export default function Contact() {
     service: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+
+  const contactInfo = [
+    {
+      icon: FaEnvelope,
+      title: 'Email',
+      content: 'contacto@ciberbyte.cl',
+      link: 'mailto:contacto@ciberbyte.cl',
+    },
+    {
+      icon: FaPhone,
+      title: 'Teléfono',
+      content: '+56 9 7969 3753',
+      link: 'tel:+56979693753',
+    },
+    {
+      icon: FaMapMarkerAlt,
+      title: 'Ubicación',
+      content: 'Valparaíso, Chile',
+      link: 'https://maps.google.com/?q=Valparaiso,Chile',
+    },
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Crear mensaje de WhatsApp
+    const whatsappMessage = `
+*Nuevo contacto desde CiberByte*
+
+*Nombre:* ${formData.name}
+*Email:* ${formData.email}
+*Teléfono:* ${formData.phone}
+*Servicio:* ${formData.service}
+*Mensaje:* ${formData.message}
+    `.trim();
+
+    // Número de WhatsApp (reemplazar con tu número real)
+    const whatsappNumber = '56979693753'; // Sin espacios ni símbolos
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Abrir WhatsApp
+    window.open(whatsappURL, '_blank');
+
+    // Limpiar formulario
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: '',
+    });
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -29,74 +74,18 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Crear el mensaje para Gmail
-    const subject = `Contacto CiberByte - ${formData.service || 'Consulta'}`;
-    const body = `
-Nombre: ${formData.name}
-Email: ${formData.email}
-Teléfono: ${formData.phone || 'No proporcionado'}
-Servicio: ${formData.service}
-
-Mensaje:
-${formData.message}
-  `.trim();
-
-    // Abrir Gmail con los datos
-    const mailtoLink = `mailto:jera.bkr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    // Resetear formulario
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
-
-    // Ocultar mensaje de éxito después de 5 segundos
-    setTimeout(() => setIsSuccess(false), 5000);
-  };
-  const contactInfo = [
-    {
-      icon: FaEnvelope,
-      title: 'Email',
-      value: 'contacto@ciberbyte.cl',
-      link: 'mailto:contacto@ciberbyte.cl',
-    },
-    {
-      icon: FaPhone,
-      title: 'Teléfono',
-      value: '+56 9 7969 3753',
-      link: 'tel:+56979693753',
-    },
-    {
-      icon: FaMapMarkerAlt,
-      title: 'Ubicación',
-      value: 'Valparaíso, Chile',
-      link: '#',
-    },
-  ];
-
   return (
     <section id="contacto" className="section-padding bg-gradient-to-br from-gray-50 to-white">
       <div className="container-custom">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-semibold mb-4">
-            Contáctanos
+          <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
+            Contacto
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-            ¿Listo para{' '}
+            Hagamos Realidad tu{' '}
             <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-              Empezar tu Proyecto?
+              Proyecto Digital
             </span>
           </h2>
           <p className="text-lg text-gray-600">
@@ -104,200 +93,160 @@ ${formData.message}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                Información de Contacto
-              </h3>
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon;
-                  return (
-                    <a
-                      key={index}
-                      href={info.link}
-                      className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow group"
-                    >
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">{info.title}</div>
-                        <div className="font-semibold text-gray-800 group-hover:text-primary-600 transition-colors">
-                          {info.value}
-                        </div>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
+        {/* Layout 2 Columnas: Info Izquierda + Formulario Derecha */}
+        <div className="grid lg:grid-cols-5 gap-8">
+          {/* COLUMNA IZQUIERDA - Info de Contacto */}
+          <div className="lg:col-span-2 space-y-6">
+            {contactInfo.map((info, index) => {
+              const Icon = info.icon;
+              return (
+                <a
+                  key={index}
+                  href={info.link}
+                  target={info.link.startsWith('http') ? '_blank' : undefined}
+                  rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="block bg-white rounded-xl p-6 border-2 border-gray-900 shadow-md hover:shadow-2xl hover:border-primary-600 hover:-translate-y-1 transition-all duration-300 group"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <Icon className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-gray-600 mb-1">{info.title}</h3>
+                      <p className="text-lg font-semibold text-gray-900">{info.content}</p>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
 
-            {/* Additional Info */}
-            <div className="card bg-gradient-to-br from-primary-50 to-accent-50">
-              <h4 className="font-bold text-gray-800 mb-4 text-lg">
-                ¿Por qué elegirnos?
-              </h4>
-              <ul className="space-y-3">
-                {[
-                  'Respuesta en menos de 24 horas',
-                  'Cotización gratuita y sin compromiso',
-                  'Asesoría personalizada',
-                  'Garantía de satisfacción',
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center text-gray-700">
-                    <FaCheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* CTA Adicional */}
+            <div className="bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl p-6 text-white">
+              <h3 className="text-xl font-bold mb-2">¿Prefieres hablar directamente?</h3>
+              <p className="text-sm mb-4 opacity-90">
+                Llámanos o escríbenos por WhatsApp y conversemos sobre tu proyecto.
+              </p>
+              <a
+                href="https://wa.me/56979693753"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 bg-white text-primary-600 font-bold py-3 px-6 rounded-lg hover:scale-105 transition-all"
+              >
+                <FaWhatsapp className="w-5 h-5" />
+                <span>Abrir WhatsApp</span>
+              </a>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name */}
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Nombre Completo *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                  placeholder="Tu nombre"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                  placeholder="tu@email.com"
-                />
-              </div>
-
-              {/* Phone */}
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                  Teléfono
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                  placeholder="+56 9 1234 5678"
-                />
-              </div>
-
-              {/* Service */}
-              <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                  Servicio de Interés *
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-gray-900 bg-white"
-                >
-                  <option value="">Selecciona un servicio</option>
-                  <option value="landing">Landing Page</option>
-                  <option value="web">Sitio Corporativo</option>
-                  <option value="ecommerce">E-commerce</option>
-                  <option value="app">App Móvil</option>
-                  <option value="seo">SEO & Marketing</option>
-                  <option value="maintenance">Mantenimiento</option>
-                  <option value="custom">Proyecto Personalizado</option>
-                </select>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Mensaje *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none text-gray-900 bg-white"
-                  placeholder="Cuéntanos sobre tu proyecto..."
-                />
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg
-                      className="animate-spin h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    <span>Enviando...</span>
-                  </>
-                ) : (
-                  <>
-                    <FaPaperPlane className="w-5 h-5" />
-                    <span>Enviar Mensaje</span>
-                  </>
-                )}
-              </button>
-
-              {/* Success Message */}
-              {isSuccess && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center space-x-3 animate-fade-in">
-                  <FaCheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                  <p className="text-green-800 font-medium">
-                    ¡Mensaje enviado! Te responderemos pronto.
-                  </p>
+          {/* COLUMNA DERECHA - Formulario */}
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded-2xl p-8 border-2 border-gray-900 shadow-xl">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Nombre */}
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
+                    Nombre completo *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
+                    placeholder="Juan Pérez"
+                  />
                 </div>
-              )}
-            </form>
+
+                {/* Email y Teléfono */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
+                      placeholder="juan@ejemplo.cl"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
+                      Teléfono
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
+                      placeholder="+56 9 79693753"
+                    />
+                  </div>
+                </div>
+
+                {/* Servicio */}
+                <div>
+                  <label htmlFor="service" className="block text-sm font-semibold text-gray-900 mb-2">
+                    ¿Qué servicio necesitas? *
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    required
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
+                  >
+                    <option value="">Selecciona un servicio</option>
+                    <option value="Landing Page">Landing Page</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="App Móvil">App Móvil</option>
+                    <option value="Sitio Corporativo">Sitio Corporativo</option>
+                    <option value="Diseño UX/UI">Diseño UX/UI</option>
+                    <option value="Mantenimiento Web">Mantenimiento Web</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+
+                {/* Mensaje */}
+                <div>
+                  <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
+                    Cuéntanos sobre tu proyecto *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all resize-none text-gray-900 bg-white"
+                    placeholder="Describe brevemente tu proyecto, objetivos y presupuesto aproximado..."
+                  />
+                </div>
+
+                {/* Botón Submit - WHATSAPP */}
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-green-600 to-green-500 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center space-x-3 group"
+                >
+                  <FaWhatsapp className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  <span>Enviar por WhatsApp</span>
+                </button>
+
+                <p className="text-center text-sm text-gray-600 mt-4">
+                  Al enviar, tu mensaje se abrirá en WhatsApp para que lo confirmes antes de enviar.
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>
