@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { WA_PHONE } from "../config.ts";
+import { WA_PHONE } from "../config";
 
 type Role = "assistant" | "user";
 type Msg = { id: string; role: Role; text: string; chips?: string[] };
