@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { FaArrowRight, FaStar, FaChartLine, FaTimes, FaClock, FaDollarSign, FaCheckCircle } from 'react-icons/fa';
+import DeviceMockup from '@/components/DeviceMockup';
+import Avatar from '@/components/Avatar';
 
 type Category = 'all' | 'landing' | 'ecommerce' | 'app' | 'corporate';
 
@@ -15,7 +17,9 @@ interface Project {
   rating: string;
   testimonial: string;
   author: string;
+  authorImage?: string; // Opcional: URL de foto real del cliente
   badge: string;
+  deviceType: 'laptop' | 'mobile'; // Nuevo: tipo de dispositivo para el mockup
   // Datos completos para el modal
   gallery: string[];
   challenge: string;
@@ -44,16 +48,17 @@ export default function Portfolio() {
       title: 'Sabores del Sur',
       subtitle: 'Restaurante - Valdivia',
       category: 'landing',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80',
+      image: '/proyectos/sabores-del-sur-1.png',
       result: '+230% reservas online',
       rating: '4.9/5',
       testimonial: 'La mejor inversión que hicimos. Reservas se triplicaron.',
-      author: 'Juan Pérez, Dueño',
+      author: 'Juan Pérez',
+      deviceType: 'laptop',
       badge: 'LANDING PAGE',
       gallery: [
-        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80',
-        'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
-        'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1200&q=80',
+        '/proyectos/sabores-del-sur-1.png',
+        '/proyectos/sabores-del-sur-2.png',
+        '/proyectos/sabores-del-sur-3.png',
       ],
       challenge: 'Restaurante tradicional con 0 presencia digital. Dependían 100% de clientes walk-in y llamadas telefónicas. Querían modernizar y captar clientes millennials.',
       solution: [
@@ -76,16 +81,17 @@ export default function Portfolio() {
       title: 'Verde Nativo',
       subtitle: 'Tienda de Plantas - Santiago',
       category: 'ecommerce',
-      image: 'https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=800&q=80',
+      image: '/proyectos/verde-nativo-1.png',
       result: '+180% conversiones',
       rating: '4.8/5',
       testimonial: 'Vendimos 12.000 plantas en 6 meses. Increíble.',
-      author: 'María González, CEO',
+      author: 'María González',
+      deviceType: 'laptop',
       badge: 'E-COMMERCE',
       gallery: [
-        'https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=1200&q=80',
-        'https://images.unsplash.com/photo-1459156212016-c812468e2115?w=1200&q=80',
-        'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1200&q=80',
+        '/proyectos/verde-nativo-1.png',
+        '/proyectos/verde-nativo-2.png',
+        '/proyectos/verde-nativo-3.png',
       ],
       challenge: 'Tienda física de plantas con ventas estancadas. Necesitaban llegar a más clientes y facilitar envíos a domicilio en toda la Región Metropolitana.',
       solution: [
@@ -108,16 +114,17 @@ export default function Portfolio() {
       title: 'Espacio Urbano',
       subtitle: 'Inmobiliaria - Región Metropolitana',
       category: 'corporate',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80',
+      image: '/proyectos/espacio-urbano-1.png',
       result: '450+ consultas/mes',
       rating: '5.0/5',
       testimonial: 'Sitio profesional que genera confianza. Consultas de calidad.',
-      author: 'Carlos Rojas, Director',
+      author: 'Carlos Rojas',
+      deviceType: 'laptop',
       badge: 'SITIO CORPORATIVO',
       gallery: [
-        'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
-        'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80',
-        'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80',
+        '/proyectos/espacio-urbano-1.png',
+        '/proyectos/espacio-urbano-2.png',
+        '/proyectos/espacio-urbano-3.png',
       ],
       challenge: 'Inmobiliaria con sitio desactualizado y formularios que no funcionaban. Perdían oportunidades de negocio por falta de credibilidad digital.',
       solution: [
@@ -140,16 +147,17 @@ export default function Portfolio() {
       title: 'FitChile',
       subtitle: 'App Fitness - Nacional',
       category: 'app',
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
+      image: '/proyectos/fitchile-1.png',
       result: '8.500+ descargas',
       rating: '4.7/5',
       testimonial: 'App intuitiva y rápida. Usuarios la aman.',
-      author: 'Andrea Silva, Fundadora',
+      author: 'Andrea Silva',
+      deviceType: 'mobile',
       badge: 'APP MÓVIL',
       gallery: [
-        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80',
-        'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&q=80',
-        'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80',
+        '/proyectos/fitchile-1.png',
+        '/proyectos/fitchile-2.png',
+        '/proyectos/fitchile-3.png',
       ],
       challenge: 'Emprendedora fitness necesitaba digitalizar su negocio de entrenamientos personalizados y llegar a más clientes sin estar físicamente presente.',
       solution: [
@@ -172,16 +180,17 @@ export default function Portfolio() {
       title: 'Café Andino',
       subtitle: 'Cafetería - Valparaíso',
       category: 'landing',
-      image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80',
+      image: '/proyectos/cafe-andino-1.png',
       result: '+320% ventas delivery',
       rating: '4.9/5',
       testimonial: 'El sitio nos ayudó a explotar en pedidos online.',
-      author: 'Sofía Muñoz, Socia',
+      author: 'Sofía Muñoz',
+      deviceType: 'laptop',
       badge: 'LANDING + TIENDA',
       gallery: [
-        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200&q=80',
-        'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1200&q=80',
-        'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&q=80',
+        '/proyectos/cafe-andino-1.png',
+        '/proyectos/cafe-andino-2.png',
+        '/proyectos/cafe-andino-3.png',
       ],
       challenge: 'Cafetería boutique afectada por pandemia. Necesitaban cambiar su modelo de negocio a delivery urgente pero no tenían plataforma digital propia.',
       solution: [
@@ -204,16 +213,17 @@ export default function Portfolio() {
       title: 'Innova Gestión',
       subtitle: 'Consultoría Empresarial - Concepción',
       category: 'corporate',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+      image: '/proyectos/innova-gestion-1.png',
       result: '+95% tráfico SEO',
       rating: '5.0/5',
       testimonial: 'Presencia digital que refleja nuestra experiencia.',
-      author: 'Roberto Vargas, Gerente',
+      author: 'Roberto Vargas',
+      deviceType: 'laptop',
       badge: 'SITIO CORPORATIVO',
       gallery: [
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80',
-        'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&q=80',
+        '/proyectos/innova-gestion-1.png',
+        '/proyectos/innova-gestion-2.png',
+        '/proyectos/innova-gestion-3.png',
       ],
       challenge: 'Consultora con 15 años de experiencia pero sitio obsoleto que no reflejaba su expertise. Perdían oportunidades frente a competencia con mejor presencia digital.',
       solution: [
@@ -305,15 +315,17 @@ export default function Portfolio() {
               key={project.id}
               className="group bg-white rounded-2xl overflow-hidden border-2 border-gray-900 shadow-lg hover:shadow-2xl hover:border-primary-600 hover:-translate-y-2 transition-all duration-300"
             >
-              {/* Image */}
-              <div className="relative h-56 overflow-hidden bg-gray-200">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              {/* Device Mockup */}
+              <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 p-4 flex items-center justify-center overflow-hidden">
+                <div className="w-full max-w-[280px]">
+                  <DeviceMockup
+                    image={project.image}
+                    alt={project.title}
+                    type={project.deviceType}
+                  />
+                </div>
                 {/* Badge */}
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary-600 border border-primary-200">
+                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary-600 border border-primary-200">
                   {project.badge}
                 </div>
               </div>
@@ -342,14 +354,17 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                {/* Testimonial */}
+                {/* Testimonial con Avatar */}
                 <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                  <p className="text-sm italic mb-2" style={{ color: '#374151' }}>
+                  <p className="text-sm italic mb-3 text-gray-700">
                     "{project.testimonial}"
                   </p>
-                  <p className="text-xs font-semibold" style={{ color: '#4b5563' }}>
-                    — {project.author}
-                  </p>
+                  <div className="flex items-center space-x-3">
+                    <Avatar name={project.author} image={project.authorImage} size="sm" />
+                    <p className="text-xs font-semibold text-gray-600">
+                      — {project.author}
+                    </p>
+                  </div>
                 </div>
 
                 {/* CTA Button */}
@@ -436,28 +451,41 @@ export default function Portfolio() {
 
             {/* Modal Content */}
             <div className="p-6 space-y-8">
-              {/* Image Gallery */}
-              <div className="relative h-80 bg-gray-200 rounded-xl overflow-hidden">
-                <img
-                  src={selectedProject.gallery[currentImageIndex]}
-                  alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                  className="w-full h-full object-cover"
-                />
+              {/* Image Gallery con Device Mockup */}
+              <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex items-center justify-center p-8">
+                {selectedProject.deviceType === 'mobile' ? (
+                  /* Mockup móvil para apps */
+                  <div className="h-full flex items-center justify-center">
+                    <DeviceMockup
+                      image={selectedProject.gallery[currentImageIndex]}
+                      alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
+                      type="mobile"
+                    />
+                  </div>
+                ) : (
+                  /* Imagen normal para webs */
+                  <img
+                    src={selectedProject.gallery[currentImageIndex]}
+                    alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
+                    className="w-full h-full object-contain rounded-lg"
+                  />
+                )}
+
                 {/* Navigation Arrows */}
                 <button
                   onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-2xl"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-2xl z-10"
                 >
                   ←
                 </button>
                 <button
                   onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-2xl"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-2xl z-10"
                 >
                   →
                 </button>
                 {/* Image Counter */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-10">
                   {currentImageIndex + 1} / {selectedProject.gallery.length}
                 </div>
               </div>
@@ -507,14 +535,19 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Testimonial */}
+              {/* Testimonial con Avatar grande */}
               <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border-2 border-blue-300 shadow-md">
-                <p className="text-xl italic mb-4 leading-relaxed" style={{ color: '#1e293b', fontWeight: '500' }}>
-                  "{selectedProject.testimonial}"
-                </p>
-                <p className="text-base" style={{ color: '#334155', fontWeight: '700' }}>
-                  — {selectedProject.author}
-                </p>
+                <div className="flex items-start space-x-4">
+                  <Avatar name={selectedProject.author} image={selectedProject.authorImage} size="lg" />
+                  <div className="flex-1">
+                    <p className="text-xl italic mb-3 leading-relaxed text-gray-800 font-medium">
+                      "{selectedProject.testimonial}"
+                    </p>
+                    <p className="text-base text-gray-700 font-bold">
+                      — {selectedProject.author}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Project Info */}

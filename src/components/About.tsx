@@ -1,13 +1,40 @@
 'use client';
 
 import { FaRocket, FaUsers, FaTrophy, FaClock } from 'react-icons/fa';
+import { useCountUp } from '@/hooks/useCountUp';
+
+// Componente individual para cada stat con contador
+function StatCard({ icon: Icon, endValue, suffix, label }: {
+  icon: React.ComponentType<{ className?: string }>;
+  endValue: number;
+  suffix: string;
+  label: string;
+}) {
+  const counter = useCountUp({ end: endValue, duration: 2000, suffix });
+
+  return (
+    <div
+      ref={counter.ref}
+      className="bg-white rounded-xl p-6 border-2 border-gray-900 shadow-md hover:shadow-2xl hover:border-primary-600 hover:-translate-y-1 transition-all duration-300 group text-center"
+    >
+      <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+        <Icon className="w-8 h-8 text-white" />
+      </div>
+      <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">
+        {counter.value}
+      </div>
+      <div className="text-sm text-gray-700 font-medium">{label}</div>
+    </div>
+  );
+}
 
 export default function About() {
+  // Stats con valores numéricos separados para el contador
   const stats = [
-    { icon: FaTrophy, value: '50+', label: 'Proyectos Completados' },
-    { icon: FaUsers, value: '40+', label: 'Clientes Satisfechos' },
-    { icon: FaClock, value: '3+', label: 'Años de Experiencia' },
-    { icon: FaRocket, value: '100%', label: 'Entrega a Tiempo' },
+    { icon: FaTrophy, endValue: 50, suffix: '+', label: 'Proyectos Completados' },
+    { icon: FaUsers, endValue: 40, suffix: '+', label: 'Clientes Satisfechos' },
+    { icon: FaClock, endValue: 3, suffix: '+', label: 'Años de Experiencia' },
+    { icon: FaRocket, endValue: 100, suffix: '%', label: 'Entrega a Tiempo' },
   ];
 
   const values = [
@@ -53,25 +80,17 @@ export default function About() {
           </p>
         </div>
 
-        {/* Stats - CON CONTENEDORES NEGROS */}
+        {/* Stats - CON CONTADOR ANIMADO */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 border-2 border-gray-900 shadow-md hover:shadow-2xl hover:border-primary-600 hover:-translate-y-1 transition-all duration-300 group text-center"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <Icon className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-700 font-medium">{stat.label}</div>
-              </div>
-            );
-          })}
+          {stats.map((stat, index) => (
+            <StatCard
+              key={index}
+              icon={stat.icon}
+              endValue={stat.endValue}
+              suffix={stat.suffix}
+              label={stat.label}
+            />
+          ))}
         </div>
 
         {/* Values Grid - CON BORDE NEGRO Y HOVER */}
