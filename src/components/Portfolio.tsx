@@ -466,14 +466,16 @@ export default function Portfolio() {
                     </div>
                   </div>
                 ) : (
-                  /* Web - FULLSCREEN */
-                  <img
-                    src={selectedProject.gallery[currentImageIndex]}
-                    alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    style={{ imageRendering: '-webkit-optimize-contrast' }}
-                  />
+                  /* Web - CONTENIDA EN RECUADRO RESPONSIVE */
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4 md:p-8">
+                    <img
+                      src={selectedProject.gallery[currentImageIndex]}
+                      alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
+                      className="w-full h-full object-contain rounded-lg shadow-2xl"
+                      loading="lazy"
+                      style={{ imageRendering: '-webkit-optimize-contrast' }}
+                    />
+                  </div>
                 )}
 
                 {/* Navigation Arrows - OPTIMIZADOS CON STOP PROPAGATION */}
