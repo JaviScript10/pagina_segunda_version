@@ -48,7 +48,7 @@ export default function Portfolio() {
       title: 'Sabores del Sur',
       subtitle: 'Restaurante - Valdivia',
       category: 'landing',
-      image: '/proyectos/sabores-del-sur-1.png',
+      image: '/proyectos/sabores-del-sur-1.jpg',
       result: '+230% reservas online',
       rating: '4.9/5',
       testimonial: 'La mejor inversión que hicimos. Reservas se triplicaron.',
@@ -56,9 +56,9 @@ export default function Portfolio() {
       deviceType: 'laptop',
       badge: 'LANDING PAGE',
       gallery: [
-        '/proyectos/sabores-del-sur-1.png',
-        '/proyectos/sabores-del-sur-2.png',
-        '/proyectos/sabores-del-sur-3.png',
+        '/proyectos/sabores-del-sur-1.jpg',
+        '/proyectos/sabores-del-sur-2.jpg',
+        '/proyectos/sabores-del-sur-3.jpg',
       ],
       challenge: 'Restaurante tradicional con 0 presencia digital. Dependían 100% de clientes walk-in y llamadas telefónicas. Querían modernizar y captar clientes millennials.',
       solution: [
@@ -81,7 +81,7 @@ export default function Portfolio() {
       title: 'Verde Nativo',
       subtitle: 'Tienda de Plantas - Santiago',
       category: 'ecommerce',
-      image: '/proyectos/verde-nativo-1.png',
+      image: '/proyectos/verde-nativo-1.jpg',
       result: '+180% conversiones',
       rating: '4.8/5',
       testimonial: 'Vendimos 12.000 plantas en 6 meses. Increíble.',
@@ -89,9 +89,9 @@ export default function Portfolio() {
       deviceType: 'laptop',
       badge: 'E-COMMERCE',
       gallery: [
-        '/proyectos/verde-nativo-1.png',
-        '/proyectos/verde-nativo-2.png',
-        '/proyectos/verde-nativo-3.png',
+        '/proyectos/verde-nativo-1.jpg',
+        '/proyectos/verde-nativo-2.jpg',
+        '/proyectos/verde-nativo-3.jpg',
       ],
       challenge: 'Tienda física de plantas con ventas estancadas. Necesitaban llegar a más clientes y facilitar envíos a domicilio en toda la Región Metropolitana.',
       solution: [
@@ -114,7 +114,7 @@ export default function Portfolio() {
       title: 'Espacio Urbano',
       subtitle: 'Inmobiliaria - Región Metropolitana',
       category: 'corporate',
-      image: '/proyectos/espacio-urbano-1.png',
+      image: '/proyectos/espacio-urbano-1.jpg',
       result: '450+ consultas/mes',
       rating: '5.0/5',
       testimonial: 'Sitio profesional que genera confianza. Consultas de calidad.',
@@ -122,9 +122,9 @@ export default function Portfolio() {
       deviceType: 'laptop',
       badge: 'SITIO CORPORATIVO',
       gallery: [
-        '/proyectos/espacio-urbano-1.png',
-        '/proyectos/espacio-urbano-2.png',
-        '/proyectos/espacio-urbano-3.png',
+        '/proyectos/espacio-urbano-1.jpg',
+        '/proyectos/espacio-urbano-2.jpg',
+        '/proyectos/espacio-urbano-3.jpg',
       ],
       challenge: 'Inmobiliaria con sitio desactualizado y formularios que no funcionaban. Perdían oportunidades de negocio por falta de credibilidad digital.',
       solution: [
@@ -147,7 +147,7 @@ export default function Portfolio() {
       title: 'FitChile',
       subtitle: 'App Fitness - Nacional',
       category: 'app',
-      image: '/proyectos/fitchile-1.png',
+      image: '/proyectos/fitchile-1.jpg',
       result: '8.500+ descargas',
       rating: '4.7/5',
       testimonial: 'App intuitiva y rápida. Usuarios la aman.',
@@ -155,9 +155,9 @@ export default function Portfolio() {
       deviceType: 'mobile',
       badge: 'APP MÓVIL',
       gallery: [
-        '/proyectos/fitchile-1.png',
-        '/proyectos/fitchile-2.png',
-        '/proyectos/fitchile-3.png',
+        '/proyectos/fitchile-1.jpg',
+        '/proyectos/fitchile-2.jpg',
+        '/proyectos/fitchile-3.jpg',
       ],
       challenge: 'Emprendedora fitness necesitaba digitalizar su negocio de entrenamientos personalizados y llegar a más clientes sin estar físicamente presente.',
       solution: [
@@ -180,7 +180,7 @@ export default function Portfolio() {
       title: 'Café Andino',
       subtitle: 'Cafetería - Valparaíso',
       category: 'landing',
-      image: '/proyectos/cafe-andino-1.png',
+      image: '/proyectos/cafe-andino-1.jpg',
       result: '+320% ventas delivery',
       rating: '4.9/5',
       testimonial: 'El sitio nos ayudó a explotar en pedidos online.',
@@ -188,9 +188,9 @@ export default function Portfolio() {
       deviceType: 'laptop',
       badge: 'LANDING + TIENDA',
       gallery: [
-        '/proyectos/cafe-andino-1.png',
-        '/proyectos/cafe-andino-2.png',
-        '/proyectos/cafe-andino-3.png',
+        '/proyectos/cafe-andino-1.jpg',
+        '/proyectos/cafe-andino-2.jpg',
+        '/proyectos/cafe-andino-3.jpg',
       ],
       challenge: 'Cafetería boutique afectada por pandemia. Necesitaban cambiar su modelo de negocio a delivery urgente pero no tenían plataforma digital propia.',
       solution: [
@@ -213,7 +213,7 @@ export default function Portfolio() {
       title: 'Innova Gestión',
       subtitle: 'Consultoría Empresarial - Concepción',
       category: 'corporate',
-      image: '/proyectos/innova-gestion-1.png',
+      image: '/proyectos/innova-gestion-1.jpg',
       result: '+95% tráfico SEO',
       rating: '5.0/5',
       testimonial: 'Presencia digital que refleja nuestra experiencia.',
@@ -221,9 +221,9 @@ export default function Portfolio() {
       deviceType: 'laptop',
       badge: 'SITIO CORPORATIVO',
       gallery: [
-        '/proyectos/innova-gestion-1.png',
-        '/proyectos/innova-gestion-2.png',
-        '/proyectos/innova-gestion-3.png',
+        '/proyectos/innova-gestion-1.jpg',
+        '/proyectos/innova-gestion-2.jpg',
+        '/proyectos/innova-gestion-3.jpg',
       ],
       challenge: 'Consultora con 15 años de experiencia pero sitio obsoleto que no reflejaba su expertise. Perdían oportunidades frente a competencia con mejor presencia digital.',
       solution: [
@@ -317,7 +317,7 @@ export default function Portfolio() {
             >
               {/* Device Mockup */}
               <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 p-4 flex items-center justify-center overflow-hidden">
-                <div className="w-full max-w-[280px]">
+                <div className="w-full max-w-[280px] group-hover:scale-105 transition-transform duration-300">
                   <DeviceMockup
                     image={project.image}
                     alt={project.title}
@@ -443,7 +443,8 @@ export default function Portfolio() {
               </div>
               <button
                 onClick={() => setSelectedProject(null)}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors active:scale-95"
+                aria-label="Cerrar modal"
               >
                 <FaTimes className="w-5 h-5 text-gray-600" />
               </button>
@@ -454,8 +455,11 @@ export default function Portfolio() {
               {/* Image Gallery - FULLSCREEN en móvil, GRANDE en desktop */}
               <div className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex items-center justify-center -mx-6 md:mx-0 -mt-6 md:mt-0 md:p-8">
                 {selectedProject.deviceType === 'mobile' ? (
-                  /* Mockup móvil para apps - MÁS GRANDE */
-                  <div className="h-full flex items-center justify-center scale-150 md:scale-125">
+                  /* Mockup móvil para apps - OPTIMIZADO */
+                  <div
+                    className="h-full flex items-center justify-center scale-[1.7] md:scale-150"
+                    style={{ willChange: 'transform' }}
+                  >
                     <DeviceMockup
                       image={selectedProject.gallery[currentImageIndex]}
                       alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
@@ -463,24 +467,27 @@ export default function Portfolio() {
                     />
                   </div>
                 ) : (
-                  /* Imagen normal para webs - MÁS GRANDE */
+                  /* Imagen normal para webs */
                   <img
                     src={selectedProject.gallery[currentImageIndex]}
                     alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
                     className="w-full h-full object-contain rounded-lg px-4 md:px-8"
+                    loading="eager"
                   />
                 )}
 
                 {/* Navigation Arrows */}
                 <button
                   onClick={handlePrevImage}
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10 active:scale-95"
+                  aria-label="Imagen anterior"
                 >
                   ←
                 </button>
                 <button
                   onClick={handleNextImage}
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10 active:scale-95"
+                  aria-label="Imagen siguiente"
                 >
                   →
                 </button>

@@ -21,6 +21,8 @@ export default function DeviceMockup({ image, alt, type = 'laptop' }: DeviceMock
                             src={image}
                             alt={alt}
                             className="w-full h-full object-contain"
+                            loading="eager"
+                            decoding="async"
                         />
                     </div>
 
@@ -45,6 +47,8 @@ export default function DeviceMockup({ image, alt, type = 'laptop' }: DeviceMock
                         src={image}
                         alt={alt}
                         className="w-full h-full object-cover object-top"
+                        loading="eager"
+                        decoding="async"
                     />
                 </div>
             </div>
