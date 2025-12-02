@@ -409,7 +409,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* MODAL - OPTIMIZADO PARA MOBILE */}
+      {/* MODAL - ULTRA OPTIMIZADO PARA ANDROID */}
       {selectedProject && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-black/80"
@@ -418,11 +418,19 @@ export default function Portfolio() {
               setSelectedProject(null);
             }
           }}
-          style={{ touchAction: 'pan-y' }}
+          style={{
+            touchAction: 'pan-y',
+            WebkitOverflowScrolling: 'touch'
+          }}
         >
           <div
             className="bg-white w-full h-full md:rounded-2xl md:max-w-4xl md:w-full md:max-h-[90vh] overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden'
+            }}
           >
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-gray-200 p-4 md:p-6 flex items-center justify-between z-30">
@@ -433,16 +441,13 @@ export default function Portfolio() {
                 <p className="text-sm md:text-base text-gray-600">{selectedProject.subtitle}</p>
               </div>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  setSelectedProject(null);
-                }}
+                onClick={() => setSelectedProject(null)}
                 type="button"
-                className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 flex-shrink-0 shadow-lg"
+                className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 flex-shrink-0 shadow-lg active:scale-95"
                 style={{
                   WebkitTapHighlightColor: 'transparent',
-                  touchAction: 'manipulation'
+                  touchAction: 'manipulation',
+                  transition: 'transform 0.1s ease'
                 }}
                 aria-label="Cerrar"
               >
@@ -452,10 +457,16 @@ export default function Portfolio() {
 
             {/* Modal Content */}
             <div className="p-4 md:p-6 space-y-6 md:space-y-8">
-              {/* Image Gallery - OPTIMIZADO */}
-              <div className="relative h-[550px] md:h-[650px] overflow-hidden -mx-4 md:mx-0 -mt-4 md:mt-0">
+              {/* Image Gallery - ULTRA OPTIMIZADO */}
+              <div
+                className="relative h-[550px] md:h-[650px] overflow-hidden -mx-4 md:mx-0 -mt-4 md:mt-0"
+                style={{
+                  transform: 'translateZ(0)',
+                  willChange: 'contents'
+                }}
+              >
                 {selectedProject.deviceType === 'mobile' ? (
-                  /* App Móvil - MOCKUP DE IPHONE COMPLETO */
+                  /* App Móvil - MOCKUP DE IPHONE */
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 py-6 px-4 md:px-8">
                     <div className="w-full max-w-[280px] md:max-w-[320px] h-full flex items-center">
                       <DeviceMockup
@@ -466,53 +477,68 @@ export default function Portfolio() {
                     </div>
                   </div>
                 ) : (
-                  /* Web - CONTENIDA EN RECUADRO RESPONSIVE */
+                  /* Web - CONTENIDA EN RECUADRO */
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4 md:p-8">
                     <img
                       src={selectedProject.gallery[currentImageIndex]}
                       alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
                       className="w-full h-full object-contain rounded-lg shadow-2xl"
-                      loading="lazy"
-                      style={{ imageRendering: '-webkit-optimize-contrast' }}
+                      loading="eager"
+                      decoding="async"
+                      style={{
+                        imageRendering: '-webkit-optimize-contrast',
+                        transform: 'translateZ(0)'
+                      }}
                     />
                   </div>
                 )}
 
-                {/* Navigation Arrows - OPTIMIZADOS CON STOP PROPAGATION */}
+                {/* Navigation Arrows - OPTIMIZADOS PARA TOUCH */}
                 <button
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    handlePrevImage();
+                  }}
                   onClick={(e) => {
-                    e.stopPropagation();
                     e.preventDefault();
                     handlePrevImage();
                   }}
                   type="button"
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 active:scale-90"
                   style={{
                     WebkitTapHighlightColor: 'transparent',
-                    touchAction: 'manipulation'
+                    touchAction: 'manipulation',
+                    transition: 'transform 0.1s ease',
+                    transform: 'translateZ(0)'
                   }}
                   aria-label="Anterior"
                 >
                   ←
                 </button>
                 <button
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    handleNextImage();
+                  }}
                   onClick={(e) => {
-                    e.stopPropagation();
                     e.preventDefault();
                     handleNextImage();
                   }}
                   type="button"
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 active:scale-90"
                   style={{
                     WebkitTapHighlightColor: 'transparent',
-                    touchAction: 'manipulation'
+                    touchAction: 'manipulation',
+                    transition: 'transform 0.1s ease',
+                    transform: 'translateZ(0)'
                   }}
                   aria-label="Siguiente"
                 >
                   →
                 </button>
+
                 {/* Image Counter */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-semibold z-20">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-semibold z-20 pointer-events-none">
                   {currentImageIndex + 1} / {selectedProject.gallery.length}
                 </div>
               </div>
