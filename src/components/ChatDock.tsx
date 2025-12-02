@@ -39,11 +39,8 @@ export default function ChatDock() {
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
   const toastTimerRef = useRef<number | null>(null);
 
-  // iOS: restaurar scroll al volver desde WhatsApp
   const pendingScrollRestoreRef = useRef(false);
   const savedScrollYRef = useRef(0);
-
-  // Evita doble apertura de WhatsApp
   const waOpeningRef = useRef(false);
 
   const listRef = useRef<HTMLDivElement | null>(null);
@@ -62,48 +59,44 @@ export default function ChatDock() {
   useEffect(() => {
     if (!mounted) return;
     if (messages.length === 0) {
-addAssistant("¡Hola! 👋 Soy el asistente de **CiberByte**.\n\n¿En qué puedo ayudarte hoy?", [
-  "Landing Page ($150.000)",
-  "Sitio Corporativo ($350.000)",
-  "Tienda Online ($600.000)",
-  "App Móvil ($800.000)",
-  "Otros servicios…",
-]);
+      addAssistant("¡Hola! 👋 Soy el asistente de **CiberByte**.\n\n¿En qué puedo ayudarte hoy?", [
+        "Landing Page ($150.000)",
+        "Sitio Corporativo ($350.000)",
+        "Tienda Online ($600.000)",
+        "App Móvil ($800.000)",
+        "Otros servicios…",
+      ]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted]);
 
-/* Lock scroll al abrir y reset de badge */
-useEffect(() => {
-  if (!open) return;
-  
-  const prev = document.body.style.overflow;
-  const prevPosition = document.body.style.position;
-  const prevWidth = document.body.style.width;
-  const prevHeight = document.body.style.height;
-  
-  // Bloqueo más agresivo para Android
-  document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
-  document.body.style.width = '100%';
-  document.body.style.height = '100%';
-  
-  setUnread(0);
-  
-  return () => {
-    document.body.style.overflow = prev || '';
-    document.body.style.position = prevPosition || '';
-    document.body.style.width = prevWidth || '';
-    document.body.style.height = prevHeight || '';
-  };
-}, [open]);
+  useEffect(() => {
+    if (!open) return;
+    
+    const prev = document.body.style.overflow;
+    const prevPosition = document.body.style.position;
+    const prevWidth = document.body.style.width;
+    const prevHeight = document.body.style.height;
+    
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.height = '100%';
+    
+    setUnread(0);
+    
+    return () => {
+      document.body.style.overflow = prev || '';
+      document.body.style.position = prevPosition || '';
+      document.body.style.width = prevWidth || '';
+      document.body.style.height = prevHeight || '';
+    };
+  }, [open]);
 
-  // Autoscroll
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, open]);
 
-  // Restaurar scroll al volver visibles (después de abrir WhatsApp)
   useEffect(() => {
     const onVis = () => {
       if (document.visibilityState === "visible" && pendingScrollRestoreRef.current) {
@@ -127,6 +120,7 @@ useEffect(() => {
     if (!open) setUnread((n) => Math.min(9, n + 1));
     return m.id;
   }
+  
   function addUser(text: string) {
     setMessages((p) => [...p, { id: crypto.randomUUID(), role: "user", text }]);
   }
@@ -139,15 +133,15 @@ useEffect(() => {
     setWizard({ active: false, step: 0, data: { tipo: "", negocio: "", presupuesto: "", plazo: "" } });
     setFinalMsgId(null);
     setMessages([]);
-setTimeout(() => {
-  addAssistant("¡Hola! 👋 Soy el asistente de **CiberByte**.\n\n¿En qué puedo ayudarte hoy?", [
-    "Landing Page ($150.000)",
-    "Sitio Corporativo ($350.000)",
-    "Tienda Online ($600.000)",
-    "App Móvil ($800.000)",
-    "Otros servicios…",
-  ]);
-}, 0);
+    setTimeout(() => {
+      addAssistant("¡Hola! 👋 Soy el asistente de **CiberByte**.\n\n¿En qué puedo ayudarte hoy?", [
+        "Landing Page ($150.000)",
+        "Sitio Corporativo ($350.000)",
+        "Tienda Online ($600.000)",
+        "App Móvil ($800.000)",
+        "Otros servicios…",
+      ]);
+    }, 0);
     if (scrollTop) window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -156,61 +150,51 @@ setTimeout(() => {
     addAssistant("**Paso 1/4:** ¿Qué tipo de proyecto necesitas?", [...TIPO_CHIPS]);
   }
 
-function showPricing() {
-  addAssistant(
-    [
-      "**💰 Nuestros Precios:**",
-      "",
-      "**Desarrollo Web:**",
-      "• Landing Page: desde **$150.000**",
-      "• Sitio Corporativo: desde **$350.000**",
-      "• Tienda Online (E-commerce): desde **$600.000**",
-      "• App Móvil (iOS/Android): desde **$800.000**",
-      "",
-      "**Servicios Recurrentes:**",
-      "• SEO & Marketing: desde **$120.000/mes**",
-      "• Mantenimiento: desde **$50.000/mes**",
-      "",
-      "Todos incluyen: diseño responsive, SEO básico y optimización.",
-      "",
-      "¿Te interesa cotizar algo?",
-    ].join("\n"),
-    ["Cotizar (modo guiado)", "Landing Page", "Tienda Online", "App Móvil", "Volver al inicio"]
-  );
-}
+  function showPricing() {
+    addAssistant(
+      [
+        "**💰 Nuestros Precios:**",
+        "",
+        "**Desarrollo Web:**",
+        "• Landing Page: desde **$150.000**",
+        "• Sitio Corporativo: desde **$350.000**",
+        "• Tienda Online (E-commerce): desde **$600.000**",
+        "• App Móvil (iOS/Android): desde **$800.000**",
+        "",
+        "**Servicios Recurrentes:**",
+        "• SEO & Marketing: desde **$120.000/mes**",
+        "• Mantenimiento: desde **$50.000/mes**",
+        "",
+        "Todos incluyen: diseño responsive, SEO básico y optimización.",
+        "",
+        "¿Te interesa cotizar algo?",
+      ].join("\n"),
+      ["Cotizar (modo guiado)", "Landing Page", "Tienda Online", "App Móvil", "Volver al inicio"]
+    );
+  }
 
-  // === Abrir WhatsApp (iOS-friendly, sin pestaña blanca) ===
   function openWhatsAppOnce() {
     if (waOpeningRef.current) return;
     waOpeningRef.current = true;
 
-    // Guardar scroll para restaurar al volver
     savedScrollYRef.current = window.scrollY;
     pendingScrollRestoreRef.current = true;
 
-    // Crear <a> y simular click: iOS maneja mejor que window.open con noreferrer
-    const a = document.createElement("a");
-    a.href = waLink;
-    a.target = "_blank";
-    a.rel = "noopener"; // sin 'noreferrer' para evitar pestaña en blanco en iOS
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    window.location.href = waLink;
 
-    // Aviso visual
     showToast("✅ Mensaje enviado por WhatsApp.");
 
-    // Quitar chips del mensaje final para evitar duplicados
     if (finalMsgId) {
-      setMessages((prev) => prev.map((m) => (m.id === finalMsgId ? { ...m, chips: undefined } : m)));
+      setMessages((prev) =>
+        prev.map((m) => (m.id === finalMsgId ? { ...m, chips: undefined } : m))
+      );
     }
-    // Añadir SOLO el botón "Volver al inicio" sin burbuja vacía (chips standalone)
+
     addAssistant("", ["Volver al inicio"]);
 
-    // Liberar guard
-    window.setTimeout(() => {
+    setTimeout(() => {
       waOpeningRef.current = false;
-    }, 800);
+    }, 1000);
   }
 
   async function send(textRaw?: string) {
@@ -247,25 +231,26 @@ function showPricing() {
       return;
     }
 
-if (lower.includes("otros")) {
-  addAssistant("**Servicios Adicionales:**", [
-    "Mantenimiento ($50.000/mes)",
-    "SEO & Marketing ($120.000/mes)",
+    if (lower.includes("otros")) {
+      addAssistant("**Servicios Adicionales:**", [
+        "Mantenimiento ($50.000/mes)",
+        "SEO & Marketing ($120.000/mes)",
         "Volver al inicio",
       ]);
       return;
     }
 
-if (lower.includes("soporte") || lower.includes("mantenimiento") || lower.includes("mantención")) {
-  addAssistant(
-    "**Mantenimiento Web ⚙️** desde **$50.000/mes**:\n\n• Actualizaciones de seguridad\n• Backups diarios automáticos\n• Soporte técnico 24/7\n• Cambios menores incluidos\n\n¿Necesitas mantención para tu sitio actual o uno nuevo?",
+    if (lower.includes("soporte") || lower.includes("mantenimiento") || lower.includes("mantención")) {
+      addAssistant(
+        "**Mantenimiento Web ⚙️** desde **$50.000/mes**:\n\n• Actualizaciones de seguridad\n• Backups diarios automáticos\n• Soporte técnico 24/7\n• Cambios menores incluidos\n\n¿Necesitas mantención para tu sitio actual o uno nuevo?",
         ["Abrir WhatsApp", "Volver al inicio"]
       );
       return;
     }
-if (lower.includes("seo") || lower.includes("performance")) {
-  addAssistant(
-    "**SEO & Marketing 📈** desde **$120.000/mes**:\n\n• Auditoría SEO completa\n• Optimización on-page\n• Reportes mensuales\n• Estrategia de contenido\n\n¿Quieres una propuesta personalizada?",
+
+    if (lower.includes("seo") || lower.includes("performance")) {
+      addAssistant(
+        "**SEO & Marketing 📈** desde **$120.000/mes**:\n\n• Auditoría SEO completa\n• Optimización on-page\n• Reportes mensuales\n• Estrategia de contenido\n\n¿Quieres una propuesta personalizada?",
         ["Cotizar (modo guiado)", "Volver al inicio"]
       );
       return;
@@ -288,14 +273,14 @@ if (lower.includes("seo") || lower.includes("performance")) {
       return;
     }
 
-addAssistant("**¿Necesitas algo más?**", [
-  "Landing Page ($150.000)",
-  "Sitio Corporativo ($350.000)",
-  "Tienda Online ($600.000)",
-  "App Móvil ($800.000)",
-  "Ver precios completos",
-  "Volver al inicio",
-]);
+    addAssistant("**¿Necesitas algo más?**", [
+      "Landing Page ($150.000)",
+      "Sitio Corporativo ($350.000)",
+      "Tienda Online ($600.000)",
+      "App Móvil ($800.000)",
+      "Ver precios completos",
+      "Volver al inicio",
+    ]);
   }
 
   async function handleWizardInput(text: string) {
@@ -420,7 +405,6 @@ addAssistant("**¿Necesitas algo más?**", [
         </form>
       </aside>
 
-      {/* TOAST */}
       {toast.show && (
         <div className="vc-toast" role="status" aria-live="polite">
           {toast.msg}
@@ -441,7 +425,6 @@ addAssistant("**¿Necesitas algo más?**", [
           --text-secondary: #cbd5e1;
         }
 
-        /* FAB */
         .vc-fab {
           position: fixed !important;
           left: 16px !important;
@@ -485,7 +468,6 @@ addAssistant("**¿Necesitas algo más?**", [
           border: 2px solid var(--bg-primary) !important;
         }
 
-        /* Overlay */
         .vc-overlay {
           position: fixed !important;
           inset: 0 !important;
@@ -502,15 +484,14 @@ addAssistant("**¿Necesitas algo más?**", [
           pointer-events: auto !important;
         }
 
-        /* Dock (compacto, abajo-izquierda) */
         .vc-dock {
           position: fixed !important;
           left: 16px !important;
           bottom: 16px !important;
-          transform: translateX(-110%) !important; /* 100% escondido */
+          transform: translateX(-110%) !important;
           width: min(380px, 90vw) !important;
           height: min(640px, 88vh) !important;
-          height: min(640px, 86svh) !important;   /* Small Viewport Height - Android estable */
+          height: min(640px, 86svh) !important;
           height: min(640px, 86dvh) !important;
           background: var(--glass) !important;
           backdrop-filter: blur(18px) saturate(180%) !important;
@@ -536,7 +517,6 @@ addAssistant("**¿Necesitas algo más?**", [
           opacity: 0.92 !important;
         }
 
-        /* Header */
         .vc-head {
           display: flex !important;
           align-items: center !important;
@@ -577,7 +557,6 @@ addAssistant("**¿Necesitas algo más?**", [
           border: none !important;
         }
 
-        /* Body */
         .vc-body {
           padding: 14px !important;
           overflow-y: auto !important;
@@ -587,7 +566,6 @@ addAssistant("**¿Necesitas algo más?**", [
           flex: 1 !important;
         }
 
-        /* Input */
         .vc-inputbar {
           display: flex !important;
           gap: 10px !important;
@@ -619,7 +597,6 @@ addAssistant("**¿Necesitas algo más?**", [
           cursor: pointer !important;
         }
 
-        /* Burbujas */
         .vc-bubble {
           display: flex !important;
           flex-direction: column !important;
@@ -652,7 +629,6 @@ addAssistant("**¿Necesitas algo más?**", [
           border-bottom-right-radius: 4px !important;
         }
 
-        /* Chips */
         .vc-chips {
           display: grid !important;
           grid-template-columns: 1fr 1fr !important;
@@ -684,14 +660,12 @@ addAssistant("**¿Necesitas algo más?**", [
           grid-column: 1 / -1 !important;
         }
 
-        /* Chips standalone (sin burbuja de texto) */
         .vc-chips-standalone {
           display: grid !important;
           grid-template-columns: 1fr 1fr !important;
           gap: 8px !important;
         }
 
-        /* Toast */
         .vc-toast {
           position: fixed !important;
           left: 16px !important;
@@ -706,42 +680,30 @@ addAssistant("**¿Necesitas algo más?**", [
           box-shadow: 0 10px 26px rgba(34, 197, 94, 0.3) !important;
         }
 
-/* Móvil: centrar y deslizar desde abajo */
-@media (max-width: 768px) {
-  .vc-dock {
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    margin: 0 auto !important;
-    
-    /* Deslizamiento vertical en lugar de horizontal */
-    transform: translateY(100%) !important;
-    
-    width: 100vw !important;
-    border-radius: 16px 16px 0 0 !important;
-    
-    /* Altura estable en Android */
-    height: 88vh !important;
-    height: 86svh !important;
-    height: 86dvh !important;
-  }
-  
-  .vc-dock.open {
-    transform: translateY(0) !important;
-  }
-  
-  /* Input debe respetar área segura */
-  .vc-inputbar {
-    padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
-  }
-  
-  /* Evitar zoom en inputs */
-  .vc-input {
-    font-size: 16px !important;
-  }
-}
+        @media (max-width: 768px) {
+          .vc-dock {
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            margin: 0 auto !important;
+            transform: translateY(100%) !important;
+            width: 100vw !important;
+            border-radius: 16px 16px 0 0 !important;
+            height: 88vh !important;
+            height: 86svh !important;
+            height: 86dvh !important;
+          }
+          .vc-dock.open {
+            transform: translateY(0) !important;
+          }
+          .vc-inputbar {
+            padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+          }
+          .vc-input {
+            font-size: 16px !important;
+          }
+        }
 
-        /* Scrollbar */
         .vc-body::-webkit-scrollbar {
           width: 6px !important;
         }
@@ -760,7 +722,6 @@ addAssistant("**¿Necesitas algo más?**", [
   return createPortal(UI, portalEl);
 }
 
-/* ===== Subcomponentes ===== */
 function Bubble({
   role,
   text,
@@ -775,7 +736,6 @@ function Bubble({
   const isAssistant = role === "assistant";
   const hasText = Boolean(text && text.trim().length > 0);
 
-  // Si no hay texto y solo chips -> render standalone (sin burbuja blanca)
   if (!hasText && chips && chips.length > 0) {
     return (
       <div className="vc-chips-standalone">
@@ -832,10 +792,10 @@ function RobotIcon() {
   );
 }
 
-/* ===== Utils ===== */
 function md(s: string) {
   return s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br/>");
 }
+
 function placeholderByStep(step: number) {
   if (step === 1) return "Elige tipo de proyecto...";
   if (step === 2) return "Describe tu rubro o negocio...";
@@ -843,6 +803,7 @@ function placeholderByStep(step: number) {
   if (step === 4) return "Indica plazo estimado...";
   return "Escribe tu mensaje...";
 }
+
 function buildWizardSummary(d: WizardData) {
   return [
     `• Tipo: ${d.tipo || "—"}`,
@@ -851,6 +812,7 @@ function buildWizardSummary(d: WizardData) {
     `• Plazo: ${d.plazo || "—"}`,
   ].join("\n");
 }
+
 function buildWizardMessageOrSummary(d: WizardData, msgs: Msg[]) {
   const hasWizard = d.tipo || d.negocio || d.presupuesto || d.plazo;
   if (!hasWizard && msgs.length) {
