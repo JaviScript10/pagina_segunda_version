@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FaArrowRight, FaStar, FaChartLine, FaTimes, FaClock, FaDollarSign, FaCheckCircle } from 'react-icons/fa';
 import DeviceMockup from '@/components/DeviceMockup';
 import Avatar from '@/components/Avatar';
@@ -33,6 +33,8 @@ export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const categories = [
     { id: 'all' as Category, label: 'Todos los Proyectos' },
@@ -257,24 +259,68 @@ export default function Portfolio() {
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
+  // Limpiar timeout cuando el componente se desmonta
+  useEffect(() => {
+    return () => {
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleNextImage = () => {
-    if (selectedProject) {
-      setCurrentImageIndex((prev) =>
-        prev === selectedProject.gallery.length - 1 ? 0 : prev + 1
-      );
+    if (!selectedProject || isNavigating) return;
+
+    setIsNavigating(true);
+    setCurrentImageIndex((prev) =>
+      prev === selectedProject.gallery.length - 1 ? 0 : prev + 1
+    );
+
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
     }
+
+    navigationTimeoutRef.current = setTimeout(() => {
+      setIsNavigating(false);
+    }, 300);
   };
 
   const handlePrevImage = () => {
-    if (selectedProject) {
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? selectedProject.gallery.length - 1 : prev - 1
-      );
+    if (!selectedProject || isNavigating) return;
+
+    setIsNavigating(true);
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? selectedProject.gallery.length - 1 : prev - 1
+    );
+
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
+    }
+
+    navigationTimeoutRef.current = setTimeout(() => {
+      setIsNavigating(false);
+    }, 300);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!selectedProject) return;
+
+    if (e.key === 'ArrowLeft') {
+      handlePrevImage();
+    } else if (e.key === 'ArrowRight') {
+      handleNextImage();
+    } else if (e.key === 'Escape') {
+      setSelectedProject(null);
     }
   };
 
   return (
-    <section id="proyectos" className="pt-24 pb-12 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-white">
+    <section
+      id="proyectos"
+      className="pt-24 pb-12 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-white"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
       <div className="container-custom">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -409,10 +455,10 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* MODAL - ULTRA OPTIMIZADO PARA ANDROID */}
+      {/* MODAL - CORREGIDO PARA NAVEGACIÓN SUAVE */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-black/80"
+          className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-black/80 animate-fadeIn"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               setSelectedProject(null);
@@ -443,11 +489,10 @@ export default function Portfolio() {
               <button
                 onClick={() => setSelectedProject(null)}
                 type="button"
-                className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 flex-shrink-0 shadow-lg active:scale-95"
+                className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 flex-shrink-0 shadow-lg active:scale-95 transition-transform duration-150"
                 style={{
                   WebkitTapHighlightColor: 'transparent',
-                  touchAction: 'manipulation',
-                  transition: 'transform 0.1s ease'
+                  touchAction: 'manipulation'
                 }}
                 aria-label="Cerrar"
               >
@@ -457,7 +502,7 @@ export default function Portfolio() {
 
             {/* Modal Content */}
             <div className="p-4 md:p-6 space-y-6 md:space-y-8">
-              {/* Image Gallery - ULTRA OPTIMIZADO */}
+              {/* Image Gallery - CORREGIDO */}
               <div
                 className="relative h-[550px] md:h-[650px] overflow-hidden -mx-4 md:mx-0 -mt-4 md:mt-0"
                 style={{
@@ -482,7 +527,7 @@ export default function Portfolio() {
                     <img
                       src={selectedProject.gallery[currentImageIndex]}
                       alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                      className="w-full h-full object-contain rounded-lg shadow-2xl"
+                      className="w-full h-full object-contain rounded-lg shadow-2xl transition-opacity duration-300"
                       loading="eager"
                       decoding="async"
                       style={{
@@ -493,46 +538,48 @@ export default function Portfolio() {
                   </div>
                 )}
 
-                {/* Navigation Arrows - OPTIMIZADOS PARA TOUCH */}
+                {/* Navigation Arrows - CORREGIDOS */}
                 <button
-                  onTouchStart={(e) => {
+                  onClick={(e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     handlePrevImage();
                   }}
-                  onClick={(e) => {
+                  onTouchEnd={(e) => {
                     e.preventDefault();
                     handlePrevImage();
                   }}
                   type="button"
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 active:scale-90"
+                  disabled={isNavigating}
+                  className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-300 ${isNavigating ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110 active:scale-95'}`}
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     touchAction: 'manipulation',
-                    transition: 'transform 0.1s ease',
                     transform: 'translateZ(0)'
                   }}
-                  aria-label="Anterior"
+                  aria-label="Imagen anterior"
                 >
                   ←
                 </button>
                 <button
-                  onTouchStart={(e) => {
+                  onClick={(e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     handleNextImage();
                   }}
-                  onClick={(e) => {
+                  onTouchEnd={(e) => {
                     e.preventDefault();
                     handleNextImage();
                   }}
                   type="button"
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 active:scale-90"
+                  disabled={isNavigating}
+                  className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-300 ${isNavigating ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110 active:scale-95'}`}
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     touchAction: 'manipulation',
-                    transition: 'transform 0.1s ease',
                     transform: 'translateZ(0)'
                   }}
-                  aria-label="Siguiente"
+                  aria-label="Siguiente imagen"
                 >
                   →
                 </button>
