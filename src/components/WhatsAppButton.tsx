@@ -17,11 +17,18 @@ export default function WhatsAppButton() {
     { label: 'Consulta general', text: 'Tengo una consulta sobre sus servicios' },
   ];
 
-  const handleQuickMessage = (text: string) => {
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
-    setIsOpen(false);
-  };
+const handleQuickMessage = (text: string) => {
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setIsOpen(false);
+};
 
   return (
     <>

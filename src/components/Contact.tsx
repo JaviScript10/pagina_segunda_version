@@ -33,37 +33,42 @@ export default function Contact() {
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  
-    // Crear mensaje de WhatsApp
-    const whatsappMessage = `
-  *Nuevo contacto desde CiberByte*
-  
-  *Nombre:* ${formData.name}
-  *Email:* ${formData.email}
-  *Teléfono:* ${formData.phone}
-  *Servicio:* ${formData.service}
-  *Mensaje:* ${formData.message}
-    `.trim();
-  
-    // Número de WhatsApp (reemplazar con tu número real)
-    const whatsappNumber = '56912345678'; // Sin espacios ni símbolos
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-  
-    // Abrir WhatsApp en la misma pestaña
-    window.location.href = whatsappURL;
-  
-    // Limpiar formulario
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
-  };
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const whatsappMessage = `
+*Nuevo contacto desde CiberByte*
+
+*Nombre:* ${formData.name}
+*Email:* ${formData.email}
+*Teléfono:* ${formData.phone}
+*Servicio:* ${formData.service}
+*Mensaje:* ${formData.message}
+  `.trim();
+
+  const whatsappNumber = '56979693753';
+  const encodedMessage = encodeURIComponent(whatsappMessage);
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+  // Abrir en nueva pestaña de forma confiable
+  const a = document.createElement('a');
+  a.href = whatsappURL;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // Limpiar formulario
+  setFormData({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: '',
+  });
+};
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
