@@ -244,12 +244,12 @@ export default function Portfolio() {
   ];
 
   const clientLogos = [
-    { name: 'Sabores del Sur', logo: '🍽️' },
-    { name: 'Verde Nativo', logo: '🌿' },
-    { name: 'Espacio Urbano', logo: '🏢' },
-    { name: 'FitChile', logo: '💪' },
-    { name: 'Café Andino', logo: '☕' },
-    { name: 'Innova Gestión', logo: '📊' },
+    { name: 'Sabores del Sur', logo: '/proyectos/sabores-del-sur-1.jpg' },
+    { name: 'Verde Nativo', logo: '/proyectos/verde-nativo-1.jpg' },
+    { name: 'Espacio Urbano', logo: '/proyectos/espacio-urbano-1.jpg' },
+    { name: 'FitChile', logo: '/proyectos/fitchile-1.jpg' },
+    { name: 'Café Andino', logo: '/proyectos/cafe-andino-1.jpg' },
+    { name: 'Innova Gestión', logo: '/proyectos/innova-gestion-1.jpg' },
   ];
 
   const filteredProjects =
@@ -316,8 +316,8 @@ export default function Portfolio() {
               className="group bg-white rounded-2xl overflow-hidden border-2 border-gray-900 shadow-lg hover:shadow-2xl hover:border-primary-600 hover:-translate-y-2 transition-all duration-300"
             >
               {/* Device Mockup */}
-              <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 p-4 flex items-center justify-center overflow-hidden">
-                <div className="w-full max-w-[280px] group-hover:scale-105 transition-transform duration-300">
+              <div className="relative h-80 md:h-96 bg-gradient-to-br from-gray-100 to-gray-200 p-4 flex items-center justify-center overflow-hidden">
+                <div className={`${project.deviceType === 'mobile' ? 'w-full max-w-[200px]' : 'w-full max-w-[280px]'} group-hover:scale-105 transition-transform duration-300`}>
                   <DeviceMockup
                     image={project.image}
                     alt={project.title}
@@ -330,41 +330,14 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6 space-y-4">
+              {/* Content - SIMPLIFICADO */}
+              <div className="p-6">
                 {/* Title */}
-                <div>
+                <div className="mb-4">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">
                     {project.title}
                   </h3>
                   <p className="text-sm text-gray-600">{project.subtitle}</p>
-                </div>
-
-                {/* Results */}
-                <div className="flex items-center justify-between py-3 px-4 bg-green-50 rounded-lg border border-green-200">
-                  <div className="flex items-center space-x-2">
-                    <FaChartLine className="text-green-600 w-5 h-5" />
-                    <span className="font-bold text-green-700">{project.result}</span>
-                  </div>
-                  <div className="flex items-center space-x-1 text-yellow-500">
-                    <FaStar className="w-4 h-4" />
-                    <span className="text-sm font-semibold text-gray-700">
-                      {project.rating}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Testimonial con Avatar */}
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                  <p className="text-sm italic mb-3 text-gray-700">
-                    "{project.testimonial}"
-                  </p>
-                  <div className="flex items-center space-x-3">
-                    <Avatar name={project.author} image={project.authorImage} size="sm" />
-                    <p className="text-xs font-semibold text-gray-600">
-                      — {project.author}
-                    </p>
-                  </div>
                 </div>
 
                 {/* CTA Button */}
@@ -375,7 +348,7 @@ export default function Portfolio() {
                   }}
                   className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transition-all group-hover:scale-105"
                 >
-                  <span>Ver Caso de Éxito</span>
+                  <span>Ver Proyecto</span>
                   <FaArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -393,13 +366,20 @@ export default function Portfolio() {
               {[...clientLogos, ...clientLogos].map((client, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 flex flex-col items-center justify-center w-32 h-32 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow"
-                  style={{ backgroundColor: '#ffffff' }}
+                  className="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 bg-white rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden group"
                 >
-                  <span className="text-5xl mb-2">{client.logo}</span>
-                  <span className="text-xs font-semibold text-center px-2" style={{ color: '#1f2937' }}>
-                    {client.name}
-                  </span>
+                  <div className="w-full h-24 flex items-center justify-center p-3 overflow-hidden">
+                    <img
+                      src={client.logo}
+                      alt={client.name}
+                      className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="w-full px-2 py-2 text-center">
+                    <span className="text-xs font-semibold text-gray-800 line-clamp-2">
+                      {client.name}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -472,12 +452,12 @@ export default function Portfolio() {
 
             {/* Modal Content */}
             <div className="p-4 md:p-6 space-y-6 md:space-y-8">
-              {/* Image Gallery - SIN SCALE, tamaño nativo grande */}
-              <div className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex items-center justify-center -mx-4 md:mx-0 -mt-4 md:mt-0 md:p-8">
+              {/* Image Gallery - OPTIMIZADO */}
+              <div className="relative h-[550px] md:h-[650px] overflow-hidden -mx-4 md:mx-0 -mt-4 md:mt-0">
                 {selectedProject.deviceType === 'mobile' ? (
-                  /* Mockup móvil MÁS GRANDE */
-                  <div className="h-full flex items-center justify-center px-4">
-                    <div className="w-full max-w-[320px]">
+                  /* App Móvil - MOCKUP DE IPHONE COMPLETO */
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 py-6 px-4 md:px-8">
+                    <div className="w-full max-w-[280px] md:max-w-[320px] h-full flex items-center">
                       <DeviceMockup
                         image={selectedProject.gallery[currentImageIndex]}
                         alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
@@ -486,12 +466,13 @@ export default function Portfolio() {
                     </div>
                   </div>
                 ) : (
-                  /* Imagen normal para webs */
+                  /* Web - FULLSCREEN */
                   <img
                     src={selectedProject.gallery[currentImageIndex]}
                     alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                    className="w-full h-full object-contain rounded-lg px-2 md:px-8"
+                    className="w-full h-full object-cover"
                     loading="lazy"
+                    style={{ imageRendering: '-webkit-optimize-contrast' }}
                   />
                 )}
 

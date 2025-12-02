@@ -9,9 +9,9 @@ interface DeviceMockupProps {
 export default function DeviceMockup({ image, alt, type = 'laptop' }: DeviceMockupProps) {
     if (type === 'mobile') {
         return (
-            <div className="relative mx-auto w-full max-w-[280px]">
+            <div className="relative mx-auto w-full h-full flex items-center justify-center">
                 {/* iPhone Frame - OPTIMIZADO */}
-                <div className="relative bg-gray-900 rounded-[2rem] p-2 shadow-xl">
+                <div className="relative bg-gray-900 rounded-[2rem] p-2 shadow-xl" style={{ maxWidth: '280px', width: '100%' }}>
                     {/* Notch */}
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-4 bg-gray-900 rounded-b-2xl z-10"></div>
 
@@ -22,6 +22,7 @@ export default function DeviceMockup({ image, alt, type = 'laptop' }: DeviceMock
                             alt={alt}
                             className="w-full h-full object-contain"
                             loading="lazy"
+                            style={{ imageRendering: '-webkit-optimize-contrast' }}
                         />
                     </div>
 
@@ -48,6 +49,7 @@ export default function DeviceMockup({ image, alt, type = 'laptop' }: DeviceMock
                         className="w-full h-full object-cover object-top"
                         loading="eager"
                         decoding="async"
+                        style={{ imageRendering: '-webkit-optimize-contrast' }}
                     />
                 </div>
             </div>

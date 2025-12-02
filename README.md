@@ -91,7 +91,7 @@ colors: {
 Cambia el número en `src/components/WhatsAppButton.tsx`:
 
 ```typescript
-const phoneNumber = '56912345678'; // Tu número con código de país
+const phoneNumber = '56912345678'; // Tu número 
 ```
 
 ### Chatbot
