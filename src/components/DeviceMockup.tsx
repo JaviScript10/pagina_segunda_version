@@ -9,25 +9,24 @@ interface DeviceMockupProps {
 export default function DeviceMockup({ image, alt, type = 'laptop' }: DeviceMockupProps) {
     if (type === 'mobile') {
         return (
-            <div className="relative mx-auto w-[200px]">
-                {/* iPhone Frame */}
-                <div className="relative bg-gray-900 rounded-[2.5rem] p-3 shadow-2xl">
+            <div className="relative mx-auto w-full max-w-[280px]">
+                {/* iPhone Frame - OPTIMIZADO */}
+                <div className="relative bg-gray-900 rounded-[2rem] p-2 shadow-xl">
                     {/* Notch */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-b-3xl z-10"></div>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-4 bg-gray-900 rounded-b-2xl z-10"></div>
 
                     {/* Screen */}
-                    <div className="relative bg-white rounded-[1.8rem] overflow-hidden aspect-[9/19.5]">
+                    <div className="relative bg-white rounded-[1.5rem] overflow-hidden aspect-[9/19.5]">
                         <img
                             src={image}
                             alt={alt}
                             className="w-full h-full object-contain"
-                            loading="eager"
-                            decoding="async"
+                            loading="lazy"
                         />
                     </div>
 
                     {/* Home Indicator */}
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-700 rounded-full"></div>
+                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-16 h-1 bg-gray-700 rounded-full"></div>
                 </div>
             </div>
         );

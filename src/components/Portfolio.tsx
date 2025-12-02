@@ -429,70 +429,107 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* MODAL - Caso de Éxito Completo */}
+      {/* MODAL - OPTIMIZADO PARA MOBILE */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-black/80"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setSelectedProject(null);
+            }
+          }}
+          style={{ touchAction: 'pan-y' }}
+        >
+          <div
+            className="bg-white w-full h-full md:rounded-2xl md:max-w-4xl md:w-full md:max-h-[90vh] overflow-y-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between z-10">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 md:p-6 flex items-center justify-between z-30">
+              <div className="flex-1 pr-4">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900">
                   {selectedProject.title}
                 </h3>
-                <p className="text-gray-600">{selectedProject.subtitle}</p>
+                <p className="text-sm md:text-base text-gray-600">{selectedProject.subtitle}</p>
               </div>
               <button
-                onClick={() => setSelectedProject(null)}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors active:scale-95"
-                aria-label="Cerrar modal"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setSelectedProject(null);
+                }}
+                type="button"
+                className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 flex-shrink-0 shadow-lg"
+                style={{
+                  WebkitTapHighlightColor: 'transparent',
+                  touchAction: 'manipulation'
+                }}
+                aria-label="Cerrar"
               >
-                <FaTimes className="w-5 h-5 text-gray-600" />
+                <FaTimes className="w-6 h-6" />
               </button>
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 space-y-8">
-              {/* Image Gallery - FULLSCREEN en móvil, GRANDE en desktop */}
-              <div className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex items-center justify-center -mx-6 md:mx-0 -mt-6 md:mt-0 md:p-8">
+            <div className="p-4 md:p-6 space-y-6 md:space-y-8">
+              {/* Image Gallery - SIN SCALE, tamaño nativo grande */}
+              <div className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex items-center justify-center -mx-4 md:mx-0 -mt-4 md:mt-0 md:p-8">
                 {selectedProject.deviceType === 'mobile' ? (
-                  /* Mockup móvil para apps - OPTIMIZADO */
-                  <div
-                    className="h-full flex items-center justify-center scale-[1.7] md:scale-150"
-                    style={{ willChange: 'transform' }}
-                  >
-                    <DeviceMockup
-                      image={selectedProject.gallery[currentImageIndex]}
-                      alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                      type="mobile"
-                    />
+                  /* Mockup móvil MÁS GRANDE */
+                  <div className="h-full flex items-center justify-center px-4">
+                    <div className="w-full max-w-[320px]">
+                      <DeviceMockup
+                        image={selectedProject.gallery[currentImageIndex]}
+                        alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
+                        type="mobile"
+                      />
+                    </div>
                   </div>
                 ) : (
                   /* Imagen normal para webs */
                   <img
                     src={selectedProject.gallery[currentImageIndex]}
                     alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                    className="w-full h-full object-contain rounded-lg px-4 md:px-8"
-                    loading="eager"
+                    className="w-full h-full object-contain rounded-lg px-2 md:px-8"
+                    loading="lazy"
                   />
                 )}
 
-                {/* Navigation Arrows */}
+                {/* Navigation Arrows - OPTIMIZADOS CON STOP PROPAGATION */}
                 <button
-                  onClick={handlePrevImage}
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10 active:scale-95"
-                  aria-label="Imagen anterior"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    handlePrevImage();
+                  }}
+                  type="button"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20"
+                  style={{
+                    WebkitTapHighlightColor: 'transparent',
+                    touchAction: 'manipulation'
+                  }}
+                  aria-label="Anterior"
                 >
                   ←
                 </button>
                 <button
-                  onClick={handleNextImage}
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10 active:scale-95"
-                  aria-label="Imagen siguiente"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    handleNextImage();
+                  }}
+                  type="button"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20"
+                  style={{
+                    WebkitTapHighlightColor: 'transparent',
+                    touchAction: 'manipulation'
+                  }}
+                  aria-label="Siguiente"
                 >
                   →
                 </button>
                 {/* Image Counter */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-10">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-semibold z-20">
                   {currentImageIndex + 1} / {selectedProject.gallery.length}
                 </div>
               </div>
