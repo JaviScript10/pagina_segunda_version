@@ -451,11 +451,11 @@ export default function Portfolio() {
 
             {/* Modal Content */}
             <div className="p-6 space-y-8">
-              {/* Image Gallery con Device Mockup */}
-              <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex items-center justify-center p-8">
+              {/* Image Gallery - FULLSCREEN en móvil, GRANDE en desktop */}
+              <div className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex items-center justify-center -mx-6 md:mx-0 -mt-6 md:mt-0 md:p-8">
                 {selectedProject.deviceType === 'mobile' ? (
-                  /* Mockup móvil para apps */
-                  <div className="h-full flex items-center justify-center">
+                  /* Mockup móvil para apps - MÁS GRANDE */
+                  <div className="h-full flex items-center justify-center scale-150 md:scale-125">
                     <DeviceMockup
                       image={selectedProject.gallery[currentImageIndex]}
                       alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
@@ -463,24 +463,24 @@ export default function Portfolio() {
                     />
                   </div>
                 ) : (
-                  /* Imagen normal para webs */
+                  /* Imagen normal para webs - MÁS GRANDE */
                   <img
                     src={selectedProject.gallery[currentImageIndex]}
                     alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                    className="w-full h-full object-contain rounded-lg"
+                    className="w-full h-full object-contain rounded-lg px-4 md:px-8"
                   />
                 )}
 
                 {/* Navigation Arrows */}
                 <button
                   onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-2xl z-10"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10"
                 >
                   ←
                 </button>
                 <button
                   onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-2xl z-10"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-900 font-bold text-xl md:text-2xl z-10"
                 >
                   →
                 </button>
