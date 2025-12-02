@@ -173,29 +173,37 @@ export default function ChatDock() {
     );
   }
 
-  function openWhatsAppOnce() {
-    if (waOpeningRef.current) return;
-    waOpeningRef.current = true;
+function openWhatsAppOnce() {
+  if (waOpeningRef.current) return;
+  waOpeningRef.current = true;
 
-    savedScrollYRef.current = window.scrollY;
-    pendingScrollRestoreRef.current = true;
+  savedScrollYRef.current = window.scrollY;
+  pendingScrollRestoreRef.current = true;
 
-    window.location.href = waLink;
+  // Abrir WhatsApp en nueva pestaña
+  const a = document.createElement('a');
+  a.href = waLink;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 
-    showToast("✅ Mensaje enviado por WhatsApp.");
+  showToast("✅ Mensaje enviado por WhatsApp.");
 
-    if (finalMsgId) {
-      setMessages((prev) =>
-        prev.map((m) => (m.id === finalMsgId ? { ...m, chips: undefined } : m))
-      );
-    }
-
-    addAssistant("", ["Volver al inicio"]);
-
-    setTimeout(() => {
-      waOpeningRef.current = false;
-    }, 1000);
+  if (finalMsgId) {
+    setMessages((prev) =>
+      prev.map((m) => (m.id === finalMsgId ? { ...m, chips: undefined } : m))
+    );
   }
+
+  addAssistant("", ["Volver al inicio"]);
+
+  setTimeout(() => {
+    waOpeningRef.current = false;
+  }, 1000);
+}
 
   async function send(textRaw?: string) {
     const t = (textRaw ?? input).trim();
