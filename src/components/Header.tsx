@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Logo from './Logo';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,12 +37,9 @@ export default function Header() {
           {/* Logo */}
           <a
             href="/"
-            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">CB</span>
-            </div>
-            <span className="text-2xl font-bold text-white">CiberByte</span>
+            <Logo variant="horizontal" size="md" theme="dark" />
           </a>
 
           {/* Desktop Navigation */}
