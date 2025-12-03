@@ -538,46 +538,43 @@ export default function Portfolio() {
                   </div>
                 )}
 
-                {/* Navigation Arrows - CORREGIDOS */}
+                {/* Navigation Arrows - CORREGIDOS SIN CURSOR PROHIBIDO */}
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     handlePrevImage();
                   }}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    handlePrevImage();
-                  }}
                   type="button"
                   disabled={isNavigating}
-                  className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-300 ${isNavigating ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110 active:scale-95'}`}
+                  className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-150 ${isNavigating
+                      ? 'opacity-70 pointer-events-none'
+                      : 'hover:scale-110 active:scale-95 cursor-pointer'
+                    }`}
                   style={{
                     WebkitTapHighlightColor: 'transparent',
-                    touchAction: 'manipulation',
-                    transform: 'translateZ(0)'
+                    userSelect: 'none'
                   }}
                   aria-label="Imagen anterior"
                 >
                   ←
                 </button>
+
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     handleNextImage();
                   }}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    handleNextImage();
-                  }}
                   type="button"
                   disabled={isNavigating}
-                  className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-300 ${isNavigating ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110 active:scale-95'}`}
+                  className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-150 ${isNavigating
+                      ? 'opacity-70 pointer-events-none'
+                      : 'hover:scale-110 active:scale-95 cursor-pointer'
+                    }`}
                   style={{
                     WebkitTapHighlightColor: 'transparent',
-                    touchAction: 'manipulation',
-                    transform: 'translateZ(0)'
+                    userSelect: 'none'
                   }}
                   aria-label="Siguiente imagen"
                 >
