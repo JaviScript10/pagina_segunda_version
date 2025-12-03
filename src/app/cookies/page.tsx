@@ -15,7 +15,7 @@ export default function CookiesPage() {
                                     Cookies
                                 </span>
                             </h1>
-                            <p className="text-gray-600">Última actualización: Diciembre 2024</p>
+                            <p className="text-gray-600">Última actualización: Diciembre 2025</p>
                         </div>
 
                         <div className="space-y-8 text-gray-700">
