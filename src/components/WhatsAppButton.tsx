@@ -6,23 +6,39 @@ import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
   
-  // NUMERO WSP
   const phoneNumber = '56979693753'; 
-  const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios.');
 
   const quickMessages = [
-    { label: 'Cotizar sitio web', text: 'Hola, quiero cotizar un sitio web' },
-    { label: 'Información e-commerce', text: 'Me interesa información sobre e-commerce' },
-    { label: 'Desarrollar una app', text: 'Quiero desarrollar una aplicación móvil' },
-    { label: 'Consulta general', text: 'Tengo una consulta sobre sus servicios' },
+    { 
+      label: '💬 Consulta general', 
+      text: 'Hola, tengo una consulta general sobre sus servicios',
+      origin: 'consulta'
+    },
+    { 
+      label: '💰 Solicitar cotización', 
+      text: 'Hola, me gustaría solicitar una cotización para mi proyecto',
+      origin: 'cotizacion'
+    },
+    { 
+      label: '📋 Háblame sobre tu proyecto', 
+      text: 'Hola, quiero contarte sobre mi proyecto y ver cómo pueden ayudarme',
+      origin: 'proyecto'
+    },
+    { 
+      label: '❓ Tengo una pregunta', 
+      text: 'Hola, tengo algunas preguntas sobre sus servicios',
+      origin: 'pregunta'
+    },
   ];
 
-const handleQuickMessage = (text: string) => {
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+const handleQuickMessage = (text: string, origin: string) => {
+  // Tracking invisible en URL params (no se ve en el mensaje)
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}&app_absent=0&utm_source=${origin}`;
+  
   const a = document.createElement('a');
   a.href = url;
   a.target = '_blank';
-  a.rel = 'noopener';
+  a.rel = 'noopener noreferrer';
   a.style.display = 'none';
   document.body.appendChild(a);
   a.click();
@@ -36,7 +52,7 @@ const handleQuickMessage = (text: string) => {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-4">
         {/* Quick Messages Panel */}
         {isOpen && (
-          <div className="bg-white rounded-2xl shadow-2xl p-4 w-72 animate-slide-up">
+          <div className="bg-white rounded-2xl shadow-2xl p-4 w-80 animate-slide-up border-2 border-gray-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-bold text-gray-800">¿Cómo podemos ayudarte?</h3>
               <button
@@ -51,13 +67,16 @@ const handleQuickMessage = (text: string) => {
               {quickMessages.map((msg, index) => (
                 <button
                   key={index}
-                  onClick={() => handleQuickMessage(msg.text)}
-                  className="w-full text-left px-4 py-3 bg-gray-50 hover:bg-primary-50 rounded-lg transition-colors text-sm font-medium text-gray-700 hover:text-primary-600"
+                  onClick={() => handleQuickMessage(msg.text, msg.origin)}
+                  className="w-full text-left px-4 py-3 bg-gray-50 hover:bg-green-50 rounded-lg transition-colors text-sm font-medium text-gray-700 hover:text-green-600 border border-gray-200 hover:border-green-300"
                 >
                   {msg.label}
                 </button>
               ))}
             </div>
+            <p className="text-xs text-gray-500 mt-3 text-center">
+              Selecciona una opción o escríbenos directamente
+            </p>
           </div>
         )}
 

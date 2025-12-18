@@ -402,40 +402,11 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Client Logos Carousel */}
-        <div className="mt-20 py-12 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-200">
-          <h3 className="text-center text-2xl font-bold mb-8" style={{ color: '#1f2937' }}>
-            Empresas que Confían en CiberByte
-          </h3>
-          <div className="relative overflow-hidden">
-            <div className="flex animate-scroll space-x-16 px-8">
-              {[...clientLogos, ...clientLogos].map((client, idx) => (
-                <div
-                  key={idx}
-                  className="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 bg-white rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden group"
-                >
-                  <div className="w-full h-24 flex items-center justify-center p-3 overflow-hidden">
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="w-full px-2 py-2 text-center">
-                    <span className="text-xs font-semibold text-gray-800 line-clamp-2">
-                      {client.name}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
         {/* CTA Final */}
         <div className="mt-16 text-center">
           <div className="inline-block bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-8 md:p-12 shadow-2xl" style={{ color: '#ffffff' }}>
             <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#ffffff' }}>
-              ¿Listo para ser nuestro próximo caso de éxito?
+              Haz que tu proyecto sea exitoso
             </h3>
             <p className="text-lg mb-6" style={{ color: '#ffffff', opacity: 0.9 }}>
               Únete a más de 50 empresas que confiaron en CiberByte
@@ -548,8 +519,8 @@ export default function Portfolio() {
                   type="button"
                   disabled={isNavigating}
                   className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-150 ${isNavigating
-                      ? 'opacity-70 pointer-events-none'
-                      : 'hover:scale-110 active:scale-95 cursor-pointer'
+                    ? 'opacity-70 pointer-events-none'
+                    : 'hover:scale-110 active:scale-95 cursor-pointer'
                     }`}
                   style={{
                     WebkitTapHighlightColor: 'transparent',
@@ -569,8 +540,8 @@ export default function Portfolio() {
                   type="button"
                   disabled={isNavigating}
                   className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-150 ${isNavigating
-                      ? 'opacity-70 pointer-events-none'
-                      : 'hover:scale-110 active:scale-95 cursor-pointer'
+                    ? 'opacity-70 pointer-events-none'
+                    : 'hover:scale-110 active:scale-95 cursor-pointer'
                     }`}
                   style={{
                     WebkitTapHighlightColor: 'transparent',

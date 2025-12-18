@@ -1,7 +1,5 @@
 'use client';
 
-import { FaRocket, FaCode, FaMobile, FaShoppingCart } from 'react-icons/fa';
-
 export default function Hero() {
   const handleScrollToContact = () => {
     const element = document.querySelector('#contacto');
@@ -9,13 +7,6 @@ export default function Hero() {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-
-  const services = [
-    { icon: FaCode, label: 'Desarrollo Web' },
-    { icon: FaMobile, label: 'Apps Móviles' },
-    { icon: FaShoppingCart, label: 'E-commerce' },
-    { icon: FaRocket, label: 'Landing Pages' },
-  ];
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-24 md:pt-20 overflow-hidden">
@@ -40,66 +31,32 @@ export default function Hero() {
       />
 
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Texto */}
-          <div className="text-center lg:text-left space-y-8">
-            {/* Badge flotante */}
-            <div className="inline-flex items-center space-x-2 bg-green-50 border-2 border-green-200 px-4 py-2 rounded-full shadow-lg">
-              <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
-              <span className="text-sm font-semibold text-green-700">
-                Disponible para nuevos proyectos
-              </span>
-            </div>
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* Heading */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+            Transforma tu{' '}
+            <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+              Presencia Digital
+            </span>
+          </h1>
 
-            {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
-              Transforma tu{' '}
-              <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-                Presencia Digital
-              </span>
-            </h1>
+          <p className="text-lg md:text-xl text-gray-800 font-medium max-w-2xl mx-auto">
+            Creamos soluciones web modernas, rápidas y optimizadas para impulsar
+            tu negocio. Desde landing pages hasta e-commerce completos.
+          </p>
 
-            <p className="text-lg md:text-xl text-gray-800 font-medium max-w-2xl mx-auto lg:mx-0">
-              Creamos soluciones web modernas, rápidas y optimizadas para impulsar
-              tu negocio. Desde landing pages hasta e-commerce completos.
-            </p>
+          {/* BOTONES CTAs - MÁS HUMANOS */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={handleScrollToContact}
+              className="btn-primary text-lg px-8 py-4"
+            >
+              Solicita tu Cotización
+            </button>
 
-            {/* BOTONES CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button
-                onClick={handleScrollToContact}
-                className="btn-primary text-lg px-8 py-4"
-              >
-                Comenzar Proyecto
-              </button>
-
-              <a href="#proyectos" className="btn-secondary text-lg px-8 py-4">
-                Ver Proyectos
-              </a>
-            </div>
-          </div>
-
-          {/* SERVICIOS */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-6">
-              {services.map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <div
-                    key={index}
-                    className="card group hover:scale-105 transition-transform duration-300 border-2 border-gray-900"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="flex flex-col items-center text-center space-y-4">
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon className="w-8 h-8 text-white" />
-                      </div>
-                      <h3 className="font-semibold text-gray-800">{service.label}</h3>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <a href="#proyectos" className="btn-secondary text-lg px-8 py-4">
+              Ver Proyectos
+            </a>
           </div>
         </div>
       </div>

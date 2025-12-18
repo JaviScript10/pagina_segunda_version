@@ -29,7 +29,6 @@ function StatCard({ icon: Icon, endValue, suffix, label }: {
 }
 
 export default function About() {
-  // Stats con valores numéricos separados para el contador
   const stats = [
     { icon: FaTrophy, endValue: 50, suffix: '+', label: 'Proyectos Completados' },
     { icon: FaUsers, endValue: 40, suffix: '+', label: 'Clientes Satisfechos' },
@@ -93,7 +92,7 @@ export default function About() {
           ))}
         </div>
 
-        {/* Values Grid - CON BORDE NEGRO Y HOVER */}
+        {/* Values Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-20">
           {values.map((value, index) => (
             <div
@@ -125,63 +124,6 @@ export default function About() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Nuestra Historia - CON IMAGEN historia.jpg DE FONDO */}
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-          {/* Imagen de fondo */}
-          <div
-            className="absolute inset-0 z-0"
-            style={{
-              backgroundImage: 'url("/historia.jpg")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              filter: 'brightness(1.05) contrast(0.95)',
-            }}
-          />
-
-          {/* Overlay equilibrado - igual que Hero */}
-          <div
-            className="absolute inset-0 z-[1]"
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.80) 100%)',
-            }}
-          />
-
-          {/* Contenido */}
-          <div className="relative z-10 p-8 md:p-12">
-            <div className="max-w-3xl mx-auto text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-                Nuestra Historia
-              </h3>
-              <div className="space-y-4 text-gray-800 leading-relaxed text-left md:text-center font-medium">
-                <p>
-                  CiberByte nació de la pasión por crear soluciones digitales que realmente
-                  marquen la diferencia. Sabemos que cada proyecto es único y merece atención
-                  personalizada.
-                </p>
-                <p>
-                  Trabajamos con startups, PyMEs y empresas establecidas, ayudándolas a
-                  establecer o mejorar su presencia en línea con tecnología de punta y diseño
-                  excepcional.
-                </p>
-                <p>
-                  Nuestro enfoque combina creatividad, tecnología y estrategia para entregar
-                  productos que no solo se ven bien, sino que funcionan perfectamente y
-                  generan resultados medibles.
-                </p>
-              </div>
-              <div className="mt-8">
-                <a
-                  href="#contacto"
-                  className="inline-block bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl hover:scale-105 transition-all"
-                >
-                  Trabajemos Juntos
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

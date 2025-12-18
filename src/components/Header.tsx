@@ -56,23 +56,6 @@ export default function Header() {
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-600 transition-all group-hover:w-full"></span>
               </a>
             ))}
-
-            <button
-              onClick={(e) => {
-                if (pathname === '/') {
-                  e.preventDefault();
-                  const element = document.querySelector('#contacto');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                } else {
-                  window.location.href = '/#contacto';
-                }
-              }}
-              className="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
-            >
-              Cotizar Proyecto
-            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -120,23 +103,6 @@ export default function Header() {
                   <div className="h-1 w-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-full mt-2" />
                 </a>
               ))}
-              <button
-                onClick={(e) => {
-                  setIsMenuOpen(false);
-                  if (pathname === '/') {
-                    e.preventDefault();
-                    const element = document.querySelector('#contacto');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  } else {
-                    window.location.href = '/#contacto';
-                  }
-                }}
-                className="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all mt-6"
-              >
-                Cotizar Proyecto
-              </button>
             </div>
           </div>
         </>

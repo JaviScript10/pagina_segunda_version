@@ -173,3 +173,57 @@ h3 .bg-clip-text {
   background-clip: text !important;
   background-image: linear-gradient(to right, #0052cc, #0ea5e9) !important;
 }
+
+/* ============================================
+   AGREGAR ESTAS ANIMACIONES A globals.css
+   ============================================ */
+
+/* Fade in para overlay del modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Slide up para contenido del modal */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* OPCIONAL: Si ya tienes animate-slide-up para WhatsApp,
+   puedes usar este nombre alternativo */
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-modal-up {
+  animation: modalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

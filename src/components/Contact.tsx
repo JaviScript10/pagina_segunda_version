@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp, FaPaperPlane } from 'react-icons/fa';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,6 +11,8 @@ export default function Contact() {
     service: '',
     message: '',
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const contactInfo = [
     {
@@ -33,41 +35,41 @@ export default function Contact() {
     },
   ];
 
-const handleSubmit = (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  setIsSubmitting(true);
 
-  const whatsappMessage = `
-*Nuevo contacto desde CiberByte*
+  // Crear el contenido del email
+  const emailBody = `
+Nuevo contacto desde CiberByte
 
-*Nombre:* ${formData.name}
-*Email:* ${formData.email}
-*Teléfono:* ${formData.phone}
-*Servicio:* ${formData.service}
-*Mensaje:* ${formData.message}
+Nombre: ${formData.name}
+Email: ${formData.email}
+Teléfono: ${formData.phone}
+Servicio: ${formData.service}
+
+Mensaje:
+${formData.message}
   `.trim();
 
-  const whatsappNumber = '56979693753';
-  const encodedMessage = encodeURIComponent(whatsappMessage);
-  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  const emailSubject = `Nuevo contacto de ${formData.name} - ${formData.service}`;
+  
+  // Abrir cliente de correo del usuario
+  const mailtoLink = `mailto:contacto@ciberbyte.cl?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+  
+  window.location.href = mailtoLink;
 
-  // Abrir en nueva pestaña de forma confiable
-  const a = document.createElement('a');
-  a.href = whatsappURL;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  a.style.display = 'none';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-  // Limpiar formulario
-  setFormData({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-  });
+  // Limpiar formulario después de 1 segundo
+  setTimeout(() => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: '',
+    });
+    setIsSubmitting(false);
+  }, 1000);
 };
 
   const handleChange = (
@@ -94,11 +96,11 @@ const handleSubmit = (e: React.FormEvent) => {
             </span>
           </h2>
           <p className="text-lg text-gray-600">
-            Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas.
+            Cuéntanos sobre tus proyectos y conversemos cómo podemos ayudarte.
           </p>
         </div>
 
-        {/* Layout 2 Columnas: Info Izquierda + Formulario Derecha */}
+        {/* Layout 2 Columnas */}
         <div className="grid lg:grid-cols-5 gap-8">
           {/* COLUMNA IZQUIERDA - Info de Contacto */}
           <div className="lg:col-span-2 space-y-6">
@@ -125,7 +127,7 @@ const handleSubmit = (e: React.FormEvent) => {
               );
             })}
 
-            {/* CTA Adicional */}
+            {/* CTA WhatsApp */}
             <div className="bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl p-6 text-white">
               <h3 className="text-xl font-bold mb-2">¿Prefieres hablar directamente?</h3>
               <p className="text-sm mb-4 opacity-90">
@@ -224,7 +226,7 @@ const handleSubmit = (e: React.FormEvent) => {
                 {/* Mensaje */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Cuéntanos sobre tu proyecto *
+                    Cuéntanos sobre tus proyectos *
                   </label>
                   <textarea
                     id="message"
@@ -238,17 +240,18 @@ const handleSubmit = (e: React.FormEvent) => {
                   />
                 </div>
 
-                {/* Botón Submit - WHATSAPP */}
+                {/* Botón Submit - EMAIL */}
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-green-600 to-green-500 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center space-x-3 group"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center space-x-3 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <FaWhatsapp className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                  <span>Enviar por WhatsApp</span>
+                  <FaPaperPlane className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <span>{isSubmitting ? 'Abriendo...' : 'Enviar por Email'}</span>
                 </button>
 
                 <p className="text-center text-sm text-gray-600 mt-4">
-                  Al enviar, tu mensaje se abrirá en WhatsApp para que lo confirmes antes de enviar.
+                  Al enviar, se abrirá tu cliente de correo con el mensaje prellenado.
                 </p>
               </form>
             </div>

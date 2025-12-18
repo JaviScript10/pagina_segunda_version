@@ -67,7 +67,7 @@ export default function Services() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
-            Nuestros Servicios
+            Servicios
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             Soluciones Digitales{' '}
@@ -123,7 +123,7 @@ export default function Services() {
                   ))}
                 </ul>
 
-                {/* Price & CTA */}
+                {/* Price & CTA - MÁS HUMANO */}
                 <div className="flex items-center justify-between pt-6 border-t border-gray-200">
                   <span className="text-xl font-bold text-primary-600">
                     {service.price}
@@ -132,7 +132,7 @@ export default function Services() {
                     href="#contacto"
                     className="text-primary-600 hover:text-primary-700 font-semibold text-sm flex items-center space-x-1 group/link"
                   >
-                    <span>Cotizar</span>
+                    <span>Solicitar Cotización</span>
                     <svg
                       className="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform"
                       fill="none"
@@ -153,13 +153,13 @@ export default function Services() {
           })}
         </div>
 
-        {/* CTA */}
+        {/* CTA - MODIFICADO */}
         <div className="text-center mt-16">
           <p className="text-lg text-gray-600 mb-6">
-            ¿No encuentras lo que buscas? Trabajamos en proyectos personalizados.
+            ¿No encuentras lo que buscas? Trabajemos juntos.
           </p>
           <a href="#contacto" className="btn-primary text-lg px-8 py-4 inline-block">
-            Solicitar Proyecto Personalizado
+            Hablemos de tu Proyecto
           </a>
         </div>
       </div>
