@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaLaptopCode, FaTimes } from 'react-icons/fa';
+import { FaLaptopCode, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -10,7 +10,7 @@ export default function Footer() {
 
   const companyLinks = [
     { label: 'Sobre Nosotros', href: '#nosotros' },
-    { label: 'Nuestra Historia', href: '#', action: 'modal' }, // Modal trigger
+    { label: 'Nuestra Historia', href: '#', action: 'modal' },
     { label: 'Proyectos', href: '#proyectos' },
     { label: 'Preguntas Frecuentes', href: '/faq' },
     { label: 'Contacto', href: '#contacto' },
@@ -31,31 +31,48 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-gray-900 text-white">
-        <div className="container-custom py-12 md:py-16">
-          {/* Main Footer Content */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {/* Brand Column */}
-            <div>
-              <div className="mb-4">
+      <footer className="bg-gray-950 text-white border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          
+          {/* Main Footer Content - 4 Columnas balanceadas */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            
+            {/* 1. Brand Column & Info */}
+            <div className="lg:col-span-2 space-y-4">
+              <div className="mb-2">
                 <Logo variant="full" size="md" theme="dark" />
               </div>
-              <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
-                Transformamos ideas en experiencias digitales excepcionales. Desarrollo web,
-                apps móviles y soluciones tecnológicas que impulsan tu negocio.
+              <p className="text-gray-400 max-w-sm leading-relaxed text-sm">
+                Transformamos ideas en experiencias digitales excepcionales. Desarrollo web, apps móviles y soluciones tecnológicas que impulsan tu negocio.
               </p>
+              
+              {/* Datos de contacto movidos al Footer */}
+              <div className="pt-2 space-y-2.5 text-sm text-gray-300">
+                <a href="mailto:contacto@ciberbyte.cl" className="flex items-center gap-2.5 hover:text-primary-400 transition-colors w-fit">
+                  <FaEnvelope className="text-primary-500 text-xs" />
+                  <span>contacto@ciberbyte.cl</span>
+                </a>
+                <a href="https://wa.me/56934341783" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 hover:text-emerald-400 transition-colors w-fit">
+                  <FaWhatsapp className="text-emerald-500 text-sm" />
+                  <span>+56 9 3434 1783</span>
+                </a>
+                <div className="flex items-center gap-2.5 text-gray-400">
+                  <FaMapMarkerAlt className="text-primary-500 text-xs" />
+                  <span>Valparaíso, Chile</span>
+                </div>
+              </div>
             </div>
 
-            {/* Company Links */}
+            {/* 2. Company Links */}
             <div>
-              <h3 className="text-lg font-bold mb-4">Empresa</h3>
-              <ul className="space-y-3">
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white mb-4">Empresa</h3>
+              <ul className="space-y-2.5">
                 {companyLinks.map((link, index) => (
                   <li key={index}>
                     <a
                       href={link.href}
                       onClick={(e) => handleLinkClick(e, link)}
-                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer"
+                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
                     >
                       {link.label}
                     </a>
@@ -64,15 +81,15 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Legal Links */}
+            {/* 3. Legal Links */}
             <div>
-              <h3 className="text-lg font-bold mb-4">Legal</h3>
-              <ul className="space-y-3">
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white mb-4">Legal</h3>
+              <ul className="space-y-2.5">
                 {legalLinks.map((link, index) => (
                   <li key={index}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200"
+                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 text-sm"
                     >
                       {link.label}
                     </a>
@@ -80,20 +97,20 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
+
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-gray-800 pt-8">
-            <div className="flex flex-col items-center space-y-4">
-              <p className="text-gray-400 text-sm">
-                © {currentYear} CiberByte. Todos los derechos reservados.
-              </p>
-              <p className="text-gray-300 text-sm flex items-center space-x-2">
-                <span>Creado con Tecnología y Pasión</span>
-                <FaLaptopCode className="w-5 h-5 text-primary-500" />
-              </p>
-            </div>
+          <div className="border-t border-gray-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-gray-500 text-xs sm:text-sm">
+              © {currentYear} CiberByte. Todos los derechos reservados.
+            </p>
+            <p className="text-gray-400 text-xs sm:text-sm flex items-center space-x-2">
+              <span>Creado con Tecnología y Pasión</span>
+              <FaLaptopCode className="w-4 h-4 text-primary-500" />
+            </p>
           </div>
+
         </div>
       </footer>
 
@@ -123,7 +140,6 @@ export default function Footer() {
 
             {/* Modal Content */}
             <div className="p-6 md:p-8">
-              {/* Imagen opcional */}
               <div className="relative rounded-xl overflow-hidden mb-6 h-48 md:h-64">
                 <div
                   className="absolute inset-0"
@@ -136,41 +152,34 @@ export default function Footer() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               </div>
 
-              {/* Texto */}
-              <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p className="text-lg">
-                  CiberByte nació de la pasión por crear soluciones digitales que realmente
-                  marquen la diferencia. Sabemos que cada proyecto es único y merece atención
-                  personalizada.
+              <div className="space-y-4 text-gray-700 leading-relaxed text-sm sm:text-base">
+                <p>
+                  CiberByte nació de la pasión por crear soluciones digitales que realmente marquen la diferencia. Sabemos que cada proyecto es único y merece atención personalizada.
                 </p>
                 <p>
-                  Trabajamos con startups, PyMEs y empresas establecidas, ayudándolas a
-                  establecer o mejorar su presencia en línea con tecnología de punta y diseño
-                  excepcional.
+                  Trabajamos con startups, PyMEs y empresas establecidas, ayudándolas a establecer o mejorar su presencia en línea con tecnología de punta y diseño excepcional.
                 </p>
                 <p>
-                  Nuestro enfoque combina creatividad, tecnología y estrategia para entregar
-                  productos que no solo se ven bien, sino que funcionan perfectamente y
-                  generan resultados medibles.
+                  Nuestro enfoque combina creatividad, tecnología y estrategia para entregar productos que no solo se ven bien, sino que funcionan perfectamente y generan resultados medibles.
                 </p>
 
                 {/* Stats mini */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-gray-200">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary-600 mb-1">50+</div>
-                    <div className="text-sm text-gray-600">Proyectos</div>
+                    <div className="text-xs text-gray-600">Proyectos</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary-600 mb-1">40+</div>
-                    <div className="text-sm text-gray-600">Clientes</div>
+                    <div className="text-xs text-gray-600">Clientes</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">3+</div>
-                    <div className="text-sm text-gray-600">Años</div>
+                    <div className="text-3xl font-bold text-primary-600 mb-1">5+</div>
+                    <div className="text-xs text-gray-600">Años</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary-600 mb-1">100%</div>
-                    <div className="text-sm text-gray-600">Entrega</div>
+                    <div className="text-xs text-gray-600">Entrega</div>
                   </div>
                 </div>
               </div>
@@ -187,13 +196,13 @@ export default function Footer() {
                       }
                     }, 300);
                   }}
-                  className="bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-3 px-8 rounded-lg hover:shadow-xl hover:scale-105 transition-all"
+                  className="bg-primary-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-primary-700 transition-all shadow-md text-sm"
                 >
                   Trabajemos Juntos
                 </button>
                 <button
                   onClick={() => setIsHistoryModalOpen(false)}
-                  className="bg-gray-100 text-gray-900 font-semibold py-3 px-8 rounded-lg hover:bg-gray-200 transition-all"
+                  className="bg-gray-100 text-gray-900 font-semibold py-3 px-8 rounded-xl hover:bg-gray-200 transition-all text-sm"
                 >
                   Cerrar
                 </button>

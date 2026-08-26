@@ -1,76 +1,29 @@
 'use client';
 
 import { useState } from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp, FaPaperPlane } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    phone: '',
     service: '',
     message: '',
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const whatsappNumber = '56934341783';
 
-  const contactInfo = [
-    {
-      icon: FaEnvelope,
-      title: 'Email',
-      content: 'contacto@ciberbyte.cl',
-      link: 'mailto:contacto@ciberbyte.cl',
-    },
-    {
-      icon: FaPhone,
-      title: 'Teléfono',
-      content: '+56 9 7969 3753',
-      link: 'tel:+56979693753',
-    },
-    {
-      icon: FaMapMarkerAlt,
-      title: 'Ubicación',
-      content: 'Valparaíso, Chile',
-      link: 'https://maps.google.com/?q=Valparaiso,Chile',
-    },
-  ];
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.service) {
+      alert('Por favor completa al menos tu nombre y el servicio que necesitas.');
+      return;
+    }
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-
-  // Crear el contenido del email
-  const emailBody = `
-Nuevo contacto desde CiberByte
-
-Nombre: ${formData.name}
-Email: ${formData.email}
-Teléfono: ${formData.phone}
-Servicio: ${formData.service}
-
-Mensaje:
-${formData.message}
-  `.trim();
-
-  const emailSubject = `Nuevo contacto de ${formData.name} - ${formData.service}`;
-  
-  // Abrir cliente de correo del usuario
-  const mailtoLink = `mailto:contacto@ciberbyte.cl?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-  
-  window.location.href = mailtoLink;
-
-  // Limpiar formulario después de 1 segundo
-  setTimeout(() => {
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
-    setIsSubmitting(false);
-  }, 1000);
-};
+    const whatsappMessage = `Hola CiberByte, mi nombre es *${formData.name}*. Me interesa el servicio de *${formData.service}*. Detalle: ${formData.message || 'Sin detalles adicionales'}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    window.open(whatsappUrl, '_blank');
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -82,181 +35,101 @@ ${formData.message}
   };
 
   return (
-    <section id="contacto" className="pt-24 pb-12 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-gradient-to-br from-gray-50 to-white">
-      <div className="container-custom">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
+    <section id="contacto" className="py-16 lg:py-28 bg-slate-50 relative overflow-hidden">
+      
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header compacto */}
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+          <span className="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-xs font-extrabold uppercase tracking-wider">
             Contacto
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
             Hagamos Realidad tu{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+            <span className="text-primary-600">
               Proyecto Digital
             </span>
           </h2>
-          <p className="text-lg text-gray-600">
-            Cuéntanos sobre tus proyectos y conversemos cómo podemos ayudarte.
+          <p className="text-gray-600 text-sm sm:text-base">
+            Escríbenos y conversemos al instante sobre tu idea.
           </p>
         </div>
 
-        {/* Layout 2 Columnas */}
-        <div className="grid lg:grid-cols-5 gap-8">
-          {/* COLUMNA IZQUIERDA - Info de Contacto */}
-          <div className="lg:col-span-2 space-y-6">
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon;
-              return (
-                <a
-                  key={index}
-                  href={info.link}
-                  target={info.link.startsWith('http') ? '_blank' : undefined}
-                  rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="block bg-white rounded-xl p-6 border-2 border-gray-900 shadow-md hover:shadow-2xl hover:border-primary-600 hover:-translate-y-1 transition-all duration-300 group"
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-gray-600 mb-1">{info.title}</h3>
-                      <p className="text-lg font-semibold text-gray-900">{info.content}</p>
-                    </div>
-                  </div>
-                </a>
-              );
-            })}
+        {/* Formulario limpio y optimizado para una sola pantalla en celular */}
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-xl max-w-xl mx-auto">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            
+            {/* Nombre */}
+            <div>
+              <label htmlFor="name" className="block text-xs font-bold text-gray-700 mb-1.5">
+                Tu Nombre *
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all text-gray-900 text-sm"
+                placeholder="Ej. Juan Pérez"
+              />
+            </div>
 
-            {/* CTA WhatsApp */}
-            <div className="bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl p-6 text-white">
-              <h3 className="text-xl font-bold mb-2">¿Prefieres hablar directamente?</h3>
-              <p className="text-sm mb-4 opacity-90">
-                Llámanos o escríbenos por WhatsApp y conversemos sobre tu proyecto.
-              </p>
-              <a
-                href="https://wa.me/56979693753"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-white text-primary-600 font-bold py-3 px-6 rounded-lg hover:scale-105 transition-all"
+            {/* Servicio */}
+            <div>
+              <label htmlFor="service" className="block text-xs font-bold text-gray-700 mb-1.5">
+                ¿Qué servicio te interesa? *
+              </label>
+              <select
+                id="service"
+                name="service"
+                required
+                value={formData.service}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all text-gray-900 text-sm"
+              >
+                <option value="">Selecciona un servicio</option>
+                <option value="Landing Page">Landing Page</option>
+                <option value="E-commerce">E-commerce</option>
+                <option value="App Móvil">App Móvil</option>
+                <option value="Sitio Corporativo">Sitio Corporativo</option>
+                <option value="Soporte y Hardware de PC">Soporte y Hardware de PC</option>
+                <option value="Mantenimiento Web">Mantenimiento Web</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            {/* Mensaje */}
+            <div>
+              <label htmlFor="message" className="block text-xs font-bold text-gray-700 mb-1.5">
+                Detalles (Opcional)
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={2}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all resize-none text-gray-900 text-sm"
+                placeholder="Breve descripción..."
+              />
+            </div>
+
+            {/* Botón WhatsApp */}
+            <div className="pt-2">
+              <button
+                type="submit"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-emerald-600/30 hover:scale-[1.01] transition-all flex items-center justify-center space-x-2 text-sm sm:text-base"
               >
                 <FaWhatsapp className="w-5 h-5" />
-                <span>Abrir WhatsApp</span>
-              </a>
+                <span>Enviar por WhatsApp</span>
+              </button>
             </div>
-          </div>
 
-          {/* COLUMNA DERECHA - Formulario */}
-          <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl p-8 border-2 border-gray-900 shadow-xl">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Nombre */}
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Nombre completo *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
-                    placeholder="Juan Pérez"
-                  />
-                </div>
-
-                {/* Email y Teléfono */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
-                      placeholder="juan@ejemplo.cl"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-                      Teléfono
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
-                      placeholder="+56 9 79693753"
-                    />
-                  </div>
-                </div>
-
-                {/* Servicio */}
-                <div>
-                  <label htmlFor="service" className="block text-sm font-semibold text-gray-900 mb-2">
-                    ¿Qué servicio necesitas? *
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    required
-                    value={formData.service}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-gray-900 bg-white"
-                  >
-                    <option value="">Selecciona un servicio</option>
-                    <option value="Landing Page">Landing Page</option>
-                    <option value="E-commerce">E-commerce</option>
-                    <option value="App Móvil">App Móvil</option>
-                    <option value="Sitio Corporativo">Sitio Corporativo</option>
-                    <option value="Diseño UX/UI">Diseño UX/UI</option>
-                    <option value="Mantenimiento Web">Mantenimiento Web</option>
-                    <option value="Otro">Otro</option>
-                  </select>
-                </div>
-
-                {/* Mensaje */}
-                <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Cuéntanos sobre tus proyectos *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all resize-none text-gray-900 bg-white"
-                    placeholder="Describe brevemente tu proyecto, objetivos y presupuesto aproximado..."
-                  />
-                </div>
-
-                {/* Botón Submit - EMAIL */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center space-x-3 group disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <FaPaperPlane className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  <span>{isSubmitting ? 'Abriendo...' : 'Enviar por Email'}</span>
-                </button>
-
-                <p className="text-center text-sm text-gray-600 mt-4">
-                  Al enviar, se abrirá tu cliente de correo con el mensaje prellenado.
-                </p>
-              </form>
-            </div>
-          </div>
+          </form>
         </div>
+
       </div>
     </section>
   );

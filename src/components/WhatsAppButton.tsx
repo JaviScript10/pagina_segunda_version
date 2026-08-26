@@ -6,7 +6,7 @@ import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
   
-  const phoneNumber = '56979693753'; 
+  const phoneNumber = '56934341783'; 
 
   const quickMessages = [
     { 

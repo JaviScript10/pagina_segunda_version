@@ -1,697 +1,429 @@
 'use client';
-
-import { useState, useRef, useEffect } from 'react';
-import { FaArrowRight, FaStar, FaChartLine, FaTimes, FaClock, FaDollarSign, FaCheckCircle } from 'react-icons/fa';
-import DeviceMockup from '@/components/DeviceMockup';
-import Avatar from '@/components/Avatar';
-
-type Category = 'all' | 'landing' | 'ecommerce' | 'app' | 'corporate';
-
-interface Project {
-  id: number;
-  title: string;
-  subtitle: string;
-  category: Category;
-  image: string;
-  result: string;
-  rating: string;
-  testimonial: string;
-  author: string;
-  authorImage?: string; // Opcional: URL de foto real del cliente
-  badge: string;
-  deviceType: 'laptop' | 'mobile'; // Nuevo: tipo de dispositivo para el mockup
-  // Datos completos para el modal
-  gallery: string[];
-  challenge: string;
-  solution: string[];
-  results: { metric: string; value: string }[];
-  timeline: string;
-  investment: string;
-}
+import { useState, useRef } from 'react';
+import { FaTimes, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaChartLine } from 'react-icons/fa';
 
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState<Category>('all');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isNavigating, setIsNavigating] = useState(false);
-  const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const categories = [
-    { id: 'all' as Category, label: 'Todos los Proyectos' },
-    { id: 'landing' as Category, label: 'Landing Pages' },
-    { id: 'ecommerce' as Category, label: 'E-commerce' },
-    { id: 'app' as Category, label: 'Apps Móviles' },
-    { id: 'corporate' as Category, label: 'Corporativos' },
-  ];
-
-  const projects: Project[] = [
+  const projects = [
     {
-      id: 1,
-      title: 'Sabores del Sur',
-      subtitle: 'Restaurante - Valdivia',
-      category: 'landing',
-      image: '/proyectos/sabores-del-sur-1.jpg',
-      result: '+230% reservas online',
-      rating: '4.9/5',
-      testimonial: 'La mejor inversión que hicimos. Reservas se triplicaron.',
-      author: 'Juan Pérez',
-      deviceType: 'laptop',
-      badge: 'LANDING PAGE',
-      gallery: [
-        '/proyectos/sabores-del-sur-1.jpg',
-        '/proyectos/sabores-del-sur-2.jpg',
-        '/proyectos/sabores-del-sur-3.jpg',
+      title: "Sabores del Sur",
+      category: "LANDING PAGE",
+      location: "Valdivia",
+      images: [
+        "/proyectos/sabores-del-sur-1.jpg",
+        "/proyectos/sabores-del-sur-2.jpg",
+        "/proyectos/sabores-del-sur-3.jpg"
       ],
-      challenge: 'Restaurante tradicional con 0 presencia digital. Dependían 100% de clientes walk-in y llamadas telefónicas. Querían modernizar y captar clientes millennials.',
+      desc: "Landing page gastronómica enfocada en conversión directa y reservas de mesa con diseño responsive.",
+      challenge: "Restaurante tradicional con 0 presencia digital. Dependían 100% de clientes walk-in y llamadas telefónicas.",
       solution: [
-        'Landing page responsive con diseño gastronómico premium',
-        'Sistema de reservas online integrado con WhatsApp',
-        'Menú digital interactivo con fotos profesionales',
-        'Integración con Google Maps y redes sociales',
+        "Landing page responsive con diseño gastronómico premium",
+        "Sistema de reservas online integrado con WhatsApp",
+        "Menú digital interactivo con fotos profesionales"
       ],
       results: [
-        { metric: 'Reservas Online', value: '+230%' },
-        { metric: 'Tráfico Web', value: '+180%' },
-        { metric: 'Engagement Redes', value: '+95%' },
-        { metric: 'Nuevos Clientes', value: '+150%' },
+        { label: "Reservas Online", value: "+230%" },
+        { label: "Tráfico Web", value: "+180%" },
+        { label: "Nuevos Clientes", value: "+150%" }
       ],
-      timeline: '3 semanas',
-      investment: '$280.000',
+      testimonial: {
+        quote: "La mejor inversión que hicimos. Las reservas se triplicaron.",
+        author: "Juan Pérez",
+        role: "Dueño, Sabores del Sur"
+      },
+      timeline: "3 semanas",
+      investment: "$280.000"
     },
     {
-      id: 2,
-      title: 'Verde Nativo',
-      subtitle: 'Tienda de Plantas - Santiago',
-      category: 'ecommerce',
-      image: '/proyectos/verde-nativo-1.jpg',
-      result: '+180% conversiones',
-      rating: '4.8/5',
-      testimonial: 'Vendimos 12.000 plantas en 6 meses. Increíble.',
-      author: 'María González',
-      deviceType: 'laptop',
-      badge: 'E-COMMERCE',
-      gallery: [
-        '/proyectos/verde-nativo-1.jpg',
-        '/proyectos/verde-nativo-2.jpg',
-        '/proyectos/verde-nativo-3.jpg',
+      title: "Verde Nativo",
+      category: "E-COMMERCE",
+      location: "Santiago",
+      images: [
+        "/proyectos/verde-nativo-1.jpg",
+        "/proyectos/verde-nativo-2.jpg",
+        "/proyectos/verde-nativo-3.jpg"
       ],
-      challenge: 'Tienda física de plantas con ventas estancadas. Necesitaban llegar a más clientes y facilitar envíos a domicilio en toda la Región Metropolitana.',
+      desc: "Tienda online de plantas con catálogo autoadministrable y pasarela de pago segura.",
+      challenge: "Vivero local que vendía solo por Instagram de forma manual, perdiendo horas coordinando transferencias.",
       solution: [
-        'E-commerce completo con catálogo de 500+ productos',
-        'Carrito de compras con integración Webpay',
-        'Sistema de envíos automatizado por comuna',
-        'Blog de cuidado de plantas para SEO',
+        "E-commerce completo con carrito de compras y Webpay",
+        "Gestión automatizada de stock e inventario",
+        "Sistema de despacho calculado por comunas"
       ],
       results: [
-        { metric: 'Conversiones', value: '+180%' },
-        { metric: 'Ticket Promedio', value: '+65%' },
-        { metric: 'Ventas Totales', value: '12.000 plantas' },
-        { metric: 'Clientes Recurrentes', value: '+120%' },
+        { label: "Ventas Mensuales", value: "+310%" },
+        { label: "Tiempo Operativo", value: "-60%" },
+        { label: "Clientes Región", value: "+200%" }
       ],
-      timeline: '5 semanas',
-      investment: '$650.000',
+      testimonial: {
+        quote: "Ahora la tienda vende sola mientras dormimos.",
+        author: "Camila Soto",
+        role: "Fundadora, Verde Nativo"
+      },
+      timeline: "4 semanas",
+      investment: "$600.000"
     },
     {
-      id: 3,
-      title: 'Espacio Urbano',
-      subtitle: 'Inmobiliaria - Región Metropolitana',
-      category: 'corporate',
-      image: '/proyectos/espacio-urbano-1.jpg',
-      result: '450+ consultas/mes',
-      rating: '5.0/5',
-      testimonial: 'Sitio profesional que genera confianza. Consultas de calidad.',
-      author: 'Carlos Rojas',
-      deviceType: 'laptop',
-      badge: 'SITIO CORPORATIVO',
-      gallery: [
-        '/proyectos/espacio-urbano-1.jpg',
-        '/proyectos/espacio-urbano-2.jpg',
-        '/proyectos/espacio-urbano-3.jpg',
+      title: "Espacio Urbano",
+      category: "SITIO CORPORATIVO",
+      location: "Región Metropolitana",
+      images: [
+        "/proyectos/espacio-urbano-1.jpg",
+        "/proyectos/espacio-urbano-2.jpg",
+        "/proyectos/espacio-urbano-3.jpg"
       ],
-      challenge: 'Inmobiliaria con sitio desactualizado y formularios que no funcionaban. Perdían oportunidades de negocio por falta de credibilidad digital.',
+      desc: "Plataforma inmobiliaria multi-página con buscador avanzado de propiedades.",
+      challenge: "Corredora con múltiples propiedades que necesitaba proyectar mayor solidez corporativa.",
       solution: [
-        'Sitio corporativo moderno con buscador de propiedades',
-        'Formularios optimizados con validación automática',
-        'CRM integrado para seguimiento de clientes potenciales',
-        'Tour virtual 360° de propiedades destacadas',
+        "Sitio web multi-página con diseño vanguardista",
+        "Buscador y filtros avanzados de propiedades",
+        "Formularios de contacto directos"
       ],
       results: [
-        { metric: 'Consultas Calificadas/mes', value: '450+' },
-        { metric: 'Tasa Conversión', value: '+210%' },
-        { metric: 'Tiempo en Sitio', value: '+340%' },
-        { metric: 'Propiedades Vendidas', value: '+85%' },
+        { label: "Leads Calificados", value: "+190%" },
+        { label: "Visualización", value: "+250%" },
+        { label: "Cierres de Ventas", value: "+40%" }
       ],
-      timeline: '4 semanas',
-      investment: '$480.000',
+      testimonial: {
+        quote: "Nuestros clientes nos felicitan por lo moderna y rápida que es la web.",
+        author: "Esteban Valenzuela",
+        role: "Director, Espacio Urbano"
+      },
+      timeline: "4 semanas",
+      investment: "$450.000"
     },
     {
-      id: 4,
-      title: 'FitChile',
-      subtitle: 'App Fitness - Nacional',
-      category: 'app',
-      image: '/proyectos/fitchile-1.jpg',
-      result: '8.500+ descargas',
-      rating: '4.7/5',
-      testimonial: 'App intuitiva y rápida. Usuarios la aman.',
-      author: 'Andrea Silva',
-      deviceType: 'mobile',
-      badge: 'APP MÓVIL',
-      gallery: [
-        '/proyectos/fitchile-1.jpg',
-        '/proyectos/fitchile-2.jpg',
-        '/proyectos/fitchile-3.jpg',
+      title: "FitChile",
+      category: "APP MÓVIL",
+      location: "Nacional",
+      images: [
+        "/proyectos/fitchile-1.jpg",
+        "/proyectos/fitchile-2.jpg",
+        "/proyectos/fitchile-3.jpg"
       ],
-      challenge: 'Emprendedora fitness necesitaba digitalizar su negocio de entrenamientos personalizados y llegar a más clientes sin estar físicamente presente.',
+      desc: "Aplicación multiplataforma para seguimiento de rutinas de entrenamiento y nutrición.",
+      challenge: "Centro de acondicionamiento físico que buscaba fidelizar a sus alumnos mediante una app propia.",
       solution: [
-        'App nativa iOS y Android con planes de entrenamiento',
-        'Sistema de suscripción mensual integrado',
-        'Videos HD de ejercicios con tracking de progreso',
-        'Notificaciones push para motivación diaria',
+        "Desarrollo de App móvil intuitiva",
+        "Panel para entrenadores y registro de progreso",
+        "Notificaciones push de recordatorio"
       ],
       results: [
-        { metric: 'Descargas', value: '8.500+' },
-        { metric: 'Rating App Store', value: '4.7★' },
-        { metric: 'Usuarios Activos', value: '3.200' },
-        { metric: 'Retención 30 días', value: '68%' },
+        { label: "Retención Alumnos", value: "+85%" },
+        { label: "Uso Activo App", value: "92%" },
+        { label: "Satisfacción", value: "4.9/5" }
       ],
-      timeline: '8 semanas',
-      investment: '$950.000',
+      testimonial: {
+        quote: "La app le dio un valor agregado gigante a nuestro centro deportivo.",
+        author: "Matías Rojas",
+        role: "Head Coach, FitChile"
+      },
+      timeline: "6 semanas",
+      investment: "$950.000"
     },
     {
-      id: 5,
-      title: 'Café Andino',
-      subtitle: 'Cafetería - Valparaíso',
-      category: 'landing',
-      image: '/proyectos/cafe-andino-1.jpg',
-      result: '+320% ventas delivery',
-      rating: '4.9/5',
-      testimonial: 'El sitio nos ayudó a explotar en pedidos online.',
-      author: 'Sofía Muñoz',
-      deviceType: 'laptop',
-      badge: 'LANDING + TIENDA',
-      gallery: [
-        '/proyectos/cafe-andino-1.jpg',
-        '/proyectos/cafe-andino-2.jpg',
-        '/proyectos/cafe-andino-3.jpg',
+      title: "Café Andino",
+      category: "LANDING + TIENDA",
+      location: "Valparaíso",
+      images: [
+        "/proyectos/cafe-andino-1.jpg",
+        "/proyectos/cafe-andino-2.jpg",
+        "/proyectos/cafe-andino-3.jpg"
       ],
-      challenge: 'Cafetería boutique afectada por pandemia. Necesitaban cambiar su modelo de negocio a delivery urgente pero no tenían plataforma digital propia.',
+      desc: "Sitio web interactivo para cafetería de especialidad con sistema de pedidos online.",
+      challenge: "Cafetería histórica de cerros que necesitaba recibir pedidos anticipados para retiro en local sin comisiones altas.",
       solution: [
-        'Landing page con tienda online integrada',
-        'Menú digital con fotos profesionales',
-        'Sistema de pedidos con WhatsApp Business',
-        'Programa de fidelización digital',
+        "Landing interactiva con carta de cafés de especialidad",
+        "Sistema de pedidos directos al WhatsApp del local",
+        "Galería fotográfica enfocada en ambiente"
       ],
       results: [
-        { metric: 'Ventas Delivery', value: '+320%' },
-        { metric: 'Ticket Promedio', value: '+45%' },
-        { metric: 'Clientes Nuevos', value: '+280%' },
-        { metric: 'Pedidos/día', value: '85+' },
+        { label: "Pedidos Web", value: "+140%" },
+        { label: "Ahorro Comisiones", value: "100%" },
+        { label: "Reconocimiento", value: "+75%" }
       ],
-      timeline: '2 semanas',
-      investment: '$220.000',
+      testimonial: {
+        quote: "Nos salvó de pagar altas comisiones a apps externas. ¡Brillante!",
+        author: "Sofía Arriagada",
+        role: "Barista y Dueña"
+      },
+      timeline: "2 semanas",
+      investment: "$220.000"
     },
     {
-      id: 6,
-      title: 'Innova Gestión',
-      subtitle: 'Consultoría Empresarial - Concepción',
-      category: 'corporate',
-      image: '/proyectos/innova-gestion-1.jpg',
-      result: '+95% tráfico SEO',
-      rating: '5.0/5',
-      testimonial: 'Presencia digital que refleja nuestra experiencia.',
-      author: 'Roberto Vargas',
-      deviceType: 'laptop',
-      badge: 'SITIO CORPORATIVO',
-      gallery: [
-        '/proyectos/innova-gestion-1.jpg',
-        '/proyectos/innova-gestion-2.jpg',
-        '/proyectos/innova-gestion-3.jpg',
+      title: "Innova Gestión",
+      category: "SITIO CORPORATIVO",
+      location: "Concepción",
+      images: [
+        "/proyectos/innova-gestion-1.jpg",
+        "/proyectos/innova-gestion-2.jpg",
+        "/proyectos/innova-gestion-3.jpg"
       ],
-      challenge: 'Consultora con 15 años de experiencia pero sitio obsoleto que no reflejaba su expertise. Perdían oportunidades frente a competencia con mejor presencia digital.',
+      desc: "Portal corporativo de servicios tecnológicos con diseño moderno y minimalista.",
+      challenge: "Empresa B2B de consultoría informática con una imagen anticuada que no reflejaba su nivel técnico.",
       solution: [
-        'Sitio corporativo premium con blog de contenido',
-        'SEO técnico y estrategia de contenido',
-        'Casos de éxito interactivos con métricas',
-        'Portal de clientes con acceso privado',
+        "Rediseño total de identidad y sitio web corporativo",
+        "Sección de casos de éxito y blog técnico",
+        "Optimización de velocidad de carga"
       ],
       results: [
-        { metric: 'Tráfico Orgánico', value: '+95%' },
-        { metric: 'Posición Google', value: 'Top 3' },
-        { metric: 'Consultas Calificadas', value: '+140%' },
-        { metric: 'Contratos Cerrados', value: '+60%' },
+        { label: "Contratos B2B", value: "+3" },
+        { label: "Rebote Web", value: "-45%" },
+        { label: "Autoridad de Marca", value: "Alta" }
       ],
-      timeline: '6 semanas',
-      investment: '$580.000',
-    },
-  ];
-
-  const clientLogos = [
-    { name: 'Sabores del Sur', logo: '/proyectos/sabores-del-sur-1.jpg' },
-    { name: 'Verde Nativo', logo: '/proyectos/verde-nativo-1.jpg' },
-    { name: 'Espacio Urbano', logo: '/proyectos/espacio-urbano-1.jpg' },
-    { name: 'FitChile', logo: '/proyectos/fitchile-1.jpg' },
-    { name: 'Café Andino', logo: '/proyectos/cafe-andino-1.jpg' },
-    { name: 'Innova Gestión', logo: '/proyectos/innova-gestion-1.jpg' },
-  ];
-
-  const filteredProjects =
-    activeCategory === 'all'
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-
-  // Limpiar timeout cuando el componente se desmonta
-  useEffect(() => {
-    return () => {
-      if (navigationTimeoutRef.current) {
-        clearTimeout(navigationTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  const handleNextImage = () => {
-    if (!selectedProject || isNavigating) return;
-
-    setIsNavigating(true);
-    setCurrentImageIndex((prev) =>
-      prev === selectedProject.gallery.length - 1 ? 0 : prev + 1
-    );
-
-    if (navigationTimeoutRef.current) {
-      clearTimeout(navigationTimeoutRef.current);
+      testimonial: {
+        quote: "El cambio de imagen nos posicionó al nivel de las grandes consultoras.",
+        author: "Felipe Morales",
+        role: "CEO, Innova Gestión"
+      },
+      timeline: "3 semanas",
+      investment: "$380.000"
     }
+  ];
 
-    navigationTimeoutRef.current = setTimeout(() => {
-      setIsNavigating(false);
-    }, 300);
+  const openModal = (proj: any) => {
+    setSelectedProject(proj);
+    setCurrentImageIndex(0);
   };
 
-  const handlePrevImage = () => {
-    if (!selectedProject || isNavigating) return;
-
-    setIsNavigating(true);
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? selectedProject.gallery.length - 1 : prev - 1
-    );
-
-    if (navigationTimeoutRef.current) {
-      clearTimeout(navigationTimeoutRef.current);
+  const nextImage = () => {
+    if (selectedProject) {
+      setCurrentImageIndex((prev) => (prev + 1) % selectedProject.images.length);
     }
-
-    navigationTimeoutRef.current = setTimeout(() => {
-      setIsNavigating(false);
-    }, 300);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!selectedProject) return;
+  const prevImage = () => {
+    if (selectedProject) {
+      setCurrentImageIndex((prev) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length);
+    }
+  };
 
-    if (e.key === 'ArrowLeft') {
-      handlePrevImage();
-    } else if (e.key === 'ArrowRight') {
-      handleNextImage();
-    } else if (e.key === 'Escape') {
-      setSelectedProject(null);
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const offset = direction === 'left' ? -clientWidth / 2 : clientWidth / 2;
+      scrollRef.current.scrollTo({ left: scrollLeft + offset, behavior: 'smooth' });
     }
   };
 
   return (
-    <section
-      id="proyectos"
-      className="pt-24 pb-12 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-white"
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-    >
-      <div className="container-custom">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
-            Proyectos
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-            Proyectos que{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-              Transforman Negocios
-            </span>
+    <section id="proyectos" className="py-20 lg:py-32 bg-white min-h-screen flex flex-col justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        
+        {/* Encabezado */}
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+          <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Portafolio</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
+            Casos de <span className="text-primary-600">Éxito Destacados</span>
           </h2>
-          <p className="text-lg text-gray-600">
-            Casos reales de clientes que confiaron en nosotros y multiplicaron sus resultados.
-          </p>
+          <p className="text-gray-600 text-base sm:text-lg mt-3">Haz clic en cualquier proyecto para ver la galería completa de fotos y su reseña detallada.</p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeCategory === cat.id
-                ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-lg scale-105'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105'
-                }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+        {/* Contenedor del Carrusel con Flechas Laterales Fijas (Sin barra de scroll inferior) */}
+        <div className="relative group px-2 sm:px-8">
+          
+          {/* Botón Flecha Izquierda Fijo */}
+          <button 
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 text-gray-800 p-3.5 rounded-full shadow-xl border border-gray-100 transition-all active:scale-95 flex items-center justify-center"
+            aria-label="Anterior"
+          >
+            <FaChevronLeft className="text-sm" />
+          </button>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group bg-white rounded-2xl overflow-hidden border-2 border-gray-900 shadow-lg hover:shadow-2xl hover:border-primary-600 hover:-translate-y-2 transition-all duration-300"
-            >
-              {/* Device Mockup */}
-              <div className="relative h-80 md:h-96 bg-gradient-to-br from-gray-100 to-gray-200 p-4 flex items-center justify-center overflow-hidden">
-                <div className={`${project.deviceType === 'mobile' ? 'w-full max-w-[200px]' : 'w-full max-w-[280px]'} group-hover:scale-105 transition-transform duration-300`}>
-                  <DeviceMockup
-                    image={project.image}
-                    alt={project.title}
-                    type={project.deviceType}
-                  />
+          {/* Botón Flecha Derecha Fijo (Sin animación de salto) */}
+          <button 
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 text-gray-800 p-3.5 rounded-full shadow-xl border border-gray-100 transition-all active:scale-95 flex items-center justify-center"
+            aria-label="Siguiente"
+          >
+            <FaChevronRight className="text-sm" />
+          </button>
+
+          {/* Carrusel Horizontal Ocultando la barra de scroll */}
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden mx-2 sm:mx-6 px-2"
+          >
+            {projects.map((proj, idx) => (
+              <div 
+                key={idx} 
+                onClick={() => openModal(proj)}
+                className="min-w-[85%] sm:min-w-[380px] md:min-w-[380px] bg-white rounded-3xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-2xl transition-all cursor-pointer group flex flex-col justify-between snap-center"
+              >
+                <div>
+                  <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                    <img 
+                      src={proj.images[0]} 
+                      alt={proj.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="bg-white/95 text-gray-900 font-semibold text-xs px-5 py-2.5 rounded-2xl shadow-lg">
+                        Ver fotos y detalles
+                      </span>
+                    </div>
+                    <div className="absolute top-4 right-4 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                      3 Fotos 📸
+                    </div>
+                  </div>
+                  <div className="p-8">
+                    <span className="text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-lg uppercase tracking-wider">
+                      {proj.category}
+                    </span>
+                    <h3 className="text-2xl font-bold text-gray-900 mt-3">{proj.title}</h3>
+                    <p className="text-sm text-gray-500 mt-1 font-medium flex items-center gap-1.5">
+                      <FaMapMarkerAlt className="text-primary-500" /> {proj.location}
+                    </p>
+                  </div>
                 </div>
-                {/* Badge */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary-600 border border-primary-200">
-                  {project.badge}
+                <div className="p-8 pt-0">
+                  <span className="block text-center text-primary-600 font-semibold text-sm hover:underline">
+                    Ver caso completo →
+                  </span>
                 </div>
               </div>
-
-              {/* Content - SIMPLIFICADO */}
-              <div className="p-6">
-                {/* Title */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{project.subtitle}</p>
-                </div>
-
-                {/* CTA Button */}
-                <button
-                  onClick={() => {
-                    setSelectedProject(project);
-                    setCurrentImageIndex(0);
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transition-all group-hover:scale-105"
-                >
-                  <span>Ver Proyecto</span>
-                  <FaArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA Final */}
-        <div className="mt-16 text-center">
-          <div className="inline-block bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-8 md:p-12 shadow-2xl" style={{ color: '#ffffff' }}>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#ffffff' }}>
-              Haz que tu proyecto sea exitoso
-            </h3>
-            <p className="text-lg mb-6" style={{ color: '#ffffff', opacity: 0.9 }}>
-              Únete a más de 50 empresas que confiaron en CiberByte
-            </p>
-            <button
-              onClick={() => {
-                const element = document.querySelector('#contacto');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
-              className="bg-white text-primary-600 font-bold py-4 px-8 rounded-lg hover:scale-105 transition-transform shadow-lg"
-            >
-              Iniciar mi Proyecto
-            </button>
+            ))}
           </div>
         </div>
+
+        {/* Indicador táctil visual */}
+        <div className="flex justify-center items-center gap-1.5 mt-6 text-gray-400 text-xs">
+          <span>← Usa las flechas o desliza para ver los 6 proyectos →</span>
+        </div>
+
       </div>
 
-      {/* MODAL - CORREGIDO PARA NAVEGACIÓN SUAVE */}
+      {/* Modal / Caso de Éxito Detallado con Imagen Perfecta y Botones Flotantes */}
       {selectedProject && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-black/80 animate-fadeIn"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setSelectedProject(null);
-            }
-          }}
-          style={{
-            touchAction: 'pan-y',
-            WebkitOverflowScrolling: 'touch'
-          }}
-        >
-          <div
-            className="bg-white w-full h-full md:rounded-2xl md:max-w-4xl md:w-full md:max-h-[90vh] overflow-y-auto shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden'
-            }}
-          >
-            {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 md:p-6 flex items-center justify-between z-30">
-              <div className="flex-1 pr-4">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900">
-                  {selectedProject.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-600">{selectedProject.subtitle}</p>
-              </div>
-              <button
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto animate-fade-in">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative my-auto flex flex-col">
+            
+            {/* BOTÓN "X" FLOTANTE SUPERIOR */}
+            <div className="sticky top-4 right-4 z-40 flex justify-end px-4 pointer-events-none">
+              <button 
                 onClick={() => setSelectedProject(null)}
-                type="button"
-                className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 flex-shrink-0 shadow-lg active:scale-95 transition-transform duration-150"
-                style={{
-                  WebkitTapHighlightColor: 'transparent',
-                  touchAction: 'manipulation'
-                }}
-                aria-label="Cerrar"
+                className="pointer-events-auto bg-black/70 hover:bg-black text-white p-3 rounded-full transition-colors shadow-2xl backdrop-blur-md"
+                aria-label="Cerrar modal"
               >
-                <FaTimes className="w-6 h-6" />
+                <FaTimes />
               </button>
             </div>
 
-            {/* Modal Content */}
-            <div className="p-4 md:p-6 space-y-6 md:space-y-8">
-              {/* Image Gallery - CORREGIDO */}
-              <div
-                className="relative h-[550px] md:h-[650px] overflow-hidden -mx-4 md:mx-0 -mt-4 md:mt-0"
-                style={{
-                  transform: 'translateZ(0)',
-                  willChange: 'contents'
-                }}
+            {/* CONTENEDOR DE IMAGEN GRANDE E INTACTA */}
+            <div className="relative w-full h-[350px] sm:h-[450px] bg-gray-900 flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <img 
+                src={selectedProject.images[currentImageIndex]} 
+                alt={selectedProject.title} 
+                className="w-full h-full object-contain transition-all duration-300" 
+              />
+
+              <button 
+                onClick={prevImage}
+                className="absolute left-4 bg-black/60 hover:bg-black text-white p-3.5 rounded-full transition-colors z-20 shadow-lg"
               >
-                {selectedProject.deviceType === 'mobile' ? (
-                  /* App Móvil - MOCKUP DE IPHONE */
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 py-6 px-4 md:px-8">
-                    <div className="w-full max-w-[280px] md:max-w-[320px] h-full flex items-center">
-                      <DeviceMockup
-                        image={selectedProject.gallery[currentImageIndex]}
-                        alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                        type="mobile"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  /* Web - CONTENIDA EN RECUADRO */
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4 md:p-8">
-                    <img
-                      src={selectedProject.gallery[currentImageIndex]}
-                      alt={`${selectedProject.title} - imagen ${currentImageIndex + 1}`}
-                      className="w-full h-full object-contain rounded-lg shadow-2xl transition-opacity duration-300"
-                      loading="eager"
-                      decoding="async"
-                      style={{
-                        imageRendering: '-webkit-optimize-contrast',
-                        transform: 'translateZ(0)'
-                      }}
-                    />
-                  </div>
-                )}
+                <FaChevronLeft />
+              </button>
+              <button 
+                onClick={nextImage}
+                className="absolute right-4 bg-black/60 hover:bg-black text-white p-3.5 rounded-full transition-colors z-20 shadow-lg"
+              >
+                <FaChevronRight />
+              </button>
 
-                {/* Navigation Arrows - CORREGIDOS SIN CURSOR PROHIBIDO */}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handlePrevImage();
-                  }}
-                  type="button"
-                  disabled={isNavigating}
-                  className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-150 ${isNavigating
-                    ? 'opacity-70 pointer-events-none'
-                    : 'hover:scale-110 active:scale-95 cursor-pointer'
-                    }`}
-                  style={{
-                    WebkitTapHighlightColor: 'transparent',
-                    userSelect: 'none'
-                  }}
-                  aria-label="Imagen anterior"
-                >
-                  ←
-                </button>
+              <div className="absolute bottom-4 bg-black/70 backdrop-blur-sm text-white text-xs px-4 py-1.5 rounded-full font-medium z-20">
+                Foto {currentImageIndex + 1} de {selectedProject.images.length}
+              </div>
+            </div>
 
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleNextImage();
-                  }}
-                  type="button"
-                  disabled={isNavigating}
-                  className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-2xl text-gray-900 font-bold text-3xl z-20 transition-all duration-150 ${isNavigating
-                    ? 'opacity-70 pointer-events-none'
-                    : 'hover:scale-110 active:scale-95 cursor-pointer'
-                    }`}
-                  style={{
-                    WebkitTapHighlightColor: 'transparent',
-                    userSelect: 'none'
-                  }}
-                  aria-label="Siguiente imagen"
-                >
-                  →
-                </button>
+            {/* Contenido / Reseña Completa */}
+            <div className="p-6 sm:p-10 space-y-8 flex-1">
+              <div>
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  <span className="text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-lg">
+                    {selectedProject.category}
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium flex items-center gap-1">
+                    <FaMapMarkerAlt className="text-primary-500" /> {selectedProject.location}
+                  </span>
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">{selectedProject.title}</h2>
+                <p className="text-gray-600 text-base">{selectedProject.desc}</p>
+              </div>
 
-                {/* Image Counter */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-semibold z-20 pointer-events-none">
-                  {currentImageIndex + 1} / {selectedProject.gallery.length}
+              <div className="grid md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2">📊 El Desafío</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{selectedProject.challenge}</p>
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2">✅ La Solución</h3>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    {selectedProject.solution.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-primary-600 font-bold">•</span> {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
-              {/* The Challenge */}
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
-                  📊 El Desafío
-                </h4>
-                <p className="text-gray-700 leading-relaxed">{selectedProject.challenge}</p>
-              </div>
-
-              {/* The Solution */}
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
-                  ✅ La Solución
-                </h4>
-                <ul className="space-y-2">
-                  {selectedProject.solution.map((item, idx) => (
-                    <li key={idx} className="flex items-start space-x-3">
-                      <FaCheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Results */}
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                  📈 Resultados Medibles
-                </h4>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {selectedProject.results.map((result, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-green-50 border-2 border-green-200 rounded-xl p-4 text-center"
-                    >
-                      <div className="text-3xl font-bold text-green-700 mb-1">
-                        {result.value}
-                      </div>
-                      <div className="text-sm text-gray-700 font-medium">
-                        {result.metric}
-                      </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <FaChartLine className="text-primary-600" /> Resultados Medibles
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  {selectedProject.results.map((res: any, i: number) => (
+                    <div key={i} className="bg-primary-50/50 border border-primary-100 p-4 rounded-2xl text-center">
+                      <div className="text-2xl sm:text-3xl font-extrabold text-primary-600 mb-1">{res.value}</div>
+                      <div className="text-xs text-gray-600 font-medium">{res.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Testimonial con Avatar grande */}
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border-2 border-blue-300 shadow-md">
-                <div className="flex items-start space-x-4">
-                  <Avatar name={selectedProject.author} image={selectedProject.authorImage} size="lg" />
-                  <div className="flex-1">
-                    <p className="text-xl italic mb-3 leading-relaxed text-gray-800 font-medium">
-                      "{selectedProject.testimonial}"
-                    </p>
-                    <p className="text-base text-gray-700 font-bold">
-                      — {selectedProject.author}
-                    </p>
-                  </div>
+              <div className="bg-gray-900 text-white p-6 rounded-2xl">
+                <p className="text-base italic mb-4 text-gray-200">"{selectedProject.testimonial.quote}"</p>
+                <div className="text-sm font-bold text-primary-300">{selectedProject.testimonial.author}</div>
+                <div className="text-xs text-gray-400">{selectedProject.testimonial.role}</div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 pt-2 border-t border-gray-100 text-sm">
+                <div>
+                  <span className="text-gray-400 block text-xs uppercase tracking-wider font-semibold">Timeline</span>
+                  <span className="font-bold text-gray-800 text-base">{selectedProject.timeline}</span>
+                </div>
+                <div>
+                  <span className="text-gray-400 block text-xs uppercase tracking-wider font-semibold">Inversión Referencial</span>
+                  <span className="font-bold text-primary-600 text-base">{selectedProject.investment}</span>
                 </div>
               </div>
 
-              {/* Project Info */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="flex items-center space-x-4 bg-gray-50 rounded-xl p-4 border border-gray-200">
-                  <FaClock className="w-8 h-8 text-primary-600" />
-                  <div>
-                    <div className="text-sm text-gray-600">Timeline</div>
-                    <div className="text-xl font-bold text-gray-900">
-                      {selectedProject.timeline}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4 bg-gray-50 rounded-xl p-4 border border-gray-200">
-                  <FaDollarSign className="w-8 h-8 text-green-600" />
-                  <div>
-                    <div className="text-sm text-gray-600">Inversión</div>
-                    <div className="text-xl font-bold text-gray-900">
-                      {selectedProject.investment}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
 
-              {/* CTA Button */}
-              <button
-                onClick={() => {
-                  setSelectedProject(null);
-                  const element = document.querySelector('#contacto');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-                className="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-8 rounded-xl hover:shadow-xl transition-all flex items-center justify-center space-x-2"
+            {/* BOTONES DE ACCIÓN FLOTANTES INFERIORES */}
+            <div className="sticky bottom-0 z-40 bg-white/95 backdrop-blur-md p-4 sm:p-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4 shadow-2xl">
+              <a 
+                href="#contacto" 
+                onClick={() => setSelectedProject(null)}
+                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white text-center py-3.5 rounded-xl font-semibold text-sm transition-colors shadow-lg shadow-primary-500/25"
               >
-                <span>Iniciar mi Proyecto Similar</span>
-                <FaArrowRight className="w-5 h-5" />
+                Cotizar un proyecto similar
+              </a>
+              <button 
+                onClick={() => setSelectedProject(null)}
+                className="px-6 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-semibold text-sm transition-colors py-3.5 sm:py-0"
+              >
+                Cerrar
               </button>
             </div>
+
           </div>
         </div>
       )}
-
-      {/* CSS para animaciones */}
-      <style jsx>{`
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  .animate-scroll {
-    animation: scroll 15s linear infinite;
-  }
-  
-  /* Más lento en desktop */
-  @media (min-width: 768px) {
-    .animate-scroll {
-      animation: scroll 25s linear infinite;
-    }
-  }
-  
-  .animate-fadeIn {
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-`}</style>
     </section>
   );
 }

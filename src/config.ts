@@ -1,1 +1,1 @@
-export const WA_PHONE = "56979693753"; // NÚMERO DE WHATSAPP
+export const WA_PHONE = "56934341783"; // NÚMERO DE WHATSAPP
