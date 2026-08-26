@@ -22,7 +22,8 @@ export default function Contact() {
     const whatsappMessage = `Hola CiberByte, mi nombre es *${formData.name}*. Me interesa el servicio de *${formData.service}*. Detalle: ${formData.message || 'Sin detalles adicionales'}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     
-    window.open(whatsappUrl, '_blank');
+    // Redirige directamente en la misma ventana para evitar pestañas en blanco molestas
+    window.location.href = whatsappUrl;
   };
 
   const handleChange = (
@@ -55,7 +56,7 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Formulario limpio y optimizado para una sola pantalla en celular */}
+        {/* Formulario limpio y optimizado */}
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-xl max-w-xl mx-auto">
           <form onSubmit={handleSubmit} className="space-y-4">
             
