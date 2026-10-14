@@ -74,7 +74,8 @@ function CaseStudy({ project: p }: { project: RealProject }) {
         <dd className="mt-2 text-tinta/85">{p.stack.join(', ')}</dd>
       </div>
       {p.role && (
-        <div>
+        // Un rol largo usa todo el ancho en vez de una columna angosta
+        <div className={p.role.length > 60 ? 'sm:col-span-2' : undefined}>
           <dt className="font-bold">{p.collaboration ? 'Mi participación' : 'Mi rol'}</dt>
           <dd className="mt-2 text-tinta/85">
             {p.role}.{p.usage && ` ${p.usage}.`}
@@ -102,31 +103,18 @@ function CaseStudy({ project: p }: { project: RealProject }) {
   return (
     <article
       aria-labelledby={titleId}
-      className="grid gap-10 border-t-2 border-tinta py-12 lg:grid-cols-12 lg:gap-12 lg:py-16"
+      // Móvil: título, captura y después el texto. Escritorio: texto a la izquierda, captura fija a la derecha.
+      className="grid gap-y-8 border-t-2 border-tinta py-12 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6 lg:py-16"
     >
       <div className="lg:col-span-5">
         <h3 id={titleId} className="font-display text-3xl font-extrabold tracking-[-0.02em] lg:text-4xl">
           {p.title}
         </h3>
         <p className="mt-2 font-bold text-tinta/75">{placeLine(p)}</p>
-        <p className="mt-6 max-w-[60ch] text-lg leading-relaxed">{p.problem}</p>
-        {hasMedia && <div className="mt-8">{details}</div>}
-        {p.url && (
-          <p className="mt-8">
-            <a
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-cerro underline decoration-2 underline-offset-[6px] transition-colors duration-150 ease-out hover:text-tinta focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro"
-            >
-              Ver el sitio
-            </a>
-          </p>
-        )}
       </div>
 
-      {hasMedia ? (
-        <figure className="lg:col-span-7">
+      {hasMedia && (
+        <figure className="lg:sticky lg:top-28 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:self-start">
           <BrowserFrame label={p.url ? hostOf(p.url) : p.title}>
             <div className="relative aspect-[16/9] bg-niebla">
               {image ? (
@@ -145,10 +133,27 @@ function CaseStudy({ project: p }: { project: RealProject }) {
             </div>
           </BrowserFrame>
         </figure>
-      ) : (
-        // Sin capturas: el detalle ocupa la columna derecha en vez de un marco vacío
-        <div className="lg:col-span-7 lg:pt-2">{details}</div>
       )}
+
+      <div className="lg:col-span-5 lg:row-start-2">
+        <p className="max-w-[60ch] text-lg leading-relaxed">{p.problem}</p>
+        {hasMedia && <div className="mt-8">{details}</div>}
+        {p.url && (
+          <p className="mt-8">
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-cerro underline decoration-2 underline-offset-[6px] transition-colors duration-150 ease-out hover:text-tinta focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro"
+            >
+              Ver el sitio
+            </a>
+          </p>
+        )}
+      </div>
+
+      {/* Sin capturas: el detalle ocupa la columna derecha en vez de un marco vacío */}
+      {!hasMedia && <div className="lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:pt-2">{details}</div>}
     </article>
   );
 }
