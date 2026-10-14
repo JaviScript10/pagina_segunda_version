@@ -3,7 +3,7 @@ import './globals.css';
 import { Archivo, Atkinson_Hyperlegible } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SITE_URL } from '@/lib/site';
-import WhatsAppButton from '@/components/WhatsAppButton';
+import ChatDock from '@/components/ChatDock';
 
 // Títulos: Archivo variable con eje de ancho (rotulación de micros y ascensores)
 const archivo = Archivo({
@@ -96,7 +96,7 @@ export default function RootLayout({
     <html lang="es-CL" className={`${archivo.variable} ${atkinson.variable}`}>
       <body className="antialiased">
         {children}
-        <WhatsAppButton />
+        <ChatDock />
         <Analytics /> {/* <-- 2. Coloca el componente de analíticas aquí */}
       </body>
     </html>
