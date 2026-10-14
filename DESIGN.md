@@ -52,10 +52,21 @@ entienda qué cuesta y cuánto demora, y escriba por WhatsApp.
 el color plano y saturado de las casas de calamina de los cerros, y los cables aéreos que
 cruzan las calles (que conectan directo con el pasado de Javier en telecomunicaciones).
 
-**Dónde se gasta la audacia (solo en un lugar):** una línea de cable. Es un único trazo SVG,
-dibujado a mano alzada con una leve catenaria, que cruza el hero y termina en el botón de
-WhatsApp, como un cable que llega a una casa. Se dibuja una sola vez al cargar. Todo lo demás
-es sobrio y disciplinado.
+**Dónde se gasta la audacia (solo en un lugar):** la ilustración del hero, "Cerro de calamina".
+Un cerro de Valparaíso dibujado a mano en SVG, 100% vectorial: casas escalonadas en terrazas con
+calamina corrugada, ventanas, balcones y una escalera; postes con 2 o 3 cables en catenaria real,
+quietos; y un ascensor con sus rieles inclinados, viaducto, estaciones y una cabina. Es lo único
+ilustrado del sitio y lo único que se mueve solo: al cargar, la cabina baja una vez hasta la
+estación de abajo y se queda ahí. El cerro se apoya en una calle de ancho completo al pie del hero
+y sigue hasta el borde de la pantalla: es el suelo de la página, no un cuadro. Todo lo demás es
+sobrio y disciplinado.
+
+Reglas de la ilustración:
+- Planos de color con línea Tinta (~1,6 px), sin degradados, sombras ni texturas que no sean la
+  calamina. Geometría limpia, nada de trazo tembloroso tipo boceto.
+- Colores del brief (Calamina, Cerro, Ascensor, Papel, Tinta) más un verde sobrio solo para el
+  cerro (`--color-verde-cerro`, `#5A8566`). El rojo Ascensor va en la cabina y en uno o dos techos.
+- Sin texto dentro de la ilustración. Geometría compartida en `lib/cerro.ts`.
 
 **Lo que este sitio NO es:**
 - No es la plantilla SaaS: tarjetas idénticas redondeadas, sombra gris suave en todo, degradados
@@ -76,10 +87,11 @@ es sobrio y disciplinado.
 |---|---|---|
 | Niebla | `#E9EEF1` | Fondo general (gris frío de neblina del puerto, no crema) |
 | Papel | `#FFFFFF` | Superficies que necesitan separarse del fondo (formulario, capturas) |
-| Tinta | `#172033` | Texto principal, cable del hero, bordes fuertes |
+| Tinta | `#172033` | Texto principal, líneas de la ilustración del hero, bordes fuertes |
 | Calamina | `#F2B807` | Acento principal: botón de WhatsApp y nada más que compita con él. El texto sobre Calamina siempre va en Tinta |
 | Cerro | `#1F5FA8` | Links y elementos interactivos secundarios |
-| Ascensor | `#C33C2E` | Uso puntual (un detalle por sección como máximo). Nunca como fondo grande |
+| Ascensor | `#C33C2E` | Uso puntual (un detalle por sección como máximo). Nunca como fondo grande. En el hero: la cabina del ascensor |
+| Verde cerro | `#5A8566` | Solo la ilustración del hero (el cerro). No se usa en la interfaz |
 
 Reglas:
 - Definir como variables CSS en `:root` y exponerlas en `tailwind.config` (`niebla`, `tinta`, etc.).
@@ -111,13 +123,16 @@ Reglas:
 
 ### Movimiento (criterio Emil Kowalski)
 
-- Un solo momento orquestado: el dibujo del cable del hero (≤ 900 ms, una vez).
+- Un solo momento orquestado: la cabina del ascensor del hero baja una vez al cargar, desde la
+  estación de arriba hasta la de abajo, en 3 s con `cubic-bezier(0.37, 0, 0.63, 1)` (easeInOutSine)
+  y 400 ms de espera, y se queda detenida. Se anima con `transform` sobre una capa HTML encima del
+  SVG, para que corra en el compositor. Los cables y el resto de la ilustración no se mueven.
 - Interacciones: 150–220 ms, `ease-out` (por ejemplo `cubic-bezier(0.23, 1, 0.32, 1)`).
   Botones con `scale(0.97)` al presionar.
 - Prohibido: `animate-bounce`, `animate-ping`, `animate-pulse` decorativo, contadores animados,
   fade-in al hacer scroll en cada sección, canvas de partículas.
-- `prefers-reduced-motion`: el cable aparece ya dibujado y se quitan todas las transiciones
-  no esenciales.
+- `prefers-reduced-motion`: la cabina aparece quieta en la estación de abajo y se quitan todas
+  las transiciones no esenciales.
 
 ---
 
@@ -125,7 +140,7 @@ Reglas:
 
 Orden y propósito de cada sección:
 
-1. **Hero:** quién soy y qué hago, una captura real de proyecto y el CTA de WhatsApp.
+1. **Hero:** qué hago y desde dónde, la ilustración del cerro con el ascensor y el CTA de WhatsApp.
 2. **Proyectos:** 3 casos reales destacados y un link a `/proyectos`.
 3. **Qué hago y cuánto cuesta:** servicios con precio "desde" y plazo.
 4. **Cómo trabajo:** 4 pasos. Es una secuencia real, así que aquí sí van números.
@@ -141,23 +156,25 @@ es solo para la zona de Valparaíso y alrededores.
 
 ```
 +--------------------------------------------------------------------------+
-| CiberByte                               Proyectos  Precios  Sobre mí  ☎ |
-|                                                                          |
-|  Hago sitios web y sistemas a medida     +---------------------------+   |
-|  para negocios de todo Chile.            |  captura real de          |   |
-|                                          |  PacificoClean            |   |
-|  Soy Javier Ruiz, desde Valparaíso.      |  (marco navegador simple) |   |
-|  Desarrollo cada proyecto yo mismo y     +---------------------------+   |
-|  hablas conmigo de principio a fin.                                      |
-|                                                                          |
-|  [ Escríbeme por WhatsApp ]  Ver proyectos                               |
-|        \_______________________________/  ← cable SVG que llega al botón |
+| CiberByte                        Proyectos  Precios  Sobre mí  Contacto  |
+|                                                        casas de fondo _.-|
+|  Sitios web y sistemas a medida,                     _.-'  [ ][ ]  /[]|[]|
+|  desde Valparaíso.                               _.-'  [ ][ ]  //  [][][]|
+|                                              _.-'           //  [] [] []|
+|  Para negocios de todo Chile. Hablas     poste~~~~~cables~~~//~~~poste  |
+|  directo con quien lo construye.            |   [cabina]  //  [] [] [] |
+|                                             |  estación  // rieles      |
+|  [ Escríbeme por WhatsApp ]  Ver proyectos  |  [ ∩ ]  //  [] [] [] []  |
+|==========================================================================| ← calle
 +--------------------------------------------------------------------------+
 ```
 
 - Texto alineado a la izquierda. La página entera se alinea a la izquierda salvo excepciones
   justificadas.
-- En móvil: título, bajada, botón, y la captura debajo. El cable se simplifica a un tramo corto.
+- La ilustración ocupa la columna derecha, se apoya en la calle (franja de ancho completo al pie
+  del hero) y sigue hasta el borde derecho de la pantalla.
+- En móvil: título, bajada, botón, y la ilustración debajo, de borde a borde, en un recorte más
+  bajo (el ascensor y las terrazas) y simplificado (sin el cerro de atrás, dos cables por tramo).
 
 ---
 
