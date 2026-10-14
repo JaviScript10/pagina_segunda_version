@@ -3,10 +3,10 @@
 export const LIENZO = { w: 640, h: 560 };
 
 export type Vista = { x: number; y: number; w: number; h: number };
-/** Lienzo completo (escritorio). */
-export const VISTA_COMPLETA: Vista = { x: 0, y: 0, ...LIENZO };
+/** Lienzo completo hasta el nivel de la calle (escritorio); la calle es una franja HTML. */
+export const VISTA_COMPLETA: Vista = { x: 0, y: 0, w: LIENZO.w, h: 520 };
 /** Recorte para pantallas chicas: el ascensor y las terrazas, sin el cielo ni la calle de la izquierda. */
-export const VISTA_MOVIL: Vista = { x: 104, y: 124, w: 536, h: 404 };
+export const VISTA_MOVIL: Vista = { x: 104, y: 124, w: 536, h: 396 };
 
 export const viewBox = (v: Vista) => `${v.x} ${v.y} ${v.w} ${v.h}`;
 
@@ -27,7 +27,8 @@ export type Curva = [number, number][][];
 
 // Perfiles de los cerros en tramos cúbicos: se usan para dibujarlos y para pararse sobre ellos
 export const CERRO_FONDO: Curva = [
-  [[0, 430], [90, 420], [160, 360], [230, 300]],
+  // Nace a nivel de la calle: sin borde vertical en el lado izquierdo de la ilustración
+  [[0, 520], [80, 512], [150, 380], [230, 300]],
   [[230, 300], [300, 240], [360, 150], [450, 115]],
   [[450, 115], [520, 90], [590, 96], [640, 100]],
 ];

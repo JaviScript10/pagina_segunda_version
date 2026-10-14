@@ -21,6 +21,8 @@ type Casa = {
   colorTecho?: string;
   pisos?: 1 | 2;
   puerta?: boolean;
+  /** Balcón con baranda en el segundo piso. */
+  balcon?: boolean;
 };
 
 // De arriba hacia abajo: las filas de más abajo tapan a las de arriba
@@ -31,12 +33,12 @@ const CASAS: Casa[] = [
   { x: 596, base: 160, w: 44, h: 40, color: calamina, techo: 'dos-aguas', colorTecho: tinta },
   // Terraza alta (base 300)
   { x: 436, base: 300, w: 52, h: 50, color: papel, techo: 'plano', pisos: 2 },
-  { x: 494, base: 300, w: 46, h: 60, color: cerro, techo: 'dos-aguas', colorTecho: tinta, pisos: 2 },
+  { x: 494, base: 300, w: 46, h: 60, color: cerro, techo: 'dos-aguas', colorTecho: tinta, pisos: 2, balcon: true },
   { x: 546, base: 300, w: 30, h: 44, color: calamina, techo: 'una-agua', colorTecho: tinta },
   { x: 590, base: 300, w: 50, h: 52, color: papel, techo: 'dos-aguas', colorTecho: cerro, pisos: 2 },
   // Terraza media (base 400)
   { x: 350, base: 400, w: 56, h: 52, color: calamina, techo: 'una-agua', colorTecho: tinta, pisos: 2 },
-  { x: 412, base: 400, w: 62, h: 60, color: papel, techo: 'dos-aguas', colorTecho: tinta, pisos: 2, puerta: true },
+  { x: 412, base: 400, w: 62, h: 60, color: papel, techo: 'dos-aguas', colorTecho: tinta, pisos: 2, puerta: true, balcon: true },
   { x: 480, base: 400, w: 48, h: 44, color: cerro, techo: 'plano' },
   { x: 534, base: 400, w: 50, h: 58, color: papel, techo: 'una-agua', colorTecho: ascensor, pisos: 2 },
   { x: 590, base: 400, w: 50, h: 46, color: cerro, techo: 'dos-aguas', colorTecho: tinta },
@@ -44,7 +46,7 @@ const CASAS: Casa[] = [
   { x: 252, base: 500, w: 50, h: 48, color: papel, techo: 'dos-aguas', colorTecho: cerro, puerta: true },
   { x: 308, base: 500, w: 58, h: 62, color: cerro, techo: 'una-agua', colorTecho: tinta, pisos: 2 },
   { x: 372, base: 500, w: 52, h: 46, color: papel, techo: 'plano', puerta: true },
-  { x: 430, base: 500, w: 64, h: 58, color: calamina, techo: 'dos-aguas', colorTecho: tinta, pisos: 2 },
+  { x: 430, base: 500, w: 64, h: 58, color: calamina, techo: 'dos-aguas', colorTecho: tinta, pisos: 2, balcon: true },
   { x: 500, base: 500, w: 54, h: 50, color: papel, techo: 'una-agua', colorTecho: cerro, puerta: true },
   { x: 560, base: 500, w: 80, h: 56, color: cerro, techo: 'plano', pisos: 2 },
   // Calle, a la izquierda
@@ -125,7 +127,7 @@ export default function CerroIlustracion({ id, simple = false }: { id: string; s
         const base = Math.max(alturaFondo(x), alturaFondo(x + w)) + 3 + fila * 16;
         const top = base - h;
         return (
-          <g key={x} opacity="0.7">
+          <g key={x} opacity="0.55">
             <path d={`M${x - 2} ${top}L${x + w / 2} ${top - 7}L${x + w + 2} ${top}Z`} fill={tinta} />
             <rect x={x} y={top} width={w} height={h} fill={color} stroke={tinta} strokeWidth="1" />
           </g>
@@ -163,10 +165,7 @@ export default function CerroIlustracion({ id, simple = false }: { id: string; s
       {/* Viaducto, rieles y estación de arriba del ascensor */}
       <ViaAscensor />
 
-      {/* Calle */}
-      <rect x="0" y="520" width="640" height="40" fill={papel} />
-      <path d="M0 520H640" stroke={tinta} strokeWidth={LINEA} />
-      <path d="M0 541H640" stroke={tinta} strokeOpacity="0.25" strokeWidth="1" strokeDasharray="14 10" />
+      {/* La calle (y = 520) es una franja HTML de ancho completo bajo el hero: ver Hero.tsx */}
 
       {/* Postes y cables */}
       {cables.map((d, i) => (
@@ -246,6 +245,16 @@ function CasaSvg({ casa: c, pat }: { casa: Casa; pat: string }) {
       {c.color !== papel && <rect x={c.x} y={top} width={c.w} height={c.h} fill={`url(#${pat})`} />}
       <rect x={c.x} y={top} width={c.w} height={c.h} fill="none" stroke={tinta} strokeWidth={LINEA} strokeLinejoin="round" />
       {huecos}
+      {c.balcon && (
+        // Losa y baranda bajo las ventanas del segundo piso
+        <g stroke={tinta} strokeLinecap="round">
+          <rect x={c.x - 4} y={top + altoPiso - 1} width={c.w + 8} height="3" fill={tinta} />
+          <path d={`M${c.x - 4} ${top + altoPiso - 9}H${c.x + c.w + 4}`} strokeWidth="1.3" />
+          {Array.from({ length: Math.floor((c.w + 8) / 6) + 1 }, (_, i) => c.x - 4 + i * ((c.w + 8) / Math.floor((c.w + 8) / 6))).map((x) => (
+            <path key={x} d={`M${x} ${top + altoPiso - 9}V${top + altoPiso - 1}`} strokeWidth="0.9" />
+          ))}
+        </g>
+      )}
       {c.puerta && (
         <rect
           x={c.x + (paso - 10) / 2}

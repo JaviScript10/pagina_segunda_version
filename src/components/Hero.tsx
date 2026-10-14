@@ -6,9 +6,9 @@ import { CabinaAscensor } from './AscensorCerro';
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative overflow-hidden bg-niebla pb-20 pt-32 text-tinta sm:pt-36 lg:pb-28 lg:pt-40">
+    <section id="inicio" className="relative overflow-hidden bg-niebla pt-32 text-tinta sm:pt-36 lg:pt-36">
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16 lg:px-8">
-        <div>
+        <div className="lg:pb-20">
           <h1 className="max-w-[18ch] text-balance font-display text-[2.375rem] font-extrabold leading-[1.06] tracking-[-0.02em] sm:text-5xl lg:text-[3.5rem] xl:text-[3.875rem]">
             Sitios web y sistemas a medida, desde Valparaíso.
           </h1>
@@ -35,11 +35,17 @@ export default function Hero() {
           </div>
         </div>
 
-        <div>
+        {/* El cerro se apoya en la calle y sigue hasta el borde derecho de la pantalla */}
+        <div className="-mx-4 sm:mx-0 lg:-mr-8 lg:self-end xl:mr-[calc((80rem-100vw)/2-2rem)]">
           {/* Escritorio: el cerro completo. Pantallas chicas: recorte más bajo y simplificado. */}
           <Ilustracion vista={VISTA_COMPLETA} className="hidden lg:block" />
           <Ilustracion vista={VISTA_MOVIL} simple className="mx-auto max-w-2xl lg:hidden" />
         </div>
+      </div>
+
+      {/* La calle: franja de ancho completo al pie del hero, a la altura de la base del cerro */}
+      <div aria-hidden="true" className="relative h-9 border-y-2 border-tinta bg-papel lg:h-11">
+        <div className="absolute inset-x-0 top-1/2 border-t border-dashed border-tinta/25" />
       </div>
     </section>
   );
