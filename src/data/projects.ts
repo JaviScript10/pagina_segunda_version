@@ -30,6 +30,10 @@ export interface RealProject extends ProjectBase {
   usage?: string;
   /** Sitio en producción. */
   url?: string;
+  /** Captura para el caso de estudio de la home, si es distinta de images[0]. */
+  caseImage?: string;
+  /** Las capturas están por llegar: la home les reserva el espacio. */
+  capturesComing?: boolean;
   problem: string;
   built: string[];
   stack: string[];
@@ -66,7 +70,9 @@ export const projects: Project[] = [
     stack: ['Next.js', 'Vercel'],
     role: 'Desarrollo completo, desde el diseño hasta el deploy en Vercel, incluido el panel de administración para que los dueños editen productos, fotos y precios',
     url: 'https://pacificoclean.vercel.app/',
-    images: ['/proyectos/pacificoclean-inicio.webp'],
+    images: ['/proyectos/pacificoclean-inicio.webp', '/proyectos/pacificoclean-catalogo.webp'],
+    // El hero ya muestra la portada; el caso de estudio muestra el catálogo
+    caseImage: '/proyectos/pacificoclean-catalogo.webp',
     toConfirm: ['Redacción del problema'],
   },
   {
@@ -88,6 +94,7 @@ export const projects: Project[] = [
     ],
     stack: ['FastAPI', 'Supabase', 'PostgreSQL', 'React', 'Ionic'],
     role: 'Scrum Master y líder de backend',
+    capturesComing: true,
     team: [
       { name: 'Maximiliano Casanova', role: 'Panel de administración en React' },
       { name: 'Camilo Caballero', role: 'App Ionic con escáner QR' },

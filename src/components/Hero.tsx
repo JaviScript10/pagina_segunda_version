@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { FaWhatsapp } from 'react-icons/fa';
 import { whatsappUrl } from '@/lib/site';
 import HeroCable from './HeroCable';
+import BrowserFrame from './BrowserFrame';
 import pacificoClean from '../../public/proyectos/pacificoclean-inicio.webp';
 
 const PACIFICO_URL = 'https://pacificoclean.vercel.app/';
@@ -40,12 +41,7 @@ export default function Hero() {
         </div>
 
         <figure data-cable-start className="relative">
-          <div className="overflow-hidden rounded border-2 border-tinta bg-papel">
-            <div className="border-b-2 border-tinta px-3 py-2">
-              <span className="block truncate rounded bg-niebla px-3 py-1 text-sm text-tinta/75">
-                pacificoclean.vercel.app
-              </span>
-            </div>
+          <BrowserFrame label="pacificoclean.vercel.app">
             <Image
               src={pacificoClean}
               alt="Página de inicio de PacificoClean: “Soluciones de aseo para hogares, empresas e instituciones”, con botones Ver Catálogo y Ver Despachos."
@@ -53,7 +49,7 @@ export default function Hero() {
               priority
               className="block h-auto w-full"
             />
-          </div>
+          </BrowserFrame>
           <figcaption className="mt-3 text-[0.95rem] text-tinta/75">
             PacificoClean, tienda de artículos de aseo de Valparaíso.{' '}
             <a

@@ -1,79 +1,154 @@
-'use client';
-import { useState, useRef, useCallback } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { featuredProjects, type Project } from '@/data/projects';
-import ProjectCard from './ProjectCard';
-import ProjectModal from './ProjectModal';
+import Image from 'next/image';
+import { featuredProjects, type RealProject } from '@/data/projects';
+import BrowserFrame from './BrowserFrame';
+
+/** "Tienda online en Valparaíso", "Sistema a medida para Tresmontes Lucchetti" */
+function placeLine(p: RealProject): string {
+  if (p.client) {
+    // Un cliente genérico ("Empresa de …") va en minúscula dentro de la frase
+    const client = /^Empresa\b/.test(p.client) ? `una ${p.client.charAt(0).toLowerCase()}${p.client.slice(1)}` : p.client;
+    return `${p.category} para ${client}`;
+  }
+  return p.location ? `${p.category} en ${p.location}` : p.category;
+}
+
+function hostOf(url: string) {
+  return new URL(url).host;
+}
 
 export default function Portfolio() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const closeModal = useCallback(() => setSelectedProject(null), []);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const offset = direction === 'left' ? -clientWidth / 2 : clientWidth / 2;
-      scrollRef.current.scrollTo({ left: scrollLeft + offset, behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="proyectos" className="py-20 lg:py-32 bg-white min-h-screen flex flex-col justify-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-
-        {/* Encabezado */}
-        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
-          <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Portafolio</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
-            Casos de <span className="text-primary-600">Éxito Destacados</span>
+    <section id="proyectos" aria-labelledby="proyectos-titulo" className="bg-papel py-20 text-tinta lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl">
+          <h2 id="proyectos-titulo" className="font-display text-4xl font-extrabold tracking-[-0.02em] lg:text-5xl">
+            Proyectos
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg mt-3">Haz clic en un proyecto para ver qué se construyó, con qué tecnologías y cuál fue mi rol.</p>
+          <p className="mt-4 text-lg leading-relaxed text-tinta/80">
+            Trabajo real, con clientes y usuarios reales. Cada caso cuenta qué problema había, qué se construyó y qué hice yo.
+          </p>
         </div>
 
-        <div className="relative group px-2 sm:px-8">
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 text-gray-800 p-3.5 rounded-full shadow-xl border border-gray-100 transition-all active:scale-95 flex items-center justify-center"
-            aria-label="Anterior"
-          >
-            <FaChevronLeft className="text-sm" />
-          </button>
-
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 text-gray-800 p-3.5 rounded-full shadow-xl border border-gray-100 transition-all active:scale-95 flex items-center justify-center"
-            aria-label="Siguiente"
-          >
-            <FaChevronRight className="text-sm" />
-          </button>
-
-          {/* Carrusel horizontal sin barra de scroll */}
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden mx-2 sm:mx-6 px-2"
-          >
-            {featuredProjects.map((proj) => (
-              <ProjectCard
-                key={proj.slug}
-                project={proj}
-                onOpen={setSelectedProject}
-                className="min-w-[85%] sm:min-w-[380px] md:min-w-[380px] snap-center"
-              />
-            ))}
-          </div>
+        <div className="mt-14">
+          {featuredProjects.map((project) => (
+            <CaseStudy key={project.slug} project={project} />
+          ))}
         </div>
 
-        <div className="flex flex-col items-center gap-3 mt-6">
-          <span className="text-gray-500 text-xs">Usa las flechas o desliza para ver los {featuredProjects.length} proyectos</span>
-          <a href="/proyectos" className="text-primary-600 font-semibold text-sm hover:underline">
+        <p className="mt-4 border-t-2 border-tinta pt-8 text-lg">
+          <a
+            href="/proyectos"
+            className="font-bold text-cerro underline decoration-2 underline-offset-[6px] transition-colors duration-150 ease-out hover:text-tinta focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro"
+          >
             Ver todos los proyectos
           </a>
-        </div>
+          <span className="text-tinta/75">, incluidas colaboraciones y ejercicios de diseño.</span>
+        </p>
+      </div>
+    </section>
+  );
+}
 
+function CaseStudy({ project: p }: { project: RealProject }) {
+  const image = p.caseImage ?? p.images[0];
+  const hasMedia = Boolean(image) || p.capturesComing;
+  const titleId = `caso-${p.slug}`;
+
+  const details = (
+    <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
+      <div className="sm:col-span-2">
+        <dt className="font-bold">Qué se construyó</dt>
+        <dd className="mt-2">
+          <ul className="space-y-1.5 text-tinta/85">
+            {p.built.map((item) => (
+              <li key={item} className="flex gap-3">
+                <span aria-hidden="true" className="mt-[0.7em] h-[2px] w-3 shrink-0 bg-tinta" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt className="font-bold">Stack</dt>
+        <dd className="mt-2 text-tinta/85">{p.stack.join(', ')}</dd>
+      </div>
+      {p.role && (
+        <div>
+          <dt className="font-bold">{p.collaboration ? 'Mi participación' : 'Mi rol'}</dt>
+          <dd className="mt-2 text-tinta/85">
+            {p.role}.{p.usage && ` ${p.usage}.`}
+          </dd>
+        </div>
+      )}
+      {p.team && (
+        <div className="sm:col-span-2">
+          <dt className="font-bold">Equipo</dt>
+          <dd className="mt-2 text-tinta/85">
+            {p.context}, con{' '}
+            {p.team.map((m, i) => (
+              <span key={m.name}>
+                {i > 0 && (i === p.team!.length - 1 ? ' y ' : ', ')}
+                <span className="font-bold text-tinta">{m.name}</span> ({m.role.charAt(0).toLowerCase() + m.role.slice(1)})
+              </span>
+            ))}
+            .
+          </dd>
+        </div>
+      )}
+    </dl>
+  );
+
+  return (
+    <article
+      aria-labelledby={titleId}
+      className="grid gap-10 border-t-2 border-tinta py-12 lg:grid-cols-12 lg:gap-12 lg:py-16"
+    >
+      <div className="lg:col-span-5">
+        <h3 id={titleId} className="font-display text-3xl font-extrabold tracking-[-0.02em] lg:text-4xl">
+          {p.title}
+        </h3>
+        <p className="mt-2 font-bold text-tinta/75">{placeLine(p)}</p>
+        <p className="mt-6 max-w-[60ch] text-lg leading-relaxed">{p.problem}</p>
+        {hasMedia && <div className="mt-8">{details}</div>}
+        {p.url && (
+          <p className="mt-8">
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-cerro underline decoration-2 underline-offset-[6px] transition-colors duration-150 ease-out hover:text-tinta focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro"
+            >
+              Ver el sitio
+            </a>
+          </p>
+        )}
       </div>
 
-      <ProjectModal project={selectedProject} onClose={closeModal} />
-    </section>
+      {hasMedia ? (
+        <figure className="lg:col-span-7">
+          <BrowserFrame label={p.url ? hostOf(p.url) : p.title}>
+            <div className="relative aspect-[16/9] bg-niebla">
+              {image ? (
+                <Image
+                  src={image}
+                  alt={`Captura de ${p.title}`}
+                  fill
+                  sizes="(min-width: 1280px) 720px, (min-width: 1024px) 56vw, 100vw"
+                  className="object-cover object-top"
+                />
+              ) : (
+                <span className="absolute inset-0 flex items-center justify-center px-6 text-center font-bold text-tinta/70">
+                  Capturas en camino
+                </span>
+              )}
+            </div>
+          </BrowserFrame>
+        </figure>
+      ) : (
+        // Sin capturas: el detalle ocupa la columna derecha en vez de un marco vacío
+        <div className="lg:col-span-7 lg:pt-2">{details}</div>
+      )}
+    </article>
   );
 }
