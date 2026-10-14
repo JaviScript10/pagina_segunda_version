@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 :root {
+  /* Tokens del brief (DESIGN.md §4). Canales RGB para que Tailwind admita opacidad (bg-tinta/80). */
+  --color-niebla: 233 238 241;   /* #E9EEF1 fondo general */
+  --color-papel: 255 255 255;    /* #FFFFFF superficies */
+  --color-tinta: 23 32 51;       /* #172033 texto, bordes fuertes */
+  --color-calamina: 242 184 7;   /* #F2B807 solo WhatsApp; texto encima en tinta */
+  --color-cerro: 31 95 168;      /* #1F5FA8 links e interactivos secundarios */
+  --color-ascensor: 195 60 46;   /* #C33C2E un detalle por sección, nunca fondo grande */
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Paleta antigua: se elimina cuando los componentes migren a los tokens. */
   --primary: #0066ff;
   --primary-dark: #0052cc;
   --accent: #0ea5e9;
@@ -37,6 +48,11 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--color-cerro));
+  color: rgb(var(--color-papel));
 }
 
 /* Utilidades custom */

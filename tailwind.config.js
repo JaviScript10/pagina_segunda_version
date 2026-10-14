@@ -8,6 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Tokens del brief, definidos en globals.css (:root)
+        niebla: 'rgb(var(--color-niebla) / <alpha-value>)',
+        papel: 'rgb(var(--color-papel) / <alpha-value>)',
+        tinta: 'rgb(var(--color-tinta) / <alpha-value>)',
+        calamina: 'rgb(var(--color-calamina) / <alpha-value>)',
+        cerro: 'rgb(var(--color-cerro) / <alpha-value>)',
+        ascensor: 'rgb(var(--color-ascensor) / <alpha-value>)',
         primary: {
           50: '#e6f0ff',
           100: '#b3d1ff',
@@ -32,6 +39,9 @@ module.exports = {
           800: '#075985',
           900: '#0c4a6e',
         },
+      },
+      transitionTimingFunction: {
+        out: 'var(--ease-out)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',
