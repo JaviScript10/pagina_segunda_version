@@ -68,7 +68,7 @@ export default function Header() {
       </div>
 
       {isOpen && (
-        <nav id="menu-movil" aria-label="Principal" className="border-t border-tinta/15 bg-niebla md:hidden">
+        <nav id="menu-movil" aria-label="Principal" className="border-b-2 border-t border-b-tinta border-t-tinta/15 bg-niebla md:hidden">
           <ul className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
             {NAV.map((item) => (
               <li key={item.href} className="border-b border-tinta/10 last:border-b-0">
