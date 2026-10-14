@@ -14,10 +14,10 @@ export default function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16 lg:px-8">
         <div>
           <h1 className="max-w-[18ch] text-balance font-display text-[2.375rem] font-extrabold leading-[1.06] tracking-[-0.02em] sm:text-5xl lg:text-[3.5rem] xl:text-[3.875rem]">
-            Hago sitios web y sistemas a medida para negocios de todo Chile.
+            Sitios web y sistemas a medida, desde Valparaíso.
           </h1>
           <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-tinta/80 sm:text-xl">
-            Soy Javier Ruiz, desde Valparaíso. Desarrollo cada proyecto yo mismo y hablas conmigo de principio a fin.
+            Para negocios de todo Chile. Hablas directo con quien lo construye.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
