@@ -1,20 +1,13 @@
-'use client';
-
-import { useState, useCallback } from 'react';
-import { FaLaptopCode, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaLaptopCode, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import Logo from './Logo';
-import { useDialog } from '@/hooks/useDialog';
 import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 
 export default function Footer() {
-  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
-  const closeHistoryModal = useCallback(() => setIsHistoryModalOpen(false), []);
-  const historyDialogRef = useDialog<HTMLDivElement>(isHistoryModalOpen, closeHistoryModal);
   const currentYear = new Date().getFullYear();
 
   const companyLinks = [
     { label: 'Sobre Nosotros', href: '/#nosotros' },
-    { label: 'Nuestra Historia', action: 'modal' },
+    { label: 'Nuestra Historia', href: '/#sobre-mi' },
     { label: 'Proyectos', href: '/proyectos' },
     { label: 'Preguntas Frecuentes', href: '/faq' },
     { label: 'Contacto', href: '/#contacto' },
@@ -66,22 +59,12 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {companyLinks.map((link, index) => (
                   <li key={index}>
-                    {link.action === 'modal' ? (
-                      <button
-                        type="button"
-                        onClick={() => setIsHistoryModalOpen(true)}
-                        className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
-                      >
-                        {link.label}
-                      </button>
-                    ) : (
-                      <a
-                        href={link.href}
-                        className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
-                      >
-                        {link.label}
-                      </a>
-                    )}
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
+                    >
+                      {link.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -119,102 +102,6 @@ export default function Footer() {
 
         </div>
       </footer>
-
-      {/* MODAL NUESTRA HISTORIA */}
-      {isHistoryModalOpen && (
-        <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn"
-          onClick={() => setIsHistoryModalOpen(false)}
-        >
-          <div
-            ref={historyDialogRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="historia-dialog-title"
-            tabIndex={-1}
-            className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-slide-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between z-10 rounded-t-2xl">
-              <h2 id="historia-dialog-title" className="text-2xl md:text-3xl font-bold text-gray-900">
-                Nuestra Historia
-              </h2>
-              <button
-                onClick={() => setIsHistoryModalOpen(false)}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                aria-label="Cerrar"
-              >
-                <FaTimes className="w-5 h-5 text-gray-600" />
-              </button>
-            </div>
-
-            {/* Modal Content */}
-            <div className="p-6 md:p-8">
-              <div className="relative rounded-xl overflow-hidden mb-6 h-48 md:h-64">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: 'url("/historia.jpg")',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              </div>
-
-              <div className="space-y-4 text-gray-700 leading-relaxed text-sm sm:text-base">
-                <p>
-                  CiberByte nació de la pasión por crear soluciones digitales que realmente marquen la diferencia. Sabemos que cada proyecto es único y merece atención personalizada.
-                </p>
-                <p>
-                  Trabajamos con startups, PyMEs y empresas establecidas, ayudándolas a establecer o mejorar su presencia en línea con tecnología de punta y diseño excepcional.
-                </p>
-                <p>
-                  Nuestro enfoque combina creatividad, tecnología y estrategia para entregar productos que no solo se ven bien, sino que funcionan perfectamente y generan resultados medibles.
-                </p>
-
-                {/* Stats mini */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-gray-200">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">50+</div>
-                    <div className="text-xs text-gray-600">Proyectos</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">40+</div>
-                    <div className="text-xs text-gray-600">Clientes</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">5+</div>
-                    <div className="text-xs text-gray-600">Años</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">100%</div>
-                    <div className="text-xs text-gray-600">Entrega</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="/#contacto"
-                  onClick={() => setIsHistoryModalOpen(false)}
-                  className="bg-primary-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-primary-700 transition-all shadow-md text-sm text-center"
-                >
-                  Trabajemos Juntos
-                </a>
-                <button
-                  onClick={() => setIsHistoryModalOpen(false)}
-                  className="bg-gray-100 text-gray-900 font-semibold py-3 px-8 rounded-xl hover:bg-gray-200 transition-all text-sm"
-                >
-                  Cerrar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
