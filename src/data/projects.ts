@@ -24,6 +24,12 @@ export interface RealProject extends ProjectBase {
   location?: string;
   /** Contexto del proyecto, p. ej. "Proyecto de título, en equipo". */
   context?: string;
+  /** Proyecto de otra persona en el que colaboré: se presenta como colaboración, no como propio. */
+  collaboration?: boolean;
+  /** Quién lo usa hoy, si aplica. */
+  usage?: string;
+  /** Sitio en producción. */
+  url?: string;
   problem: string;
   built: string[];
   stack: string[];
@@ -58,8 +64,10 @@ export const projects: Project[] = [
       'Panel de administración para editar productos, fotos y precios',
     ],
     stack: ['Next.js', 'Vercel'],
-    images: [],
-    toConfirm: ['Redacción del problema', 'Rol (¿desarrollo completo?)', 'Capturas reales'],
+    role: 'Desarrollo completo, desde el diseño hasta el deploy en Vercel, incluido el panel de administración para que los dueños editen productos, fotos y precios',
+    url: 'https://pacificoclean.vercel.app/',
+    images: ['/proyectos/pacificoclean-inicio.webp'],
+    toConfirm: ['Redacción del problema'],
   },
   {
     slug: 'clipcontrol',
@@ -90,9 +98,11 @@ export const projects: Project[] = [
   {
     slug: 'qepd',
     type: 'real',
-    featured: true,
+    featured: false,
     title: 'QEPD',
     category: 'Sistema a medida',
+    collaboration: true,
+    context: 'Proyecto de título de un amigo',
     summary: 'Sistema de gestión de cementerio con mapas, avisos por WhatsApp y exportación a Excel.',
     problem:
       'Un cementerio necesitaba ordenar en un solo sistema la ubicación de sepulturas, las mantenciones y los avisos a las familias.',
@@ -104,13 +114,14 @@ export const projects: Project[] = [
       'Programación de mantenciones',
     ],
     stack: ['Django', 'Google Maps'],
+    role: 'Colaboración en el desarrollo',
     images: [],
-    toConfirm: ['Redacción del problema', 'Cliente y ubicación', 'Rol', 'Capturas reales'],
+    toConfirm: ['Redacción del problema', 'Cliente y ubicación', 'Qué partes desarrollé', 'Nombre del autor (¿se le nombra?)', 'Capturas reales'],
   },
   {
     slug: 'automatizador-cartas',
     type: 'real',
-    featured: false,
+    featured: true,
     title: 'Automatizador de cartas',
     category: 'Herramienta interna',
     client: 'Empresa de distribución eléctrica',
@@ -123,10 +134,11 @@ export const projects: Project[] = [
       'Panel de estadísticas',
     ],
     stack: ['Python', 'Streamlit'],
+    role: 'Diseño y desarrollo completo',
+    usage: 'Lo usan a diario mis compañeros de trabajo',
     images: [],
     toConfirm: [
       'Redacción del problema',
-      'Rol',
       'Capturas con datos de ejemplo o difuminados (sin nombres, RUT, direcciones ni números de cliente)',
     ],
   },

@@ -8,6 +8,7 @@ import type { Project } from '@/data/projects';
 /** Línea secundaria de la tarjeta y el modal: cliente o ubicación. */
 export function projectMeta(project: Project): string | undefined {
   if (project.type === 'ejercicio') return 'Ejercicio de diseño';
+  if (project.collaboration) return 'Colaboración';
   return project.client ?? project.location;
 }
 
@@ -141,10 +142,16 @@ function ProjectDialog({ project, onClose }: { project: Project; onClose: () => 
                 </div>
                 {(project.role || project.context) && (
                   <div>
-                    <dt className="font-bold text-gray-900 mb-2">Mi rol</dt>
+                    <dt className="font-bold text-gray-900 mb-2">{project.collaboration ? 'Mi participación' : 'Mi rol'}</dt>
                     <dd className="text-gray-600">
                       {[project.context, project.role].filter(Boolean).join('. ')}
                     </dd>
+                  </div>
+                )}
+                {project.usage && (
+                  <div>
+                    <dt className="font-bold text-gray-900 mb-2">Uso</dt>
+                    <dd className="text-gray-600">{project.usage}.</dd>
                   </div>
                 )}
                 {project.team && (
