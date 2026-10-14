@@ -24,29 +24,23 @@ export default function Pricing() {
           {MAIN.map((item) => (
             <li
               key={item.id}
-              className="grid gap-x-10 gap-y-4 border-t-2 border-tinta py-7 sm:grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_11rem_15rem] lg:items-baseline"
+              className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-x-6 gap-y-4 border-t-2 border-tinta py-7 lg:grid-cols-[minmax(0,1fr)_11rem_15rem] lg:items-baseline lg:gap-x-10"
             >
-              <div>
+              <div className="col-span-2 lg:col-span-1">
                 <h3 className="font-display text-2xl font-extrabold tracking-[-0.01em]">{item.name}</h3>
                 <p className="mt-2 max-w-[52ch] leading-relaxed text-tinta/80">{item.includes}.</p>
               </div>
 
-              <p className="text-tinta/80 sm:row-start-2 lg:row-start-auto">
+              <p className="text-tinta/80">
                 {item.timeline && (
                   <>
                     <span className="block text-sm font-bold text-tinta">Plazo típico</span>
                     {item.timeline}
                   </>
                 )}
-                {!item.timeline && item.per === 'mes' && (
-                  <>
-                    <span className="block text-sm font-bold text-tinta">Cobro</span>
-                    Mensual
-                  </>
-                )}
               </p>
 
-              <p className="sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:text-right lg:col-start-auto lg:row-span-1 lg:row-start-auto">
+              <p className="text-right">
                 <span className="block text-sm font-bold">desde</span>
                 <Money>
                   <span className="text-[2rem] leading-none lg:text-[2.25rem]">{formatCLP(item.from)}</span>
@@ -64,7 +58,7 @@ export default function Pricing() {
         <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:items-end">
           {/* Servicio secundario y presencial: bloque aparte, más chico que la tabla */}
           <div className="rounded-lg border-2 border-tinta/20 bg-papel p-6 lg:col-span-6">
-            <h3 className="font-display text-xl font-extrabold">También hago {PC.name.charAt(0).toLowerCase() + PC.name.slice(1)}</h3>
+            <h3 className="text-balance font-display text-xl font-extrabold">También hago {PC.name.charAt(0).toLowerCase() + PC.name.slice(1)}</h3>
             <p className="mt-2 leading-relaxed text-tinta/80">
               {PC.includes}, desde <Money>{formatCLP(PC.from)}</Money>. Es presencial: solo en Valparaíso y alrededores.
             </p>
