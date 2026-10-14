@@ -10,6 +10,7 @@
   --color-calamina: 242 184 7;   /* #F2B807 solo WhatsApp; texto encima en tinta */
   --color-cerro: 31 95 168;      /* #1F5FA8 links e interactivos secundarios */
   --color-ascensor: 195 60 46;   /* #C33C2E un detalle por sección, nunca fondo grande */
+  --color-verde-cerro: 90 133 102; /* #5A8566 verde sobrio, solo para la ilustración del hero */
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 

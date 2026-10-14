@@ -1,5 +1,6 @@
 import { FaWhatsapp } from 'react-icons/fa';
 import { whatsappUrl } from '@/lib/site';
+import CerroIlustracion, { LIENZO } from './CerroIlustracion';
 
 export default function Hero() {
   return (
@@ -32,8 +33,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Ilustración del cerro: llega en el siguiente commit */}
-        <div aria-hidden="true" />
+        <div className="relative aspect-[640/560] w-full">
+          <svg
+            viewBox={`0 0 ${LIENZO.w} ${LIENZO.h}`}
+            className="absolute inset-0 h-full w-full"
+            role="img"
+            aria-label="Ilustración de un cerro de Valparaíso con casas de colores, postes con cables y un ascensor."
+          >
+            <CerroIlustracion id="hero-cerro" />
+          </svg>
+        </div>
       </div>
     </section>
   );
