@@ -1,10 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { FaTimes, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaCheckCircle, FaChartLine, FaClock, FaTag } from 'react-icons/fa';
+import { useDialog } from '@/hooks/useDialog';
 
 export default function ProyectosGallery() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const closeModal = useCallback(() => setSelectedProject(null), []);
+  const dialogRef = useDialog<HTMLDivElement>(selectedProject !== null, closeModal);
 
   const allProjects = [
     {
@@ -211,51 +214,60 @@ export default function ProyectosGallery() {
       {/* Grilla de proyectos */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {allProjects.map((proj, idx) => (
-          <div 
-            key={idx} 
+          <button
+            type="button"
+            key={idx}
             onClick={() => openModal(proj)}
-            className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+            className="w-full bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between text-left"
           >
-            <div>
-              <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
+            <span className="block w-full">
+              <span className="block aspect-[4/3] bg-gray-100 relative overflow-hidden">
                 <img src={proj.images[0]} alt={proj.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <span className="bg-white/90 text-gray-900 font-semibold text-xs px-4 py-2 rounded-xl shadow-md">
                     Ver caso de éxito completo
                   </span>
-                </div>
-                <div className="absolute top-3 right-3 bg-black/60 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
+                </span>
+                <span className="absolute top-3 right-3 bg-black/60 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
                   3 Fotos 📸
-                </div>
-              </div>
-              <div className="p-6">
+                </span>
+              </span>
+              <span className="block p-6">
                 <span className="inline-block text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-lg mb-3">
                   {proj.category}
                 </span>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{proj.title}</h3>
-                <p className="text-xs text-gray-500 mb-3 font-medium flex items-center gap-1">
+                <span className="block text-xl font-bold text-gray-900 mb-1">{proj.title}</span>
+                <span className="text-xs text-gray-500 mb-3 font-medium flex items-center gap-1">
                   <FaMapMarkerAlt className="text-primary-500" /> {proj.location}
-                </p>
-                <p className="text-sm text-gray-600 line-clamp-2">{proj.desc}</p>
-              </div>
-            </div>
-            <div className="p-6 pt-0">
+                </span>
+                <span className="text-sm text-gray-600 line-clamp-2">{proj.desc}</span>
+              </span>
+            </span>
+            <span className="block w-full p-6 pt-0">
               <span className="block text-center text-primary-600 font-semibold text-sm hover:underline">
                 Ver detalles y resultados →
               </span>
-            </div>
-          </div>
+            </span>
+          </button>
         ))}
       </div>
 
     {/* Modal / Caso de Éxito Detallado con Carrusel */}
     {selectedProject && (
       <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
-        <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative my-auto">
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="proyecto-dialog-title"
+          tabIndex={-1}
+          className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative my-auto"
+        >
           
           {/* Botón Cerrar */}
-          <button 
+          <button
             onClick={() => setSelectedProject(null)}
+            aria-label="Cerrar"
             className="absolute top-4 right-4 z-20 bg-black/60 hover:bg-black text-white p-3 rounded-full transition-colors shadow-lg"
           >
             <FaTimes />
@@ -269,14 +281,16 @@ export default function ProyectosGallery() {
               className="w-full h-full object-cover sm:object-contain transition-all duration-300" 
             />
 
-            <button 
+            <button
               onClick={prevImage}
+              aria-label="Foto anterior"
               className="absolute left-4 bg-black/60 hover:bg-black text-white p-3.5 rounded-full transition-colors z-10 shadow-lg"
             >
               <FaChevronLeft />
             </button>
-            <button 
+            <button
               onClick={nextImage}
+              aria-label="Foto siguiente"
               className="absolute right-4 bg-black/60 hover:bg-black text-white p-3.5 rounded-full transition-colors z-10 shadow-lg"
             >
               <FaChevronRight />
@@ -300,7 +314,7 @@ export default function ProyectosGallery() {
                   <FaMapMarkerAlt className="text-primary-500" /> {selectedProject.location}
                 </span>
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">{selectedProject.title}</h2>
+              <h2 id="proyecto-dialog-title" className="text-3xl font-bold text-gray-900 mb-2">{selectedProject.title}</h2>
               <p className="text-gray-600 text-base">{selectedProject.desc}</p>
             </div>
 

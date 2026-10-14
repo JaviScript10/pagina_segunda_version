@@ -1,17 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { FaLaptopCode, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import Logo from './Logo';
+import { useDialog } from '@/hooks/useDialog';
 import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 
 export default function Footer() {
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
+  const closeHistoryModal = useCallback(() => setIsHistoryModalOpen(false), []);
+  const historyDialogRef = useDialog<HTMLDivElement>(isHistoryModalOpen, closeHistoryModal);
   const currentYear = new Date().getFullYear();
 
   const companyLinks = [
     { label: 'Sobre Nosotros', href: '/#nosotros' },
-    { label: 'Nuestra Historia', href: '#', action: 'modal' },
+    { label: 'Nuestra Historia', action: 'modal' },
     { label: 'Proyectos', href: '/proyectos' },
     { label: 'Preguntas Frecuentes', href: '/faq' },
     { label: 'Contacto', href: '/#contacto' },
@@ -22,13 +25,6 @@ export default function Footer() {
     { label: 'Política de Privacidad', href: '/privacidad' },
     { label: 'Política de Cookies', href: '/cookies' },
   ];
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, link: any) => {
-    if (link.action === 'modal') {
-      e.preventDefault();
-      setIsHistoryModalOpen(true);
-    }
-  };
 
   return (
     <>
@@ -70,13 +66,22 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {companyLinks.map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link)}
-                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
-                    >
-                      {link.label}
-                    </a>
+                    {link.action === 'modal' ? (
+                      <button
+                        type="button"
+                        onClick={() => setIsHistoryModalOpen(true)}
+                        className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -121,13 +126,18 @@ export default function Footer() {
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn"
           onClick={() => setIsHistoryModalOpen(false)}
         >
-          <div 
+          <div
+            ref={historyDialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="historia-dialog-title"
+            tabIndex={-1}
             className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-slide-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between z-10 rounded-t-2xl">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+              <h2 id="historia-dialog-title" className="text-2xl md:text-3xl font-bold text-gray-900">
                 Nuestra Historia
               </h2>
               <button

@@ -1,11 +1,14 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { FaTimes, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaChartLine } from 'react-icons/fa';
+import { useDialog } from '@/hooks/useDialog';
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const closeModal = useCallback(() => setSelectedProject(null), []);
+  const dialogRef = useDialog<HTMLDivElement>(selectedProject !== null, closeModal);
 
   const projects = [
     {
@@ -249,43 +252,44 @@ export default function Portfolio() {
             className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden mx-2 sm:mx-6 px-2"
           >
             {projects.map((proj, idx) => (
-              <div 
-                key={idx} 
+              <button
+                type="button"
+                key={idx}
                 onClick={() => openModal(proj)}
-                className="min-w-[85%] sm:min-w-[380px] md:min-w-[380px] bg-white rounded-3xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-2xl transition-all cursor-pointer group flex flex-col justify-between snap-center"
+                className="min-w-[85%] sm:min-w-[380px] md:min-w-[380px] bg-white rounded-3xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-2xl transition-all cursor-pointer group flex flex-col justify-between snap-center text-left"
               >
-                <div>
-                  <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                    <img 
-                      src={proj.images[0]} 
-                      alt={proj.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                <span className="block w-full">
+                  <span className="block aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                    <img
+                      src={proj.images[0]}
+                      alt={proj.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <span className="bg-white/95 text-gray-900 font-semibold text-xs px-5 py-2.5 rounded-2xl shadow-lg">
                         Ver fotos y detalles
                       </span>
-                    </div>
-                    <div className="absolute top-4 right-4 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                    </span>
+                    <span className="absolute top-4 right-4 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
                       3 Fotos 📸
-                    </div>
-                  </div>
-                  <div className="p-8">
+                    </span>
+                  </span>
+                  <span className="block p-8">
                     <span className="text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-lg uppercase tracking-wider">
                       {proj.category}
                     </span>
-                    <h3 className="text-2xl font-bold text-gray-900 mt-3">{proj.title}</h3>
-                    <p className="text-sm text-gray-500 mt-1 font-medium flex items-center gap-1.5">
+                    <span className="block text-2xl font-bold text-gray-900 mt-3">{proj.title}</span>
+                    <span className="text-sm text-gray-500 mt-1 font-medium flex items-center gap-1.5">
                       <FaMapMarkerAlt className="text-primary-500" /> {proj.location}
-                    </p>
-                  </div>
-                </div>
-                <div className="p-8 pt-0">
+                    </span>
+                  </span>
+                </span>
+                <span className="block w-full p-8 pt-0">
                   <span className="block text-center text-primary-600 font-semibold text-sm hover:underline">
                     Ver caso completo →
                   </span>
-                </div>
-              </div>
+                </span>
+              </button>
             ))}
           </div>
         </div>
@@ -300,7 +304,14 @@ export default function Portfolio() {
       {/* Modal / Caso de Éxito Detallado con Imagen Perfecta y Botones Flotantes */}
       {selectedProject && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative my-auto flex flex-col">
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="portfolio-dialog-title"
+            tabIndex={-1}
+            className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative my-auto flex flex-col"
+          >
             
             {/* BOTÓN "X" FLOTANTE SUPERIOR */}
             <div className="sticky top-4 right-4 z-40 flex justify-end px-4 pointer-events-none">
@@ -321,14 +332,16 @@ export default function Portfolio() {
                 className="w-full h-full object-contain transition-all duration-300" 
               />
 
-              <button 
+              <button
                 onClick={prevImage}
+                aria-label="Foto anterior"
                 className="absolute left-4 bg-black/60 hover:bg-black text-white p-3.5 rounded-full transition-colors z-20 shadow-lg"
               >
                 <FaChevronLeft />
               </button>
-              <button 
+              <button
                 onClick={nextImage}
+                aria-label="Foto siguiente"
                 className="absolute right-4 bg-black/60 hover:bg-black text-white p-3.5 rounded-full transition-colors z-20 shadow-lg"
               >
                 <FaChevronRight />
@@ -350,7 +363,7 @@ export default function Portfolio() {
                     <FaMapMarkerAlt className="text-primary-500" /> {selectedProject.location}
                   </span>
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">{selectedProject.title}</h2>
+                <h2 id="portfolio-dialog-title" className="text-3xl font-bold text-gray-900 mb-2">{selectedProject.title}</h2>
                 <p className="text-gray-600 text-base">{selectedProject.desc}</p>
               </div>
 
