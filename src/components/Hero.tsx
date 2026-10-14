@@ -1,6 +1,8 @@
 import { FaWhatsapp } from 'react-icons/fa';
 import { whatsappUrl } from '@/lib/site';
-import CerroIlustracion, { LIENZO } from './CerroIlustracion';
+import { LIENZO } from '@/lib/cerro';
+import CerroIlustracion from './CerroIlustracion';
+import { CabinaAscensor } from './AscensorCerro';
 
 export default function Hero() {
   return (
@@ -42,6 +44,7 @@ export default function Hero() {
           >
             <CerroIlustracion id="hero-cerro" />
           </svg>
+          <CabinaAscensor />
         </div>
       </div>
     </section>

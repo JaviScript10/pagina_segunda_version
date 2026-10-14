@@ -1,20 +1,14 @@
 import { catenaryPath } from '@/lib/catenary';
+import { COLOR, LINEA, CERRO_FONDO, CERRO_FRENTE, alturaFondo, curvaD } from '@/lib/cerro';
+import { ViaAscensor } from './AscensorCerro';
+
+const { tinta, papel, calamina, cerro, ascensor, verde } = COLOR;
 
 /*
  * Ilustración del hero: un cerro de Valparaíso con casas de calamina, postes con cables y
  * (en AscensorCerro) el ascensor. Vectorial, dibujada a mano en un lienzo de 640×560.
  * Colores: tokens del brief + --color-verde-cerro, solo para la ilustración.
  */
-
-export const LIENZO = { w: 640, h: 560 };
-
-const tinta = 'rgb(var(--color-tinta))';
-const papel = 'rgb(var(--color-papel))';
-const calamina = 'rgb(var(--color-calamina))';
-const cerro = 'rgb(var(--color-cerro))';
-const ascensor = 'rgb(var(--color-ascensor))';
-const verde = 'rgb(var(--color-verde-cerro))';
-const LINEA = 1.6;
 
 type Techo = 'dos-aguas' | 'una-agua' | 'plano';
 type Casa = {
@@ -32,9 +26,9 @@ type Casa = {
 // De arriba hacia abajo: las filas de más abajo tapan a las de arriba
 const CASAS: Casa[] = [
   // Cumbre
-  { x: 488, base: 196, w: 46, h: 40, color: papel, techo: 'dos-aguas', colorTecho: ascensor },
-  { x: 540, base: 172, w: 44, h: 50, color: cerro, techo: 'una-agua', colorTecho: tinta },
-  { x: 590, base: 160, w: 46, h: 40, color: calamina, techo: 'dos-aguas', colorTecho: tinta },
+  { x: 500, base: 194, w: 44, h: 38, color: papel, techo: 'dos-aguas', colorTecho: ascensor },
+  { x: 550, base: 172, w: 40, h: 50, color: cerro, techo: 'una-agua', colorTecho: tinta },
+  { x: 596, base: 160, w: 44, h: 40, color: calamina, techo: 'dos-aguas', colorTecho: tinta },
   // Terraza alta (base 300)
   { x: 436, base: 300, w: 52, h: 50, color: papel, techo: 'plano', pisos: 2 },
   { x: 494, base: 300, w: 46, h: 60, color: cerro, techo: 'dos-aguas', colorTecho: tinta, pisos: 2 },
@@ -57,28 +51,6 @@ const CASAS: Casa[] = [
   { x: 6, base: 520, w: 50, h: 96, color: cerro, techo: 'dos-aguas', colorTecho: tinta, pisos: 2, puerta: true },
   { x: 66, base: 520, w: 46, h: 64, color: papel, techo: 'plano', pisos: 2, puerta: true },
 ];
-
-// Cerro de atrás: tramos cúbicos que se usan para dibujarlo y para asentar sus casas
-const CERRO_FONDO: [number, number][][] = [
-  [[0, 430], [90, 420], [160, 360], [230, 300]],
-  [[230, 300], [300, 240], [360, 150], [450, 115]],
-  [[450, 115], [520, 90], [590, 96], [640, 100]],
-];
-
-/** Altura del cerro de atrás en x (bisección sobre el parámetro de la curva). */
-function alturaFondo(x: number): number {
-  const tramo = CERRO_FONDO.find((c) => x >= c[0][0] && x <= c[3][0]) ?? CERRO_FONDO[CERRO_FONDO.length - 1];
-  const at = (t: number, i: 0 | 1) =>
-    (1 - t) ** 3 * tramo[0][i] + 3 * (1 - t) ** 2 * t * tramo[1][i] + 3 * (1 - t) * t ** 2 * tramo[2][i] + t ** 3 * tramo[3][i];
-  let lo = 0;
-  let hi = 1;
-  for (let k = 0; k < 40; k++) {
-    const mid = (lo + hi) / 2;
-    if (at(mid, 0) < x) lo = mid;
-    else hi = mid;
-  }
-  return at((lo + hi) / 2, 1);
-}
 
 // Casas del cerro de atrás: más chicas y sin ventanas, para dar profundidad.
 // [x, ancho, alto, color, fila]: la fila 1 queda un escalón más abajo, entre las de la fila 0.
@@ -109,11 +81,12 @@ const CASAS_FONDO: [number, number, number, string, number][] = [
   [354, 22, 16, cerro, 1],
 ];
 
-const CERRO_FONDO_D = `M0 560V${CERRO_FONDO[0][0][1]}${CERRO_FONDO.map((c) => `C${c[1]} ${c[2]} ${c[3]}`).join('')}V560Z`;
+const CERRO_FONDO_D = `M0 560V${CERRO_FONDO[0][0][1]}${curvaD(CERRO_FONDO)}V560Z`;
 
 // Postes: x, base, altura. Los cables cuelgan entre las puntas de las crucetas.
 const POSTES = [
-  { x: 62, base: 520, alto: 112 },
+  // El de la calle es más alto: sus cables pasan sobre la cabina detenida en la estación
+  { x: 96, base: 520, alto: 148 },
   { x: 342, base: 400, alto: 98 },
   { x: 586, base: 300, alto: 104 },
 ];
@@ -132,7 +105,7 @@ export default function CerroIlustracion({ id }: { id: string }) {
     // Dos cables en las puntas de la cruceta y uno más bajo, con distinta flecha
     cables.push(catenaryPath({ x: a.x - BRAZO, y: ya }, { x: b.x - BRAZO, y: yb }, Math.max(ya, yb) + 18));
     cables.push(catenaryPath({ x: a.x + BRAZO, y: ya }, { x: b.x + BRAZO, y: yb }, Math.max(ya, yb) + 24));
-    cables.push(catenaryPath({ x: a.x, y: ya + 16 }, { x: b.x, y: yb + 16 }, Math.max(ya, yb) + 16 + 20));
+    cables.push(catenaryPath({ x: a.x, y: ya + 16 }, { x: b.x, y: yb + 16 }, Math.max(ya, yb) + 16 + 12));
   }
 
   return (
@@ -160,7 +133,7 @@ export default function CerroIlustracion({ id }: { id: string }) {
 
       {/* Cerro de adelante */}
       <path
-        d="M0 560V520H120C200 515 250 470 300 405C350 340 400 255 470 205C530 162 590 150 640 146V560Z"
+        d={`M0 560V520H120${curvaD(CERRO_FRENTE)}V560Z`}
         fill={verde}
         stroke={tinta}
         strokeWidth={LINEA}
@@ -185,6 +158,9 @@ export default function CerroIlustracion({ id }: { id: string }) {
 
       {/* Escalera bajo el viaducto */}
       <Escalera />
+
+      {/* Viaducto, rieles y estación de arriba del ascensor */}
+      <ViaAscensor />
 
       {/* Calle */}
       <rect x="0" y="520" width="640" height="40" fill={papel} />
