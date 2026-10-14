@@ -2,6 +2,13 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { withMoney } from '@/lib/money';
+import { HOSTING_TERM, PAYMENT_TERM, formatCLP, formatFrom, getService, pricing } from '@/data/pricing';
+
+const landing = getService('landing');
+const corporativo = getService('corporativo');
+const tienda = getService('tienda');
+const medida = getService('medida');
+const mantencion = getService('mantencion');
 
 export const metadata: Metadata = {
   title: 'Preguntas Frecuentes',
@@ -12,15 +19,15 @@ export default function FAQPage() {
     const faqs = [
         {
             question: '¿Cuánto tiempo toma desarrollar un sitio web?',
-            answer: 'El tiempo varía según la complejidad del proyecto. Una landing page simple puede estar lista en 2-3 semanas, mientras que un e-commerce completo puede tomar 6-8 semanas. Siempre te daremos un cronograma detallado antes de comenzar.',
+            answer: `Depende del proyecto. Como referencia, una landing page toma ${landing.timeline}, un sitio corporativo ${corporativo.timeline} y una tienda online ${tienda.timeline}. Antes de empezar te doy un cronograma.`,
         },
         {
             question: '¿Cuál es el costo de desarrollar un sitio web?',
-            answer: 'Nuestros proyectos van desde $180.000 para landing pages hasta $1.200.000+ para e-commerce complejos o apps móviles. El precio final depende de las funcionalidades específicas que necesites. Contáctanos para una cotización personalizada.',
+            answer: `Una landing page parte en ${formatCLP(landing.from)}, un sitio corporativo en ${formatCLP(corporativo.from)}, una tienda online en ${formatCLP(tienda.from)} y un sistema o app a medida en ${formatCLP(medida.from)}. ${pricing.ivaNote}. El precio final depende de lo que necesites; te cotizo antes de empezar.`,
         },
         {
             question: '¿Ofrecen mantenimiento después del lanzamiento?',
-            answer: 'Sí, ofrecemos planes de mantenimiento mensual que incluyen actualizaciones de seguridad, backups, soporte técnico y mejoras continuas. También resolvemos cualquier duda que tengas sin costo durante el primer mes después del lanzamiento.',
+            answer: `Sí. La mantención mensual va ${formatFrom(mantencion)} e incluye ${mantencion.includes.toLowerCase()}.`,
         },
         {
             question: '¿El sitio web será responsive (adaptable a móviles)?',
@@ -32,7 +39,7 @@ export default function FAQPage() {
         },
         {
             question: '¿Incluyen hosting y dominio?',
-            answer: 'Podemos ayudarte a configurar hosting y dominio. El hosting tiene un costo anual separado (desde $30.000/año) y el dominio .cl cuesta aproximadamente $10.000/año. También podemos usar tu hosting actual si prefieres.',
+            answer: `${HOSTING_TERM} Te ayudo a configurarlos, o usamos tu hosting actual si ya tienes uno.`,
         },
         {
             question: '¿Qué pasa si necesito cambios después de la entrega?',
@@ -48,7 +55,7 @@ export default function FAQPage() {
         },
         {
             question: '¿Cómo es el proceso de pago?',
-            answer: 'Generalmente trabajamos con 50% al comenzar el proyecto y 50% al finalizar. Para proyectos grandes podemos dividir en más cuotas. Aceptamos transferencia bancaria y otros medios de pago.',
+            answer: `${PAYMENT_TERM} Para proyectos grandes se puede dividir en más cuotas. Acepto transferencia bancaria y otros medios de pago.`,
         },
     ];
 

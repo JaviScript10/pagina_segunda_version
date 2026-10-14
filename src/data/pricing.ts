@@ -33,6 +33,9 @@ export interface Pricing {
   terms: string[];
 }
 
+export const HOSTING_TERM = 'Dominio y hosting se cobran aparte, al costo.';
+export const PAYMENT_TERM = 'Forma de pago: 50% al inicio y 50% al entregar.';
+
 export const pricing: Pricing = {
   items: [
     {
@@ -87,10 +90,7 @@ export const pricing: Pricing = {
     },
   ],
   ivaNote: 'Valores referenciales',
-  terms: [
-    'Dominio y hosting se cobran aparte, al costo.',
-    'Forma de pago: 50% al inicio y 50% al entregar.',
-  ],
+  terms: [HOSTING_TERM, PAYMENT_TERM],
 };
 
 /** 180000 → "$180.000". Formato fijo para que servidor y cliente rendericen igual. */
