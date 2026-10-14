@@ -275,10 +275,13 @@ export default function ChatDock() {
         aria-labelledby="chatdock-title"
         tabIndex={-1}
         inert={!open}
-        className={`fixed z-[70] flex flex-col overflow-hidden border border-tinta/15 bg-papel text-tinta outline-none transition-[transform,opacity,visibility] duration-200 ease-out motion-reduce:transition-none
+        // visibility solo transiciona al cerrar: al abrir debe quedar visible de inmediato para poder recibir el foco
+        className={`fixed z-[70] flex flex-col overflow-hidden border border-tinta/15 bg-papel text-tinta outline-none duration-200 ease-out motion-reduce:transition-none
           inset-x-0 bottom-0 h-[86dvh] rounded-t-lg
           sm:inset-x-auto sm:bottom-5 sm:right-5 sm:h-[min(640px,86dvh)] sm:w-[380px] sm:rounded-lg
-          ${open ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-full opacity-100 sm:translate-y-3 sm:opacity-0'}`}
+          ${open
+            ? 'visible translate-y-0 opacity-100 transition-[transform,opacity]'
+            : 'invisible translate-y-full opacity-100 transition-[transform,opacity,visibility] sm:translate-y-3 sm:opacity-0'}`}
       >
         <header className="flex items-center justify-between gap-3 border-b border-tinta/10 px-4 py-3">
           <div>
