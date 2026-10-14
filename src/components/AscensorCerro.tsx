@@ -1,4 +1,5 @@
 import { COLOR, LINEA, VISTA_COMPLETA, alturaFrente, viewBox, type Vista } from '@/lib/cerro';
+import ArrancaAlVer from './ArrancaAlVer';
 
 /*
  * Ascensor del cerro: viaducto con rieles inclinados, estación de abajo y de arriba (ViaAscensor,
@@ -129,19 +130,19 @@ function Cabina() {
 
 /**
  * Capa de la cabina: ocupa todo el lienzo para que el translate en % recorra la vía exacta.
- * La animación (.ascensor-cabina en globals.css) baja una vez y se queda en la estación.
+ * La animación (.ascensor-cabina en globals.css) espera en pausa hasta que la cabina entra en
+ * pantalla, baja una vez y se queda en la estación.
  */
 export function CabinaAscensor({ vista = VISTA_COMPLETA }: { vista?: Vista }) {
   const r = recorrido(vista);
   return (
-    <div
-      aria-hidden="true"
+    <ArrancaAlVer
       className="ascensor-cabina pointer-events-none absolute inset-0"
       style={{ ['--sube-x' as string]: r.x, ['--sube-y' as string]: r.y }}
     >
-      <svg viewBox={viewBox(vista)} className="h-full w-full">
+      <svg viewBox={viewBox(vista)} className="h-full w-full" aria-hidden="true">
         <Cabina />
       </svg>
-    </div>
+    </ArrancaAlVer>
   );
 }

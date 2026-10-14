@@ -70,12 +70,17 @@ h4,
 }
 
 /* Ascensor del hero (AscensorCerro.tsx): el único momento orquestado del sitio.
-   La cabina baja una vez desde la estación de arriba y se queda en la de abajo.
+   La cabina baja una vez desde la estación de arriba, cuando entra en pantalla, y se queda abajo.
    transform sobre una capa HTML: corre en el compositor. Con reduced motion, queda quieta abajo. */
 @media (prefers-reduced-motion: no-preference) {
   .ascensor-cabina {
     /* easeInOutSine (easings.net): arranque y frenado suaves, como un cable que tira */
     animation: ascensor-baja 3000ms cubic-bezier(0.37, 0, 0.63, 1) 400ms both;
+    /* En pausa (cabina arriba) hasta que ArrancaAlVer marca que entró en pantalla */
+    animation-play-state: paused;
+  }
+  .ascensor-cabina[data-en-pantalla] {
+    animation-play-state: running;
   }
 }
 
