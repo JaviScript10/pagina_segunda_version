@@ -18,7 +18,7 @@ export default function ProyectosPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Portafolio Completo</span>
             <h1 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Proyectos que Transforman Negocios</h1>
-            <p className="text-gray-600">Haz clic en cualquier proyecto para abrir la galería con sus 3 fotos, desafíos, soluciones y resultados detallados.</p>
+            <p className="text-gray-600">Haz clic en un proyecto para ver qué se construyó, con qué tecnologías y cuál fue mi rol.</p>
             <div className="mt-6">
               <a href="/" className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-5 py-2.5 rounded-xl font-medium hover:bg-gray-100 transition-colors shadow-sm">
                 ← Volver al inicio
