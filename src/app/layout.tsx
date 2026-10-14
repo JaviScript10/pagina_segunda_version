@@ -61,31 +61,17 @@ export const metadata: Metadata = {
     title: 'CiberByte - Soluciones Digitales Profesionales',
     description:
       'Desarrollo web, apps y e-commerce en Chile. Diseño moderno, carga rápida y optimización SEO.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'CiberByte - Soluciones Digitales',
-      },
-    ],
+    // Falta /og-image.jpg (1200x630). Agregar `images` cuando exista.
   },
   twitter: {
-    card: 'summary_large_image',
+    // Volver a 'summary_large_image' cuando exista la imagen OG.
+    card: 'summary',
     title: 'CiberByte - Soluciones Digitales Profesionales',
     description: 'Desarrollo web, apps y e-commerce en Chile.',
-    images: ['/og-image.jpg'],
   },
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png' },
-    ],
+    // Faltan favicon.ico, favicon-16x16.png, favicon-32x32.png y apple-touch-icon.png.
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
   manifest: '/site.webmanifest',
 };
