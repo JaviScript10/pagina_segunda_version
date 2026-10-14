@@ -1,4 +1,4 @@
-import { COLOR, LIENZO, LINEA, alturaFrente } from '@/lib/cerro';
+import { COLOR, LINEA, VISTA_COMPLETA, alturaFrente, viewBox, type Vista } from '@/lib/cerro';
 
 /*
  * Ascensor del cerro: viaducto con rieles inclinados, estación de abajo y de arriba (ViaAscensor,
@@ -24,11 +24,11 @@ const CHASIS = 46;
 const PARADA_ABAJO = 44;
 const PARADA_ARRIBA = LARGO - CHASIS - 30;
 
-/** Recorrido de la cabina en % del lienzo: la capa mide lo mismo que el lienzo. */
-export const RECORRIDO = {
-  x: `${(((PARADA_ARRIBA - PARADA_ABAJO) * U.x) / LIENZO.w) * 100}%`,
-  y: `${(((PARADA_ARRIBA - PARADA_ABAJO) * U.y) / LIENZO.h) * 100}%`,
-};
+/** Recorrido de la cabina en % de la vista: la capa mide lo mismo que la vista (recortada o no). */
+const recorrido = (v: Vista) => ({
+  x: `${(((PARADA_ARRIBA - PARADA_ABAJO) * U.x) / v.w) * 100}%`,
+  y: `${(((PARADA_ARRIBA - PARADA_ABAJO) * U.y) / v.h) * 100}%`,
+});
 
 export function ViaAscensor() {
   // Pilares del viaducto cada 24 unidades en x, desde la vía hasta el cerro
@@ -131,14 +131,15 @@ function Cabina() {
  * Capa de la cabina: ocupa todo el lienzo para que el translate en % recorra la vía exacta.
  * La animación (.ascensor-cabina en globals.css) baja una vez y se queda en la estación.
  */
-export function CabinaAscensor() {
+export function CabinaAscensor({ vista = VISTA_COMPLETA }: { vista?: Vista }) {
+  const r = recorrido(vista);
   return (
     <div
       aria-hidden="true"
       className="ascensor-cabina pointer-events-none absolute inset-0"
-      style={{ ['--sube-x' as string]: RECORRIDO.x, ['--sube-y' as string]: RECORRIDO.y }}
+      style={{ ['--sube-x' as string]: r.x, ['--sube-y' as string]: r.y }}
     >
-      <svg viewBox={`0 0 ${LIENZO.w} ${LIENZO.h}`} className="h-full w-full">
+      <svg viewBox={viewBox(vista)} className="h-full w-full">
         <Cabina />
       </svg>
     </div>

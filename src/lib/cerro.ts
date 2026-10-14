@@ -2,6 +2,14 @@
 
 export const LIENZO = { w: 640, h: 560 };
 
+export type Vista = { x: number; y: number; w: number; h: number };
+/** Lienzo completo (escritorio). */
+export const VISTA_COMPLETA: Vista = { x: 0, y: 0, ...LIENZO };
+/** Recorte para pantallas chicas: el ascensor y las terrazas, sin el cielo ni la calle de la izquierda. */
+export const VISTA_MOVIL: Vista = { x: 104, y: 124, w: 536, h: 404 };
+
+export const viewBox = (v: Vista) => `${v.x} ${v.y} ${v.w} ${v.h}`;
+
 // Tokens del brief + --color-verde-cerro, un verde sobrio solo para la ilustración
 export const COLOR = {
   tinta: 'rgb(var(--color-tinta))',

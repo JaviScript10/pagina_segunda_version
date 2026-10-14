@@ -1,6 +1,6 @@
 import { FaWhatsapp } from 'react-icons/fa';
 import { whatsappUrl } from '@/lib/site';
-import { LIENZO } from '@/lib/cerro';
+import { VISTA_COMPLETA, VISTA_MOVIL, viewBox, type Vista } from '@/lib/cerro';
 import CerroIlustracion from './CerroIlustracion';
 import { CabinaAscensor } from './AscensorCerro';
 
@@ -35,18 +35,28 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative aspect-[640/560] w-full">
-          <svg
-            viewBox={`0 0 ${LIENZO.w} ${LIENZO.h}`}
-            className="absolute inset-0 h-full w-full"
-            role="img"
-            aria-label="Ilustración de un cerro de Valparaíso con casas de colores, postes con cables y un ascensor."
-          >
-            <CerroIlustracion id="hero-cerro" />
-          </svg>
-          <CabinaAscensor />
+        <div>
+          {/* Escritorio: el cerro completo. Pantallas chicas: recorte más bajo y simplificado. */}
+          <Ilustracion vista={VISTA_COMPLETA} className="hidden lg:block" />
+          <Ilustracion vista={VISTA_MOVIL} simple className="mx-auto max-w-2xl lg:hidden" />
         </div>
       </div>
     </section>
+  );
+}
+
+function Ilustracion({ vista, simple = false, className }: { vista: Vista; simple?: boolean; className: string }) {
+  return (
+    <div className={`relative w-full ${className}`} style={{ aspectRatio: `${vista.w} / ${vista.h}` }}>
+      <svg
+        viewBox={viewBox(vista)}
+        className="absolute inset-0 h-full w-full"
+        role="img"
+        aria-label="Ilustración de un cerro de Valparaíso con casas de colores, postes con cables y un ascensor."
+      >
+        <CerroIlustracion id={simple ? 'cerro-movil' : 'cerro'} simple={simple} />
+      </svg>
+      <CabinaAscensor vista={vista} />
+    </div>
   );
 }

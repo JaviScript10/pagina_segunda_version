@@ -92,7 +92,8 @@ const POSTES = [
 ];
 const BRAZO = 11;
 
-export default function CerroIlustracion({ id }: { id: string }) {
+/** `simple`: versión para pantallas chicas, sin el cerro de atrás ni el tercer cable de cada tramo. */
+export default function CerroIlustracion({ id, simple = false }: { id: string; simple?: boolean }) {
   const pat = `${id}-calamina`;
   const top = (p: (typeof POSTES)[number]) => p.base - p.alto;
 
@@ -105,7 +106,7 @@ export default function CerroIlustracion({ id }: { id: string }) {
     // Dos cables en las puntas de la cruceta y uno más bajo, con distinta flecha
     cables.push(catenaryPath({ x: a.x - BRAZO, y: ya }, { x: b.x - BRAZO, y: yb }, Math.max(ya, yb) + 18));
     cables.push(catenaryPath({ x: a.x + BRAZO, y: ya }, { x: b.x + BRAZO, y: yb }, Math.max(ya, yb) + 24));
-    cables.push(catenaryPath({ x: a.x, y: ya + 16 }, { x: b.x, y: yb + 16 }, Math.max(ya, yb) + 16 + 12));
+    if (!simple) cables.push(catenaryPath({ x: a.x, y: ya + 16 }, { x: b.x, y: yb + 16 }, Math.max(ya, yb) + 16 + 12));
   }
 
   return (
@@ -118,8 +119,8 @@ export default function CerroIlustracion({ id }: { id: string }) {
       </defs>
 
       {/* Cerro de atrás */}
-      <path d={CERRO_FONDO_D} fill={verde} fillOpacity="0.4" />
-      {[...CASAS_FONDO].sort((a, b) => a[4] - b[4]).map(([x, w, h, color, fila]) => {
+      {!simple && <path d={CERRO_FONDO_D} fill={verde} fillOpacity="0.4" />}
+      {!simple && [...CASAS_FONDO].sort((a, b) => a[4] - b[4]).map(([x, w, h, color, fila]) => {
         // Asentada en la pendiente: la base queda bajo la curva en su lado más bajo
         const base = Math.max(alturaFondo(x), alturaFondo(x + w)) + 3 + fila * 16;
         const top = base - h;
