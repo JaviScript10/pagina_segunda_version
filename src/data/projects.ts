@@ -32,8 +32,8 @@ export interface RealProject extends ProjectBase {
   url?: string;
   /** Captura para el caso de estudio de la home, si es distinta de images[0]. */
   caseImage?: string;
-  /** Las capturas están por llegar: la home les reserva el espacio. */
-  capturesComing?: boolean;
+  /** Pantallas de la app móvil (390 px de ancho), para mostrarlas en marco de teléfono. */
+  appScreens?: { src: string; alt: string }[];
   problem: string;
   built: string[];
   stack: string[];
@@ -94,13 +94,32 @@ export const projects: Project[] = [
     ],
     stack: ['FastAPI', 'Supabase', 'PostgreSQL', 'React', 'Ionic'],
     role: 'Scrum Master y líder de backend',
-    capturesComing: true,
     team: [
       { name: 'Maximiliano Casanova', role: 'Panel de administración en React' },
       { name: 'Camilo Caballero', role: 'App Ionic con escáner QR' },
     ],
-    images: [],
-    toConfirm: ['Redacción del problema', 'Capturas reales'],
+    // Capturas con datos de prueba (confirmado por Javier)
+    images: [
+      '/proyectos/clipcontrol/panel-02-dashboard.webp',
+      '/proyectos/clipcontrol/panel-04-entregas.webp',
+      '/proyectos/clipcontrol/panel-03-empleados.webp',
+      '/proyectos/clipcontrol/panel-01-login.webp',
+      '/proyectos/clipcontrol/app-01-login.webp',
+      '/proyectos/clipcontrol/app-02-inicio.webp',
+      '/proyectos/clipcontrol/app-03-escaner.webp',
+      '/proyectos/clipcontrol/app-04-token-manual.webp',
+      '/proyectos/clipcontrol/app-05-qr-valido.webp',
+      '/proyectos/clipcontrol/app-06-foto-capturada.webp',
+      '/proyectos/clipcontrol/app-07-confirmacion.webp',
+    ],
+    caseImage: '/proyectos/clipcontrol/panel-02-dashboard.webp',
+    // El recorrido del guardia: inicio, QR válido y entrega registrada
+    appScreens: [
+      { src: '/proyectos/clipcontrol/app-02-inicio.webp', alt: 'App del guardia: inicio con las entregas del día y el botón Escanear QR' },
+      { src: '/proyectos/clipcontrol/app-05-qr-valido.webp', alt: 'App del guardia: QR válido con los datos del trabajador y captura de foto' },
+      { src: '/proyectos/clipcontrol/app-07-confirmacion.webp', alt: 'App del guardia: entrega registrada con foto y hora' },
+    ],
+    toConfirm: ['Redacción del problema'],
   },
   {
     slug: 'qepd',

@@ -51,7 +51,7 @@ export default function Portfolio() {
 
 function CaseStudy({ project: p }: { project: RealProject }) {
   const image = p.caseImage ?? p.images[0];
-  const hasMedia = Boolean(image) || p.capturesComing;
+  const hasMedia = Boolean(image);
   const titleId = `caso-${p.slug}`;
 
   const details = (
@@ -115,23 +115,31 @@ function CaseStudy({ project: p }: { project: RealProject }) {
 
       {hasMedia && (
         <figure className="lg:sticky lg:top-28 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:self-start">
-          <BrowserFrame label={p.url ? hostOf(p.url) : p.title}>
+          <BrowserFrame label={p.url ? hostOf(p.url) : `Panel de ${p.title}`}>
             <div className="relative aspect-[16/9] bg-niebla">
-              {image ? (
-                <Image
-                  src={image}
-                  alt={`Captura de ${p.title}`}
-                  fill
-                  sizes="(min-width: 1280px) 720px, (min-width: 1024px) 56vw, 100vw"
-                  className="object-cover object-top"
-                />
-              ) : (
-                <span className="absolute inset-0 flex items-center justify-center px-6 text-center font-bold text-tinta/70">
-                  Capturas en camino
-                </span>
-              )}
+              <Image
+                src={image}
+                alt={`Captura de ${p.title}`}
+                fill
+                sizes="(min-width: 1280px) 720px, (min-width: 1024px) 56vw, 100vw"
+                className="object-cover object-top"
+              />
             </div>
           </BrowserFrame>
+          {p.appScreens && (
+            <>
+              <ul className="mt-6 grid max-w-md grid-cols-3 gap-4 sm:gap-5">
+                {p.appScreens.map((screen) => (
+                  <li key={screen.src}>
+                    <PhoneFrame src={screen.src} alt={screen.alt} />
+                  </li>
+                ))}
+              </ul>
+              <figcaption className="mt-3 text-[0.95rem] text-tinta/75">
+                Panel de administración web y app del guardia, con datos de prueba.
+              </figcaption>
+            </>
+          )}
         </figure>
       )}
 
@@ -155,5 +163,16 @@ function CaseStudy({ project: p }: { project: RealProject }) {
       {/* Sin capturas: el detalle ocupa la columna derecha en vez de un marco vacío */}
       {!hasMedia && <div className="lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:pt-2">{details}</div>}
     </article>
+  );
+}
+
+/** Marco de teléfono simple para capturas de app (390 px de ancho). */
+function PhoneFrame({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="rounded-[1.25rem] border-2 border-tinta bg-tinta p-1">
+      <div className="relative aspect-[390/844] overflow-hidden rounded-[0.95rem] bg-papel">
+        <Image src={src} alt={alt} fill sizes="(min-width: 1024px) 140px, 30vw" className="object-cover object-top" />
+      </div>
+    </div>
   );
 }
