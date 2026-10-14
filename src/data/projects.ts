@@ -141,7 +141,12 @@ export const projects: Project[] = [
     ],
     stack: ['Django', 'Google Maps'],
     role: 'Colaboración en el desarrollo',
-    images: [],
+    // Capturas sin datos personales: formularios vacíos o con ejemplos
+    images: [
+      '/proyectos/qepd/busqueda-publica.webp',
+      '/proyectos/qepd/registro-fallecido.webp',
+      '/proyectos/qepd/dashboard.webp',
+    ],
     toConfirm: ['Redacción del problema', 'Cliente y ubicación', 'Qué partes desarrollé', 'Nombre del autor (¿se le nombra?)', 'Capturas reales'],
   },
   {
@@ -162,7 +167,12 @@ export const projects: Project[] = [
     stack: ['Python', 'Streamlit'],
     role: 'Diseño y desarrollo completo',
     usage: 'Lo usan a diario mis compañeros de trabajo',
-    images: [],
+    // Capturas sin datos de clientes: solo el usuario admin y textos de ejemplo
+    images: [
+      '/proyectos/automatizador/generador.webp',
+      '/proyectos/automatizador/datos-carta.webp',
+      '/proyectos/automatizador/registro-uso.webp',
+    ],
     toConfirm: [
       'Redacción del problema',
       'Capturas con datos de ejemplo o difuminados (sin nombres, RUT, direcciones ni números de cliente)',
