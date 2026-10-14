@@ -23,7 +23,7 @@ export default function Header() {
         {/* Menú de Navegación alineado hacia la derecha */}
         <nav className="hidden md:flex items-center gap-8 ml-auto pr-6">
           {['Inicio', 'Servicios', 'Proyectos', 'Nosotros', 'Contacto'].map((item) => {
-            const href = item === 'Inicio' ? '#inicio' : `#${item.toLowerCase()}`;
+            const href = item === 'Proyectos' ? '/proyectos' : `/#${item.toLowerCase()}`;
             return (
               <a 
                 key={item} 
@@ -51,11 +51,11 @@ export default function Header() {
       {/* Menú Desplegable Móvil */}
       {isOpen && (
         <div className="md:hidden bg-gray-950/95 border-b border-white/10 px-6 pt-4 pb-6 space-y-4 shadow-2xl backdrop-blur-xl">
-          <a href="#inicio" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Inicio</a>
-          <a href="#servicios" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Servicios</a>
-          <a href="#proyectos" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Proyectos</a>
-          <a href="#nosotros" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Nosotros</a>
-          <a href="#contacto" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Contacto</a>
+          <a href="/#inicio" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Inicio</a>
+          <a href="/#servicios" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Servicios</a>
+          <a href="/proyectos" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Proyectos</a>
+          <a href="/#nosotros" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Nosotros</a>
+          <a href="/#contacto" onClick={() => setIsOpen(false)} className="block text-gray-200 hover:text-primary-400 font-semibold text-lg py-2">Contacto</a>
         </div>
       )}
 

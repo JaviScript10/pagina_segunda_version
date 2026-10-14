@@ -10,11 +10,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const companyLinks = [
-    { label: 'Sobre Nosotros', href: '#nosotros' },
+    { label: 'Sobre Nosotros', href: '/#nosotros' },
     { label: 'Nuestra Historia', href: '#', action: 'modal' },
-    { label: 'Proyectos', href: '#proyectos' },
+    { label: 'Proyectos', href: '/proyectos' },
     { label: 'Preguntas Frecuentes', href: '/faq' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Contacto', href: '/#contacto' },
   ];
 
   const legalLinks = [
@@ -187,20 +187,13 @@ export default function Footer() {
 
               {/* CTA */}
               <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={() => {
-                    setIsHistoryModalOpen(false);
-                    setTimeout(() => {
-                      const element = document.querySelector('#contacto');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }, 300);
-                  }}
-                  className="bg-primary-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-primary-700 transition-all shadow-md text-sm"
+                <a
+                  href="/#contacto"
+                  onClick={() => setIsHistoryModalOpen(false)}
+                  className="bg-primary-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-primary-700 transition-all shadow-md text-sm text-center"
                 >
                   Trabajemos Juntos
-                </button>
+                </a>
                 <button
                   onClick={() => setIsHistoryModalOpen(false)}
                   className="bg-gray-100 text-gray-900 font-semibold py-3 px-8 rounded-xl hover:bg-gray-200 transition-all text-sm"
