@@ -60,6 +60,30 @@ h4,
   font-stretch: 112%;
 }
 
+/* Cable del hero (HeroCable.tsx): el único momento orquestado del sitio.
+   Se dibuja una vez desde el poste (derecha) hasta el botón de WhatsApp. */
+.hero-cable {
+  fill: none;
+  stroke: rgb(var(--color-tinta));
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-cable {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: cable-draw 850ms var(--ease-out) 150ms forwards;
+  }
+}
+
+@keyframes cable-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 ::selection {
   background: rgb(var(--color-cerro));
   color: rgb(var(--color-papel));

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { FaWhatsapp } from 'react-icons/fa';
 import { whatsappUrl } from '@/lib/site';
+import HeroCable from './HeroCable';
 import pacificoClean from '../../public/proyectos/pacificoclean-inicio.webp';
 
 const PACIFICO_URL = 'https://pacificoclean.vercel.app/';
@@ -8,6 +9,7 @@ const PACIFICO_URL = 'https://pacificoclean.vercel.app/';
 export default function Hero() {
   return (
     <section id="inicio" className="relative overflow-hidden bg-niebla pb-20 pt-32 text-tinta sm:pt-36 lg:pb-28 lg:pt-40">
+      <HeroCable />
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16 lg:px-8">
         <div>
           <h1 className="max-w-[16ch] text-balance font-display text-[2.375rem] font-extrabold leading-[1.06] tracking-[-0.02em] sm:text-5xl lg:text-[3.5rem] xl:text-[3.875rem]">
