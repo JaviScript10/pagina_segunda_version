@@ -193,7 +193,7 @@ Sin métricas que no se puedan respaldar.
 - **QEPD:** sistema de gestión de cementerio en Django, con mapas de Google, avisos por WhatsApp,
   exportación a Excel, validación de RUT y programación de mantenciones.
 - **Automatizador de cartas** (empresa de distribución eléctrica): herramienta interna en
-  Streamlit que genera cartas de respuesta a reclamos desde plantillas Word (13+ categorías), con
+  Streamlit que genera cartas de respuesta a reclamos a partir de más de 30 cartas tipo en Word, con
   login y panel de estadísticas. Publicación autorizada. Las capturas no muestran datos reales
   de clientes (nombres, RUT, direcciones, números de cliente): se usan datos de ejemplo o se
   difuminan.

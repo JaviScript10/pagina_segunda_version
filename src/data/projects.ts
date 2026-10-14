@@ -158,7 +158,7 @@ export const projects: Project[] = [
     problem:
       'Cada respuesta a un reclamo se redactaba a mano, copiando y adaptando alguna de las más de 30 cartas tipo en Word. Eso generaba errores repetidos: el nombre equivocado del gerente comercial de la zona, faltas de ortografía y de tipeo.',
     built: [
-      'Generación de cartas desde plantillas Word (13+ categorías)',
+      'Generación de cartas a partir de más de 30 cartas tipo en Word',
       'Inicio de sesión para el equipo',
       'Panel de estadísticas',
     ],
