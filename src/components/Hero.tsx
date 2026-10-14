@@ -12,7 +12,7 @@ export default function Hero() {
       <HeroCable />
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16 lg:px-8">
         <div>
-          <h1 className="max-w-[16ch] text-balance font-display text-[2.375rem] font-extrabold leading-[1.06] tracking-[-0.02em] sm:text-5xl lg:text-[3.5rem] xl:text-[3.875rem]">
+          <h1 className="max-w-[18ch] text-balance font-display text-[2.375rem] font-extrabold leading-[1.06] tracking-[-0.02em] sm:text-5xl lg:text-[3.5rem] xl:text-[3.875rem]">
             Hago sitios web y sistemas a medida para negocios de todo Chile.
           </h1>
           <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-tinta/80 sm:text-xl">
@@ -41,13 +41,8 @@ export default function Hero() {
 
         <figure data-cable-start className="relative">
           <div className="overflow-hidden rounded border-2 border-tinta bg-papel">
-            <div className="flex items-center gap-3 border-b-2 border-tinta px-3 py-2">
-              <span className="flex gap-1.5" aria-hidden="true">
-                <span className="h-2.5 w-2.5 rounded-full border-[1.5px] border-tinta/40" />
-                <span className="h-2.5 w-2.5 rounded-full border-[1.5px] border-tinta/40" />
-                <span className="h-2.5 w-2.5 rounded-full border-[1.5px] border-tinta/40" />
-              </span>
-              <span className="min-w-0 flex-1 truncate rounded bg-niebla px-3 py-1 text-sm text-tinta/75">
+            <div className="border-b-2 border-tinta px-3 py-2">
+              <span className="block truncate rounded bg-niebla px-3 py-1 text-sm text-tinta/75">
                 pacificoclean.vercel.app
               </span>
             </div>
