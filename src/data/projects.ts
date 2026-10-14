@@ -85,7 +85,7 @@ export const projects: Project[] = [
     context: 'Proyecto de título, en equipo',
     summary: 'Sistema de entrega de beneficios con código QR para 800–1.000 trabajadores.',
     problem:
-      'La empresa necesitaba entregar beneficios a entre 800 y 1.000 trabajadores y llevar el control de cada entrega.',
+      'La empresa entrega beneficios a entre 800 y 1.000 trabajadores, y todo el proceso era manual: cada guardia entregaba la caja y anotaba la entrega a mano. Eso generaba aglomeraciones, errores en el registro y poco control sobre quién había recibido su beneficio.',
     built: [
       'API en FastAPI con más de 25 endpoints',
       'Base de datos en Supabase (PostgreSQL)',
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     context: 'Proyecto de título de un amigo',
     summary: 'Sistema de gestión de cementerio con mapas, avisos por WhatsApp y exportación a Excel.',
     problem:
-      'Un cementerio necesitaba ordenar en un solo sistema la ubicación de sepulturas, las mantenciones y los avisos a las familias.',
+      'Un cementerio necesitaba registrar a sus fallecidos y la ubicación de cada sepultura en un solo sistema. Las familias no tenían cómo encontrar una tumba si olvidaban dónde estaba, ni un aviso para las fechas importantes.',
     built: [
       'Ubicación de sepulturas en mapas de Google',
       'Avisos por WhatsApp',
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     client: 'Empresa de distribución eléctrica',
     summary: 'Genera cartas de respuesta a reclamos desde plantillas Word, con login y estadísticas.',
     problem:
-      'Responder reclamos obligaba a redactar cada carta a mano a partir de plantillas Word de más de 13 categorías.',
+      'Cada respuesta a un reclamo se redactaba a mano, copiando y adaptando alguna de las más de 30 cartas tipo en Word. Eso generaba errores repetidos: el nombre equivocado del gerente comercial de la zona, faltas de ortografía y de tipeo.',
     built: [
       'Generación de cartas desde plantillas Word (13+ categorías)',
       'Inicio de sesión para el equipo',
