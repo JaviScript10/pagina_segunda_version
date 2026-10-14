@@ -80,8 +80,8 @@ h4,
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-cable {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
+    stroke-dasharray: var(--cable-length);
+    stroke-dashoffset: var(--cable-length);
     animation: cable-draw 850ms var(--ease-out) 150ms forwards;
   }
 }

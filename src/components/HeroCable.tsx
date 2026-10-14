@@ -12,7 +12,7 @@ type Point = { x: number; y: number };
  */
 export default function HeroCable() {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [geom, setGeom] = useState<{ w: number; h: number; d: string } | null>(null);
+  const [geom, setGeom] = useState<{ w: number; h: number; d: string; length: number } | null>(null);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -48,7 +48,7 @@ export default function HeroCable() {
       }
 
       const lowest = Math.min(Math.max(from.y, to.y) + sag, h - 14);
-      setGeom({ w, h, d: catenaryPath(from, to, lowest) });
+      setGeom({ w, h, ...catenaryPath(from, to, lowest) });
     };
 
     measure();
@@ -67,7 +67,14 @@ export default function HeroCable() {
       viewBox={geom ? `0 0 ${geom.w} ${geom.h}` : undefined}
       preserveAspectRatio="none"
     >
-      {geom && <path className="hero-cable" d={geom.d} pathLength={1} />}
+      {geom && (
+        <path
+          className="hero-cable"
+          d={geom.d}
+          // Largo real en px para el dibujo; pathLength no es confiable con guiones en WebKit antiguo
+          style={{ ['--cable-length' as string]: geom.length.toFixed(1) }}
+        />
+      )}
     </svg>
   );
 }
@@ -77,7 +84,7 @@ export default function HeroCable() {
  * bajo en `lowest` (en SVG, y crece hacia abajo). `a` se resuelve por bisección: el ancho
  * entre los puntos crece con `a`. El trazo va de `from` a `to`, que es el sentido del dibujo.
  */
-function catenaryPath(from: Point, to: Point, lowest: number, steps = 56): string {
+function catenaryPath(from: Point, to: Point, lowest: number, steps = 56): { d: string; length: number } {
   const [left, right] = from.x < to.x ? [from, to] : [to, from];
   const h1 = Math.max(lowest - left.y, 0.01);
   const h2 = Math.max(lowest - right.y, 0.01);
@@ -95,6 +102,8 @@ function catenaryPath(from: Point, to: Point, lowest: number, steps = 56): strin
   const xm = left.x + a * Math.acosh(1 + h1 / a);
 
   const points: string[] = [];
+  let length = 0;
+  let prev: Point | null = null;
   for (let i = 0; i <= steps; i++) {
     const t = i / steps;
     const x = from.x + (to.x - from.x) * t;
@@ -102,6 +111,8 @@ function catenaryPath(from: Point, to: Point, lowest: number, steps = 56): strin
     const wobble = 0.7 * Math.sin(t * Math.PI * 4.6) * Math.sin(t * Math.PI);
     const y = lowest - a * (Math.cosh((x - xm) / a) - 1) + wobble;
     points.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
+    if (prev) length += Math.hypot(x - prev.x, y - prev.y);
+    prev = { x, y };
   }
-  return `M${points.join(' L')}`;
+  return { d: `M${points.join(' L')}`, length };
 }
