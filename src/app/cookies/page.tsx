@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { CONTACT_EMAIL } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: 'Política de Cookies',
+  alternates: { canonical: '/cookies' },
+};
 
 export default function CookiesPage() {
     return (

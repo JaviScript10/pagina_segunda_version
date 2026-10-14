@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Preguntas Frecuentes',
+  alternates: { canonical: '/faq' },
+};
 
 export default function FAQPage() {
     const faqs = [
