@@ -52,7 +52,7 @@ export default function Pricing() {
         </ul>
 
         <p className="mt-5 max-w-[70ch] text-tinta/75">
-          {pricing.ivaNote}. {pricing.terms.join(' ')}
+          {pricing.ivaNote} {pricing.terms.join(' ')}
         </p>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:items-end">

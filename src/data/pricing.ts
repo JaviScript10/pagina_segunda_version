@@ -28,7 +28,7 @@ export interface PricingItem {
 
 export interface Pricing {
   items: PricingItem[];
-  /** Nota sobre IVA. Pendiente: "+ IVA" o exento según cómo factura CiberByte. */
+  /** Nota que acompaña los precios (IVA y cargos). Es una oración completa, con punto final. */
   ivaNote: string;
   terms: string[];
 }
@@ -89,7 +89,7 @@ export const pricing: Pricing = {
       scope: 'Solo Valparaíso y alrededores',
     },
   ],
-  ivaNote: 'Valores referenciales',
+  ivaNote: 'Precios finales, sin cargos ocultos.',
   terms: [HOSTING_TERM, PAYMENT_TERM],
 };
 

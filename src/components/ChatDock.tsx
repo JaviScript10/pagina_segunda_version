@@ -118,7 +118,7 @@ export default function ChatDock() {
       (i) => `**${i.name}**: ${formatFrom(i)}${i.timeline ? ` (${i.timeline})` : ''}${i.scope ? `. ${i.scope}` : ''}`
     );
     say(
-      ['Estos son mis precios base:', '', ...lines, '', `${pricing.ivaNote}. ${pricing.terms.join(' ')}`].join('\n'),
+      ['Estos son mis precios base:', '', ...lines, '', `${pricing.ivaNote} ${pricing.terms.join(' ')}`].join('\n'),
       [
         ...pricing.items.map((i): Chip => ({ label: i.name, action: { type: 'service', id: i.id } })),
         { label: CHIP_RESTART, action: { type: 'restart' } },
@@ -134,7 +134,7 @@ export default function ChatDock() {
       `${from.charAt(0).toUpperCase()}${from.slice(1)}.${s.timeline ? ` Plazo típico: ${s.timeline}.` : ''}`,
       `Incluye: ${s.includes}.`,
       ...(s.scope ? [`${s.scope}.`] : []),
-      `${pricing.ivaNote}.`,
+      pricing.ivaNote,
     ].join('\n');
     const chips: Chip[] = [
       { label: CHIP_WHATSAPP, action: { type: 'whatsapp', topic: s.name } },
