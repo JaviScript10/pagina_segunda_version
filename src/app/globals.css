@@ -60,6 +60,14 @@ h4,
   font-stretch: 112%;
 }
 
+/* Montos de precio: siempre en Archivo (lib/money.tsx), con cifras tabulares */
+.money {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 /* Cable del hero (HeroCable.tsx): el único momento orquestado del sitio.
    Se dibuja una vez desde el poste (derecha) hasta el botón de WhatsApp. */
 .hero-cable {

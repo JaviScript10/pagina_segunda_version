@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { withMoney } from '@/lib/money';
 
 export const metadata: Metadata = {
   title: 'Preguntas Frecuentes',
@@ -75,7 +76,7 @@ export default function FAQPage() {
                                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                                         {index + 1}. {faq.question}
                                     </h3>
-                                    <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                                    <p className="text-gray-700 leading-relaxed">{withMoney(faq.answer)}</p>
                                 </div>
                             ))}
                         </div>

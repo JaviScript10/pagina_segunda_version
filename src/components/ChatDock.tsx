@@ -5,6 +5,7 @@ import { FaCommentDots, FaPaperPlane, FaTimes, FaWhatsapp } from 'react-icons/fa
 import { useDialog } from '@/hooks/useDialog';
 import { WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 import { formatFrom, getService, pricing, type ServiceId } from '@/data/pricing';
+import { withMoney } from '@/lib/money';
 
 // ---------- Tipos ----------
 
@@ -328,7 +329,7 @@ export default function ChatDock() {
                     }`}
                   >
                     {isWhatsApp && <FaWhatsapp className="h-4 w-4" aria-hidden="true" />}
-                    {chip.label}
+                    {withMoney(chip.label)}
                   </button>
                 );
               })}
@@ -363,10 +364,10 @@ export default function ChatDock() {
 
 // ---------- Utilidades ----------
 
-/** **negrita** → <strong>. React escapa el resto, así que nunca se inserta HTML. */
+/** **negrita** → <strong> y montos en Archivo. React escapa el resto, así que nunca se inserta HTML. */
 function rich(text: string): ReactNode {
   return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
-    i % 2 === 1 ? <strong key={i}>{part}</strong> : <Fragment key={i}>{part}</Fragment>
+    i % 2 === 1 ? <strong key={i}>{withMoney(part)}</strong> : <Fragment key={i}>{withMoney(part)}</Fragment>
   );
 }
 
