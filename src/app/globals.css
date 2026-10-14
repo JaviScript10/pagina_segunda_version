@@ -26,8 +26,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 15px; /* <--- Agrega esta línea para frenar justo debajo del header fijo */
+  scroll-padding-top: 5rem; /* altura del header fijo (h-20) */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,17 +37,6 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-}
-
-/* Optimización de fuentes - preload crítico */
-@layer base {
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400 700;
-    font-display: swap;
-    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-  }
 }
 
 /* Utilidades custom */
