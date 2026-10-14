@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FaLaptopCode, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import Logo from './Logo';
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 
 export default function Footer() {
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
@@ -48,13 +49,13 @@ export default function Footer() {
               
               {/* Datos de contacto movidos al Footer */}
               <div className="pt-2 space-y-2.5 text-sm text-gray-300">
-                <a href="mailto:contacto@ciberbyte.cl" className="flex items-center gap-2.5 hover:text-primary-400 transition-colors w-fit">
+                <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-2.5 hover:text-primary-400 transition-colors w-fit">
                   <FaEnvelope className="text-primary-500 text-xs" />
-                  <span>contacto@ciberbyte.cl</span>
+                  <span>{CONTACT_EMAIL}</span>
                 </a>
-                <a href="https://wa.me/56934341783" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 hover:text-emerald-400 transition-colors w-fit">
+                <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 hover:text-emerald-400 transition-colors w-fit">
                   <FaWhatsapp className="text-emerald-500 text-sm" />
-                  <span>+56 9 3434 1783</span>
+                  <span>{WHATSAPP_DISPLAY}</span>
                 </a>
                 <div className="flex items-center gap-2.5 text-gray-400">
                   <FaMapMarkerAlt className="text-primary-500 text-xs" />

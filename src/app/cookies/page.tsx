@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { CONTACT_EMAIL } from '@/lib/site';
 
 export default function CookiesPage() {
     return (
@@ -56,7 +57,7 @@ export default function CookiesPage() {
                             <div>
                                 <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Más Información</h2>
                                 <p className="leading-relaxed">
-                                    Para preguntas: <a href="mailto:contacto@ciberbyte.cl" className="text-primary-600 font-semibold">contacto@ciberbyte.cl</a>
+                                    Para preguntas: <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-600 font-semibold">{CONTACT_EMAIL}</a>
                                 </p>
                             </div>
                         </div>

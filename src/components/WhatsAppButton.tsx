@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 import { FaWhatsapp, FaTimes } from 'react-icons/fa';
+import { whatsappUrl } from '@/lib/site';
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
-  
-  const phoneNumber = '56934341783'; 
 
   const quickMessages = [
     { 
@@ -33,7 +32,7 @@ export default function WhatsAppButton() {
 
 const handleQuickMessage = (text: string, origin: string) => {
   // Tracking invisible en URL params (no se ve en el mensaje)
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}&app_absent=0&utm_source=${origin}`;
+  const url = `${whatsappUrl(text)}&app_absent=0&utm_source=${origin}`;
   
   const a = document.createElement('a');
   a.href = url;

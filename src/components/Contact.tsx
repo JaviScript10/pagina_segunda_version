@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { whatsappUrl } from '@/lib/site';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,8 +10,6 @@ export default function Contact() {
     service: '',
     message: '',
   });
-
-  const whatsappNumber = '56934341783';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,10 +19,9 @@ export default function Contact() {
     }
 
     const whatsappMessage = `Hola CiberByte, mi nombre es *${formData.name}*. Me interesa el servicio de *${formData.service}*. Detalle: ${formData.message || 'Sin detalles adicionales'}`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     
     // Redirige directamente en la misma ventana para evitar pestañas en blanco molestas
-    window.location.href = whatsappUrl;
+    window.location.href = whatsappUrl(whatsappMessage);
   };
 
   const handleChange = (

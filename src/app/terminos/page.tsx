@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { CONTACT_EMAIL } from '@/lib/site';
 
 export default function TermsPage() {
     return (
@@ -71,7 +72,7 @@ export default function TermsPage() {
                             <div>
                                 <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Contacto</h2>
                                 <p className="leading-relaxed">
-                                    Para consultas sobre estos términos: <a href="mailto:contacto@ciberbyte.cl" className="text-primary-600 font-semibold">contacto@ciberbyte.cl</a>
+                                    Para consultas sobre estos términos: <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-600 font-semibold">{CONTACT_EMAIL}</a>
                                 </p>
                             </div>
                         </div>

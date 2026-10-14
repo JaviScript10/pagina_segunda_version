@@ -1,16 +1,14 @@
 'use client';
 import { useState, useRef } from 'react';
 import { FaLaptopCode, FaMobileAlt, FaChartLine, FaTools, FaStore, FaBuilding, FaWhatsapp, FaChevronLeft, FaChevronRight, FaDesktop, FaHdd, FaMemory } from 'react-icons/fa';
+import { whatsappUrl } from '@/lib/site';
 
 export default function Services() {
   const [activeTab, setActiveTab] = useState<'desarrollo' | 'marketing' | 'hardware'>('desarrollo');
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const whatsappNumber = '56934341783';
-
   const getWhatsAppLink = (serviceName: string) => {
-    const message = encodeURIComponent(`Hola CiberByte, me interesa cotizar el servicio de: ${serviceName}. ¿Me pueden dar más detalles?`);
-    return `https://wa.me/${whatsappNumber}?text=${message}`;
+    return whatsappUrl(`Hola CiberByte, me interesa cotizar el servicio de: ${serviceName}. ¿Me pueden dar más detalles?`);
   };
 
   const scroll = (direction: 'left' | 'right') => {

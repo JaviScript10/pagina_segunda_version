@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next'; 
+import { SITE_URL } from '@/lib/site';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,7 +19,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ciberbyte.cl'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'CiberByte - Soluciones Digitales Profesionales en Chile',
     template: '%s | CiberByte',
@@ -52,12 +53,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://ciberbyte.cl',
+    canonical: SITE_URL,
   },
   openGraph: {
     type: 'website',
     locale: 'es_CL',
-    url: 'https://ciberbyte.cl',
+    url: SITE_URL,
     siteName: 'CiberByte',
     title: 'CiberByte - Soluciones Digitales Profesionales',
     description:

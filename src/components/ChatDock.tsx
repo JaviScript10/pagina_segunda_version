@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { WA_PHONE } from "../config";
+import { whatsappUrl } from "@/lib/site";
 
 type Role = "assistant" | "user";
 type Msg = { id: string; role: Role; text: string; chips?: string[] };
@@ -126,8 +126,7 @@ export default function ChatDock() {
   }
 
   const waText = useMemo(() => buildWizardMessageOrSummary(wizard.data, messages), [wizard.data, messages]);
-  const phone = WA_PHONE || "56912345678";
-  const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(waText)}`;
+  const waLink = whatsappUrl(waText);
 
   function resetChat(scrollTop = false) {
     setWizard({ active: false, step: 0, data: { tipo: "", negocio: "", presupuesto: "", plazo: "" } });

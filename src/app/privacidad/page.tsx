@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { CONTACT_EMAIL } from '@/lib/site';
 
 export default function PrivacyPage() {
     return (
@@ -46,14 +47,14 @@ export default function PrivacyPage() {
                                 <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Sus Derechos</h2>
                                 <p className="leading-relaxed mb-3">Usted tiene derecho a acceder, corregir, eliminar u oponerse al procesamiento de su información personal en cualquier momento.</p>
                                 <p className="leading-relaxed">
-                                    Para ejercer estos derechos: <a href="mailto:contacto@ciberbyte.cl" className="text-primary-600 font-semibold">contacto@ciberbyte.cl</a>
+                                    Para ejercer estos derechos: <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-600 font-semibold">{CONTACT_EMAIL}</a>
                                 </p>
                             </div>
 
                             <div>
                                 <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Contacto</h2>
                                 <p className="leading-relaxed">
-                                    Si tiene preguntas sobre esta política de privacidad: <a href="mailto:contacto@ciberbyte.cl" className="text-primary-600 font-semibold">contacto@ciberbyte.cl</a>
+                                    Si tiene preguntas sobre esta política de privacidad: <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-600 font-semibold">{CONTACT_EMAIL}</a>
                                 </p>
                             </div>
                         </div>
