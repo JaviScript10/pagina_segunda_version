@@ -40,6 +40,10 @@ module.exports = {
           900: '#0c4a6e',
         },
       },
+      fontFamily: {
+        sans: ['var(--font-atkinson)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-archivo)', 'system-ui', 'sans-serif'],
+      },
       transitionTimingFunction: {
         out: 'var(--ease-out)',
       },

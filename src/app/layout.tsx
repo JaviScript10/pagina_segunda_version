@@ -1,14 +1,25 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { Inter } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/next'; 
+import { Archivo, Atkinson_Hyperlegible } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import { SITE_URL } from '@/lib/site';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
-const inter = Inter({
-  subsets: ['latin'],
+// Títulos: Archivo variable con eje de ancho (rotulación de micros y ascensores)
+const archivo = Archivo({
+  subsets: ['latin', 'latin-ext'],
+  axes: ['wdth'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-archivo',
+});
+
+// Texto: Atkinson Hyperlegible 400/700
+const atkinson = Atkinson_Hyperlegible({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-atkinson',
 });
 
 export const viewport: Viewport = {
@@ -82,7 +93,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-CL" className={inter.variable}>
+    <html lang="es-CL" className={`${archivo.variable} ${atkinson.variable}`}>
       <body className="antialiased">
         {children}
         <WhatsAppButton />
