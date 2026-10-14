@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import { featuredProjects, type RealProject } from '@/data/projects';
+import { ACENTO, CORRUGADO } from '@/lib/acento';
 import BrowserFrame from './BrowserFrame';
 
-/** "Tienda online en Valparaíso", "Sistema a medida para Tresmontes Lucchetti" */
-function placeLine(p: RealProject): string {
+/** Lo que sigue a la etiqueta de tipo: "en Valparaíso", "para Tresmontes Lucchetti" */
+function placeLine(p: RealProject): string | null {
   if (p.client) {
     // Un cliente genérico ("Empresa de …") va en minúscula dentro de la frase
     const client = /^Empresa\b/.test(p.client) ? `una ${p.client.charAt(0).toLowerCase()}${p.client.slice(1)}` : p.client;
-    return `${p.category} para ${client}`;
+    return `para ${client}`;
   }
-  return p.location ? `${p.category} en ${p.location}` : p.category;
+  return p.location ? `en ${p.location}` : null;
 }
 
 function hostOf(url: string) {
@@ -50,9 +51,11 @@ export default function Portfolio() {
 }
 
 function CaseStudy({ project: p }: { project: RealProject }) {
-  const image = p.caseImage ?? p.images[0];
+  // Captura del caso: con sus medidas reales, para que el marco no la recorte
+  const image = p.caseImage;
   const hasMedia = Boolean(image);
   const titleId = `caso-${p.slug}`;
+  const acento = ACENTO[p.accent];
 
   const details = (
     <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
@@ -110,35 +113,45 @@ function CaseStudy({ project: p }: { project: RealProject }) {
         <h3 id={titleId} className="font-display text-3xl font-extrabold tracking-[-0.02em] lg:text-4xl">
           {p.title}
         </h3>
-        <p className="mt-2 font-bold text-tinta/75">{placeLine(p)}</p>
+        <p className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-bold text-tinta/75">
+          <span className={`border-2 border-tinta px-2.5 py-0.5 text-[0.9375rem] ${acento.fondo} ${acento.texto}`}>
+            {p.category}
+          </span>
+          {placeLine(p)}
+        </p>
       </div>
 
-      {hasMedia && (
+      {image && (
         <figure className="lg:sticky lg:top-28 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:self-start">
-          <BrowserFrame label={p.url ? hostOf(p.url) : `Panel de ${p.title}`}>
-            <div className="relative aspect-[16/9] bg-niebla">
+          {/* Fachada: el color del proyecto con calamina corrugada, y la captura como su ventana */}
+          <div
+            className={`border-2 border-tinta p-3 sm:p-5 lg:p-6 ${acento.fondo}`}
+            style={{ backgroundImage: CORRUGADO }}
+          >
+            <BrowserFrame label={p.url ? hostOf(p.url) : `Panel de ${p.title}`}>
               <Image
-                src={image}
+                src={image.src}
+                width={image.w}
+                height={image.h}
                 alt={`Captura de ${p.title}`}
-                fill
-                sizes="(min-width: 1280px) 720px, (min-width: 1024px) 56vw, 100vw"
-                className="object-cover object-top"
+                sizes="(min-width: 1280px) 680px, (min-width: 1024px) 52vw, 92vw"
+                className="block h-auto w-full bg-niebla"
               />
-            </div>
-          </BrowserFrame>
-          {p.appScreens && (
-            <>
-              <ul className="mt-6 grid max-w-md grid-cols-3 gap-4 sm:gap-5">
+            </BrowserFrame>
+            {p.appScreens && (
+              <ul className="mt-4 grid max-w-md grid-cols-3 gap-3 sm:mt-5 sm:gap-5">
                 {p.appScreens.map((screen) => (
                   <li key={screen.src}>
                     <PhoneFrame src={screen.src} alt={screen.alt} />
                   </li>
                 ))}
               </ul>
-              <figcaption className="mt-3 text-[0.95rem] text-tinta/75">
-                Panel de administración web y app del guardia, con datos de prueba.
-              </figcaption>
-            </>
+            )}
+          </div>
+          {p.appScreens && (
+            <figcaption className="mt-3 text-[0.95rem] text-tinta/75">
+              Panel de administración web y app del guardia, con datos de prueba.
+            </figcaption>
           )}
         </figure>
       )}

@@ -1,5 +1,6 @@
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import type { Project } from '@/data/projects';
+import { ACENTO } from '@/lib/acento';
 import { CapturePending, projectMeta } from './ProjectModal';
 
 /** Tarjeta clicable de proyecto. El tamaño lo decide el contenedor vía className. */
@@ -39,7 +40,13 @@ export default function ProjectCard({
           )}
         </span>
         <span className="block p-8">
-          <span className="text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-lg">
+          <span
+            className={
+              project.type === 'real'
+                ? `border-2 border-tinta px-2.5 py-0.5 text-sm font-bold ${ACENTO[project.accent].fondo} ${ACENTO[project.accent].texto}`
+                : 'text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-lg'
+            }
+          >
             {project.category}
           </span>
           <span className="block text-2xl font-bold text-gray-900 mt-3">{project.title}</span>

@@ -4,6 +4,8 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/lib/**/*.{js,ts,jsx,tsx}',
+    './src/data/**/*.{js,ts}',
   ],
   theme: {
     extend: {
@@ -15,6 +17,7 @@ module.exports = {
         calamina: 'rgb(var(--color-calamina) / <alpha-value>)',
         cerro: 'rgb(var(--color-cerro) / <alpha-value>)',
         ascensor: 'rgb(var(--color-ascensor) / <alpha-value>)',
+        'verde-cerro': 'rgb(var(--color-verde-cerro) / <alpha-value>)',
         primary: {
           50: '#e6f0ff',
           100: '#b3d1ff',

@@ -65,7 +65,7 @@ Reglas de la ilustración:
 - Planos de color con línea Tinta (~1,6 px), sin degradados, sombras ni texturas que no sean la
   calamina. Geometría limpia, nada de trazo tembloroso tipo boceto.
 - Colores del brief (Calamina, Cerro, Ascensor, Papel, Tinta) más un verde sobrio solo para el
-  cerro (`--color-verde-cerro`, `#5A8566`). El rojo Ascensor va en la cabina y en uno o dos techos.
+  cerro (`--color-verde-cerro`, `#4A7558`). El rojo Ascensor va en la cabina y en uno o dos techos.
 - Sin texto dentro de la ilustración. Geometría compartida en `lib/cerro.ts`.
 
 **Lo que este sitio NO es:**
@@ -91,7 +91,14 @@ Reglas de la ilustración:
 | Calamina | `#F2B807` | Acento principal: botón de WhatsApp y nada más que compita con él. El texto sobre Calamina siempre va en Tinta |
 | Cerro | `#1F5FA8` | Links y elementos interactivos secundarios |
 | Ascensor | `#C33C2E` | Uso puntual (un detalle por sección como máximo). Nunca como fondo grande. En el hero: la cabina del ascensor |
-| Verde cerro | `#5A8566` | Solo la ilustración del hero (el cerro). No se usa en la interfaz |
+| Verde cerro | `#4A7558` | El cerro de la ilustración del hero y el acento de un proyecto (ver abajo). Con texto Papel da 5,3:1 |
+
+Acentos de proyecto: cada proyecto real tiene un color como fachada del cerro (`accent` en
+`data/projects.ts`, mapa en `lib/acento.ts`): un bloque de ese color con calamina corrugada detrás
+de su captura y su etiqueta de tipo. PacificoClean = Cerro, ClipControl = Calamina, Automatizador
+= Ascensor, QEPD = Verde cerro. Texto sobre el acento: Tinta sobre Calamina (9,0:1) y Papel sobre
+Cerro (6,4:1), Ascensor (5,2:1) y Verde cerro (5,3:1). Es la única excepción a "Ascensor nunca
+como fondo grande": el bloque es un marco alrededor de la captura, no el fondo de una sección.
 
 Reglas:
 - Definir como variables CSS en `:root` y exponerlas en `tailwind.config` (`niebla`, `tinta`, etc.).

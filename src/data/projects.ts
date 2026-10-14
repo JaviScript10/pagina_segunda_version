@@ -1,6 +1,8 @@
 // Datos de proyectos (DESIGN.md §6). Los usan la home y /proyectos.
 // Borrador: Javier confirma los textos marcados en `toConfirm` antes de publicar.
 
+import type { Acento } from '@/lib/acento';
+
 export interface TeamMember {
   name: string;
   role: string;
@@ -20,6 +22,8 @@ export interface RealProject extends ProjectBase {
   type: 'real';
   /** Aparece en la home (3 destacados). */
   featured: boolean;
+  /** Color de su fachada en los casos de estudio y su etiqueta. */
+  accent: Acento;
   client?: string;
   location?: string;
   /** Contexto del proyecto, p. ej. "Proyecto de título, en equipo". */
@@ -31,7 +35,7 @@ export interface RealProject extends ProjectBase {
   /** Sitio en producción. */
   url?: string;
   /** Captura para el caso de estudio de la home, si es distinta de images[0]. */
-  caseImage?: string;
+  caseImage?: { src: string; w: number; h: number };
   /** Pantallas de la app móvil (390 px de ancho), para mostrarlas en marco de teléfono. */
   appScreens?: { src: string; alt: string }[];
   problem: string;
@@ -57,6 +61,7 @@ export const projects: Project[] = [
     slug: 'pacificoclean',
     type: 'real',
     featured: true,
+    accent: 'cerro',
     title: 'PacificoClean',
     category: 'Tienda online',
     location: 'Valparaíso',
@@ -72,13 +77,14 @@ export const projects: Project[] = [
     url: 'https://pacificoclean.vercel.app/',
     images: ['/proyectos/pacificoclean-inicio.webp', '/proyectos/pacificoclean-catalogo.webp'],
     // El hero ya muestra la portada; el caso de estudio muestra el catálogo
-    caseImage: '/proyectos/pacificoclean-catalogo.webp',
+    caseImage: { src: '/proyectos/pacificoclean-catalogo.webp', w: 1600, h: 900 },
     toConfirm: ['Redacción del problema'],
   },
   {
     slug: 'clipcontrol',
     type: 'real',
     featured: true,
+    accent: 'calamina',
     title: 'ClipControl',
     category: 'Sistema a medida',
     client: 'Tresmontes Lucchetti',
@@ -112,7 +118,7 @@ export const projects: Project[] = [
       '/proyectos/clipcontrol/app-06-foto-capturada.webp',
       '/proyectos/clipcontrol/app-07-confirmacion.webp',
     ],
-    caseImage: '/proyectos/clipcontrol/panel-02-dashboard.webp',
+    caseImage: { src: '/proyectos/clipcontrol/panel-02-dashboard.webp', w: 1600, h: 1000 },
     // El recorrido del guardia: inicio, QR válido y entrega registrada
     appScreens: [
       { src: '/proyectos/clipcontrol/app-02-inicio.webp', alt: 'App del guardia: inicio con las entregas del día y el botón Escanear QR' },
@@ -125,6 +131,7 @@ export const projects: Project[] = [
     slug: 'qepd',
     type: 'real',
     featured: false,
+    accent: 'verde',
     title: 'QEPD',
     category: 'Sistema a medida',
     collaboration: true,
@@ -151,6 +158,7 @@ export const projects: Project[] = [
     slug: 'automatizador-cartas',
     type: 'real',
     featured: true,
+    accent: 'ascensor',
     title: 'Automatizador de cartas',
     category: 'Herramienta interna',
     client: 'Empresa de distribución eléctrica',
@@ -171,6 +179,7 @@ export const projects: Project[] = [
       '/proyectos/automatizador/datos-carta.webp',
       '/proyectos/automatizador/registro-uso.webp',
     ],
+    caseImage: { src: '/proyectos/automatizador/generador.webp', w: 1600, h: 670 },
     toConfirm: [
       'Redacción del problema',
       'Capturas con datos de ejemplo o difuminados (sin nombres, RUT, direcciones ni números de cliente)',
