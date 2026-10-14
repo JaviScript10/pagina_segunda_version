@@ -13,9 +13,10 @@ regla por defecto de un skill, gana este archivo.
 No es una agencia ni un equipo grande: es una persona que desarrolla, con colaboradores puntuales.
 El sitio tiene que decir eso con orgullo, no esconderlo.
 
-**Para quién:** dueños de pymes y emprendimientos de Valparaíso y la Quinta Región (tiendas,
-servicios, comercios de barrio) que necesitan un sitio o una herramienta a medida y quieren hablar
-con la persona que la construye.
+**Para quién:** dueños de pymes y emprendimientos de todo Chile (tiendas, servicios, comercios,
+empresas que necesitan una herramienta interna) que quieren un sitio o un sistema a medida y hablar
+directo con la persona que lo construye. La base es Valparaíso y el trabajo es remoto: Valparaíso es
+la identidad del estudio, no el límite de su alcance.
 
 **Trabajo principal de la página:** que el visitante vea trabajo real en los primeros segundos,
 entienda qué cuesta y cuánto demora, y escriba por WhatsApp.
@@ -33,8 +34,9 @@ entienda qué cuesta y cuánto demora, y escriba por WhatsApp.
 - Nada de clientes, testimonios, métricas ni contadores inventados.
 - Nada de "somos un equipo de desarrolladores y diseñadores". Primera persona singular ("hago",
   "trabajo") o "CiberByte" como marca.
-- Nada de fotos de oficinas o equipos generadas con IA. Se usa una foto real de Javier
-  o ninguna foto.
+- Nada de fotos de oficinas o equipos, ni de stock ni generadas con IA. El sitio no lleva foto
+  personal (decisión de Javier): la presencia de la persona se transmite con la voz en primera
+  persona, el nombre y el trabajo real.
 - Las maquetas del portafolio antiguo (Sabores del Sur, Verde Nativo, Espacio Urbano, FitChile,
   Café Andino, Innova Gestión) solo pueden aparecer en una sección aparte, rotuladas
   claramente como **ejercicios de diseño**, sin testimonios, sin resultados y sin "inversión".
@@ -127,11 +129,13 @@ Orden y propósito de cada sección:
 2. **Proyectos:** 3 casos reales destacados y un link a `/proyectos`.
 3. **Qué hago y cuánto cuesta:** servicios con precio "desde" y plazo.
 4. **Cómo trabajo:** 4 pasos. Es una secuencia real, así que aquí sí van números.
-5. **Sobre mí:** foto real, historia corta (telecomunicaciones → desarrollo), estudios.
+5. **Sobre mí:** sin foto. Historia corta (de las telecomunicaciones al desarrollo), estudios,
+   stack con el que trabajo y la base en Valparaíso con trabajo remoto para todo Chile.
 6. **Contacto:** WhatsApp como principal y email como alternativa, con tiempo de respuesta real.
 
-El soporte y hardware de PC va como un bloque pequeño "También hago…" dentro de la sección 3,
-no como pestaña al mismo nivel que el desarrollo web.
+El soporte y hardware de PC se mantiene, pero como un bloque secundario "También hago…" dentro de
+la sección 3, no como pestaña al mismo nivel que el desarrollo web. Al ser presencial, se aclara que
+es solo para la zona de Valparaíso y alrededores.
 
 ### Hero (escritorio)
 
@@ -139,12 +143,12 @@ no como pestaña al mismo nivel que el desarrollo web.
 +--------------------------------------------------------------------------+
 | CiberByte                               Proyectos  Precios  Sobre mí  ☎ |
 |                                                                          |
-|  Hago sitios web para negocios           +---------------------------+   |
-|  de Valparaíso y la Quinta Región.       |  captura real de          |   |
+|  Hago sitios web y sistemas a medida     +---------------------------+   |
+|  para negocios de todo Chile.            |  captura real de          |   |
 |                                          |  PacificoClean            |   |
-|  Soy Javier Ruiz. Desarrollo cada        |  (marco navegador simple) |   |
-|  proyecto yo mismo y hablas conmigo      +---------------------------+   |
-|  de principio a fin.                                                     |
+|  Soy Javier Ruiz, desde Valparaíso.      |  (marco navegador simple) |   |
+|  Desarrollo cada proyecto yo mismo y     +---------------------------+   |
+|  hablas conmigo de principio a fin.                                      |
 |                                                                          |
 |  [ Escríbeme por WhatsApp ]  Ver proyectos                               |
 |        \_______________________________/  ← cable SVG que llega al botón |
@@ -167,14 +171,15 @@ Sin métricas que no se puedan respaldar.
 - **ClipControl** (proyecto de título, Tresmontes Lucchetti): sistema de entrega de beneficios
   con código QR para 800–1.000 trabajadores. Proyecto en equipo: Javier fue Scrum Master y líder
   de backend (FastAPI + Supabase/PostgreSQL, 25+ endpoints). Panel React por Maximiliano Casanova
-  y app Ionic con escáner QR por Camilo Caballero. ⚠️ Confirmar que se puede publicar y nombrar a
-  la empresa, y dar crédito al equipo.
+  y app Ionic con escáner QR por Camilo Caballero. Publicación autorizada. Siempre se presenta
+  como proyecto en equipo, con crédito a ambos.
 - **QEPD:** sistema de gestión de cementerio en Django, con mapas de Google, avisos por WhatsApp,
   exportación a Excel, validación de RUT y programación de mantenciones.
 - **Automatizador de cartas** (empresa de distribución eléctrica): herramienta interna en
   Streamlit que genera cartas de respuesta a reclamos desde plantillas Word (13+ categorías), con
-  login y panel de estadísticas. ⚠️ Es una herramienta interna: confirmar qué se puede mostrar
-  y anonimizar datos en las capturas.
+  login y panel de estadísticas. Publicación autorizada. Las capturas no muestran datos reales
+  de clientes (nombres, RUT, direcciones, números de cliente): se usan datos de ejemplo o se
+  difuminan.
 
 **Ejercicios de diseño (sección aparte en `/proyectos`):** las 6 maquetas antiguas, corregidas
 (direcciones y teléfonos de ejemplo coherentes, sin "Juan Pérez", precios en formato chileno,
@@ -184,15 +189,20 @@ Los datos de proyectos viven en un solo archivo `data/projects.ts` que usan la h
 
 ---
 
-## 7. Precios (pendiente: Javier define una sola tabla)
+## 7. Precios (propuesta, Javier confirma)
 
-| Servicio | Desde | Plazo típico |
-|---|---|---|
-| Landing page | [definir] | [definir] |
-| Sitio corporativo | [definir] | [definir] |
-| Tienda online | [definir] | [definir] |
-| Sistema o app a medida | Cotización | Según alcance |
-| Mantención mensual | [definir] | — |
+| Servicio | Desde | Plazo típico | Incluye como base |
+|---|---|---|---|
+| Landing page | $180.000 | 1–2 semanas | Una página, diseño a medida, botón de WhatsApp, formulario, SEO básico |
+| Sitio corporativo | $380.000 | 2–3 semanas | Hasta 5 páginas, textos editables, SEO local |
+| Tienda online | $650.000 | 3–5 semanas | Catálogo, carrito, pago online, panel para editar productos y precios |
+| Sistema o app a medida | $900.000 | Según alcance | Cotización tras una reunión |
+| Mantención mensual | $35.000/mes | — | Actualizaciones, respaldo, cambios menores |
+| Soporte de PC (Valparaíso) | $25.000 | — | Mantención preventiva o formateo con respaldo |
+
+- Dominio y hosting se cobran aparte, al costo.
+- Forma de pago: 50% al inicio y 50% al entregar (igual que en Términos).
+- Pendiente: definir si los valores son "+ IVA" o exentos según cómo factura CiberByte.
 
 Hoy el chat, el FAQ y el portafolio muestran precios distintos. La tabla final vive en
 `data/pricing.ts` y la usan la home, el FAQ y cualquier otro lugar.
@@ -226,7 +236,14 @@ Hoy el chat, el FAQ y el portafolio muestran precios distintos. La tabla final v
   `/cookies`), sin anclas `#`.
 - Dominio: hasta que `ciberbyte.cl` apunte a este proyecto, `metadataBase` y las URLs absolutas
   usan una sola constante (`SITE_URL`) para poder cambiarlo en un solo lugar.
-- Botón de WhatsApp en el layout (aparece en todas las páginas). Un solo botón flotante.
+- Un solo botón flotante, en el layout (aparece en todas las páginas). Abre el ChatDock arreglado,
+  que reemplaza al menú de mensajes rápidos y siempre termina en WhatsApp. Arreglos obligatorios
+  del ChatDock: quitar toda mención a "Velocity", corregir el mapeo de los chips de presupuesto
+  (usar el texto exacto del chip cuando coincide), arreglar el bloqueo de scroll para que no
+  salte al inicio al cerrar, cambiar el aviso "Mensaje enviado" por "Abriendo WhatsApp…", usar el
+  número de `lib/site.ts` sin número de respaldo falso, escapar HTML antes de renderizar, tomar
+  precios y servicios desde `data/pricing.ts`, y adoptar los tokens de color del brief en vez de
+  su paleta morada propia.
 - Modales: cierran con Escape, bloquean el scroll del fondo, atrapan el foco, `role="dialog"`.
 - Tarjetas clicables como `<button>` o `<a>`, nunca `div` con `onClick`.
 - Políticas de privacidad y cookies reescritas según lo que el sitio realmente hace (Vercel
@@ -249,12 +266,16 @@ Hoy el chat, el FAQ y el portafolio muestran precios distintos. La tabla final v
 
 ---
 
-## 11. Decisiones pendientes de Javier
+## 11. Decisiones
 
-- [ ] Tabla de precios final (sección 7).
-- [ ] Foto real para "Sobre mí".
-- [ ] Permisos para mostrar ClipControl y el automatizador de cartas.
-- [ ] Capturas reales de cada proyecto.
-- [ ] ¿Se mantiene el soporte de PC como servicio?
+Resueltas:
+- [x] Sin foto personal.
+- [x] Alcance nacional (todo Chile), con base en Valparaíso.
+- [x] Permisos para mostrar ClipControl y el automatizador de cartas: autorizados.
+- [x] Se mantiene el soporte de PC, como servicio secundario y presencial.
+- [x] El ChatDock se arregla y se mantiene (ver sección 9).
+
+Pendientes:
+- [ ] Confirmar la tabla de precios (sección 7) y el tema del IVA.
+- [ ] Capturas reales de cada proyecto (con datos de ejemplo donde haga falta).
 - [ ] ¿Se conecta `ciberbyte.cl` a Vercel?
-- [ ] ¿Se mantiene el ChatDock (arreglado) o se elimina?
