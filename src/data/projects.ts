@@ -129,18 +129,16 @@ export const projects: Project[] = [
     category: 'Sistema a medida',
     collaboration: true,
     context: 'Proyecto de título de un amigo',
-    summary: 'Sistema de gestión de cementerio con mapas, avisos por WhatsApp y exportación a Excel.',
+    summary: 'Sistema de gestión de cementerio con búsqueda pública de sepulturas y recordatorios para las familias.',
     problem:
       'Un cementerio necesitaba registrar a sus fallecidos y la ubicación de cada sepultura en un solo sistema. Las familias no tenían cómo encontrar una tumba si olvidaban dónde estaba, ni un aviso para las fechas importantes.',
     built: [
-      'Ubicación de sepulturas en mapas de Google',
-      'Avisos por WhatsApp',
-      'Exportación a Excel',
-      'Validación de RUT',
-      'Programación de mantenciones',
+      'Registro de fallecidos para el administrador',
+      'Búsqueda pública con la ubicación GPS de la sepultura',
+      'Recordatorios por correo o WhatsApp para aniversarios',
     ],
     stack: ['Django', 'Google Maps'],
-    role: 'Colaboración en el desarrollo',
+    role: 'Desarrollé todo el backend (Django) y colaboré en una parte del frontend',
     // Capturas sin datos personales: formularios vacíos o con ejemplos
     images: [
       '/proyectos/qepd/busqueda-publica.webp',
