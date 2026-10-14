@@ -6,7 +6,6 @@ import Portfolio from '@/components/Portfolio';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 //import ChatDock from '@/components/ChatDock';
 
 export const metadata: Metadata = {
@@ -26,8 +25,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <WhatsAppButton />
-
     </>
   );
 }

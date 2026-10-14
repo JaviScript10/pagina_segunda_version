@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import ProyectosGallery from '@/components/ProyectosGallery';
 
 export const metadata: Metadata = {
@@ -32,7 +31,6 @@ export default function ProyectosPage() {
       </div>
 
       <Footer />
-      <WhatsAppButton />
     </main>
   );
 }

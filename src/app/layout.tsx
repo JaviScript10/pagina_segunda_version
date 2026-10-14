@@ -3,6 +3,7 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next'; 
 import { SITE_URL } from '@/lib/site';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -98,6 +99,7 @@ export default function RootLayout({
     <html lang="es-CL" className={inter.variable}>
       <body className="antialiased">
         {children}
+        <WhatsAppButton />
         <Analytics /> {/* <-- 2. Coloca el componente de analíticas aquí */}
       </body>
     </html>
