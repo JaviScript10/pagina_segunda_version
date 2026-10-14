@@ -255,7 +255,7 @@ export default function ChatDock() {
         aria-label="Abrir chat de contacto"
         aria-expanded={open}
         aria-controls="chatdock"
-        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-lg border-2 border-tinta bg-calamina text-tinta transition-transform duration-150 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro motion-reduce:transition-none"
+        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-lg border-2 border-tinta bg-calamina text-tinta transition-transform duration-150 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro motion-reduce:transition-none"
       >
         <FaCommentDots className="h-6 w-6" aria-hidden="true" />
       </button>
