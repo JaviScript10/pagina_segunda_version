@@ -78,7 +78,6 @@ export const projects: Project[] = [
     images: ['/proyectos/pacificoclean-inicio.webp', '/proyectos/pacificoclean-catalogo.webp'],
     // El hero ya muestra la portada; el caso de estudio muestra el catálogo
     caseImage: { src: '/proyectos/pacificoclean-catalogo.webp', w: 1600, h: 900 },
-    toConfirm: ['Redacción del problema'],
   },
   {
     slug: 'clipcontrol',
@@ -125,7 +124,6 @@ export const projects: Project[] = [
       { src: '/proyectos/clipcontrol/app-05-qr-valido.webp', alt: 'App del guardia: QR válido con los datos del trabajador y captura de foto' },
       { src: '/proyectos/clipcontrol/app-07-confirmacion.webp', alt: 'App del guardia: entrega registrada con foto y hora' },
     ],
-    toConfirm: ['Redacción del problema'],
   },
   {
     slug: 'qepd',
@@ -152,7 +150,7 @@ export const projects: Project[] = [
       '/proyectos/qepd/registro-fallecido.webp',
       '/proyectos/qepd/dashboard.webp',
     ],
-    toConfirm: ['Redacción del problema', 'Cliente y ubicación', 'Qué partes desarrollé', 'Nombre del autor (¿se le nombra?)', 'Capturas reales'],
+    toConfirm: ['Cliente y ubicación (¿se nombran?)'],
   },
   {
     slug: 'automatizador-cartas',
@@ -180,10 +178,7 @@ export const projects: Project[] = [
       '/proyectos/automatizador/registro-uso.webp',
     ],
     caseImage: { src: '/proyectos/automatizador/generador.webp', w: 1600, h: 670 },
-    toConfirm: [
-      'Redacción del problema',
-      'Capturas con datos de ejemplo o difuminados (sin nombres, RUT, direcciones ni números de cliente)',
-    ],
+    toConfirm: ['La captura del generador dice "+25 Templates" y el texto dice "más de 30 cartas tipo"'],
   },
 
   // ---------- Ejercicios de diseño ----------
