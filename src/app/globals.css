@@ -9,6 +9,7 @@
   --color-tinta: 23 32 51;       /* #172033 texto, bordes fuertes */
   --color-calamina: 242 184 7;   /* #F2B807 solo WhatsApp; texto encima en tinta */
   --color-cerro: 31 95 168;      /* #1F5FA8 links e interactivos secundarios */
+  --color-whatsapp: 37 211 102;  /* #25D366 verde oficial de WhatsApp: solo botones de WhatsApp; texto en Tinta (8,2:1) */
   --color-ascensor: 195 60 46;   /* #C33C2E un detalle por sección, nunca fondo grande */
   --color-verde-cerro: 74 117 88; /* #4A7558 verde sobrio: cerro del hero y acento de QEPD (5,3:1 con Papel) */
 
@@ -142,6 +143,11 @@ h4,
 
 /* Componentes reutilizables */
 @layer components {
+  /* Botón de WhatsApp: verde oficial, logo oficial (SiWhatsapp) y texto Tinta. El tamaño va aparte. */
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-lg border-2 border-tinta bg-whatsapp font-bold text-tinta transition-[transform,background-color] duration-150 ease-out hover:bg-whatsapp/85 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro motion-reduce:transition-none;
+  }
+
   .btn-primary {
     @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:bg-primary-700 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }

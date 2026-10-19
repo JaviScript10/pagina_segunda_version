@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaWhatsapp } from 'react-icons/fa';
+import { SiWhatsapp } from 'react-icons/si';
 import { whatsappUrl } from '@/lib/site';
 
 export default function Contact() {
@@ -119,9 +119,9 @@ export default function Contact() {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-emerald-600/30 hover:scale-[1.01] transition-all flex items-center justify-center space-x-2 text-sm sm:text-base"
+                className="btn-whatsapp w-full px-6 py-3.5 text-sm sm:text-base"
               >
-                <FaWhatsapp className="w-5 h-5" />
+                <SiWhatsapp className="w-5 h-5" aria-hidden="true" />
                 <span>Enviar por WhatsApp</span>
               </button>
             </div>

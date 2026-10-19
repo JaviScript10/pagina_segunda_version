@@ -17,6 +17,7 @@ module.exports = {
         calamina: 'rgb(var(--color-calamina) / <alpha-value>)',
         cerro: 'rgb(var(--color-cerro) / <alpha-value>)',
         ascensor: 'rgb(var(--color-ascensor) / <alpha-value>)',
+        whatsapp: 'rgb(var(--color-whatsapp) / <alpha-value>)',
         'verde-cerro': 'rgb(var(--color-verde-cerro) / <alpha-value>)',
         primary: {
           50: '#e6f0ff',

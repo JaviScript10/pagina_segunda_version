@@ -1,7 +1,8 @@
 'use client';
 
 import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { FaCommentDots, FaPaperPlane, FaTimes, FaWhatsapp } from 'react-icons/fa';
+import { FaPaperPlane, FaTimes } from 'react-icons/fa';
+import { SiWhatsapp } from 'react-icons/si';
 import { useDialog } from '@/hooks/useDialog';
 import { WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 import { formatFrom, getService, pricing, type ServiceId } from '@/data/pricing';
@@ -255,9 +256,9 @@ export default function ChatDock() {
         aria-label="Abrir chat de contacto"
         aria-expanded={open}
         aria-controls="chatdock"
-        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-lg border-2 border-tinta bg-calamina text-tinta transition-transform duration-150 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro motion-reduce:transition-none"
+        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-lg border-2 border-tinta bg-whatsapp text-tinta transition-transform duration-150 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro motion-reduce:transition-none"
       >
-        <FaCommentDots className="h-6 w-6" aria-hidden="true" />
+        <SiWhatsapp className="h-7 w-7" aria-hidden="true" />
       </button>
 
       <div
@@ -324,11 +325,11 @@ export default function ChatDock() {
                     onClick={() => onChip(chip)}
                     className={`rounded-lg border px-3 py-2.5 text-sm font-bold leading-snug transition-[transform,background-color,border-color] duration-150 ease-out active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro ${
                       isWhatsApp
-                        ? 'col-span-2 flex items-center justify-center gap-2 border-tinta bg-calamina text-tinta hover:bg-calamina/85'
+                        ? 'col-span-2 flex items-center justify-center gap-2 border-tinta bg-whatsapp text-tinta hover:bg-whatsapp/85'
                         : 'border-cerro/40 bg-papel text-cerro hover:border-cerro hover:bg-cerro/5'
                     }`}
                   >
-                    {isWhatsApp && <FaWhatsapp className="h-4 w-4" aria-hidden="true" />}
+                    {isWhatsApp && <SiWhatsapp className="h-4 w-4" aria-hidden="true" />}
                     {withMoney(chip.label)}
                   </button>
                 );

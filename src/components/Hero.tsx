@@ -1,4 +1,4 @@
-import { FaWhatsapp } from 'react-icons/fa';
+import { SiWhatsapp } from 'react-icons/si';
 import { whatsappUrl } from '@/lib/site';
 import { VISTA_COMPLETA, VISTA_MOVIL, viewBox, type Vista } from '@/lib/cerro';
 import CerroIlustracion from './CerroIlustracion';
@@ -22,9 +22,9 @@ export default function Hero() {
               href={whatsappUrl('Hola, vengo desde el sitio de CiberByte.')}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-2.5 rounded-lg border-2 border-tinta bg-calamina px-5 py-3 text-base font-bold text-tinta sm:px-6 sm:py-3.5 sm:text-lg transition-[transform,background-color] duration-150 ease-out hover:bg-calamina/85 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro motion-reduce:transition-none"
+              className="btn-whatsapp px-5 py-3 text-base sm:px-6 sm:py-3.5 sm:text-lg"
             >
-              <FaWhatsapp className="h-5 w-5" aria-hidden="true" />
+              <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
               Escríbeme por WhatsApp
             </a>
             <a

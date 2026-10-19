@@ -1,4 +1,4 @@
-import { FaWhatsapp } from 'react-icons/fa';
+import { SiWhatsapp } from 'react-icons/si';
 import { formatCLP, getService, pricing } from '@/data/pricing';
 import { whatsappUrl } from '@/lib/site';
 import { Money } from '@/lib/money';
@@ -70,9 +70,9 @@ export default function Pricing() {
               href={whatsappUrl('Hola, vengo desde el sitio de CiberByte. Quiero cotizar un proyecto.')}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2.5 rounded-lg border-2 border-tinta bg-calamina px-6 py-3.5 text-lg font-bold text-tinta transition-[transform,background-color] duration-150 ease-out hover:bg-calamina/85 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro motion-reduce:transition-none"
+              className="btn-whatsapp mt-4 px-6 py-3.5 text-lg"
             >
-              <FaWhatsapp className="h-5 w-5" aria-hidden="true" />
+              <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
               Escríbeme por WhatsApp
             </a>
           </div>

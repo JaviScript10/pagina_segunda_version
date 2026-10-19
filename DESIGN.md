@@ -88,7 +88,8 @@ Reglas de la ilustración:
 | Niebla | `#E9EEF1` | Fondo general (gris frío de neblina del puerto, no crema) |
 | Papel | `#FFFFFF` | Superficies que necesitan separarse del fondo (formulario, capturas) |
 | Tinta | `#172033` | Texto principal, líneas de la ilustración del hero, bordes fuertes |
-| Calamina | `#F2B807` | Acento principal: botón de WhatsApp y nada más que compita con él. El texto sobre Calamina siempre va en Tinta |
+| Calamina | `#F2B807` | Acento de marca: casas de la ilustración y fachada de un proyecto. El texto sobre Calamina siempre va en Tinta |
+| WhatsApp | `#25D366` | **Excepción:** verde oficial de WhatsApp, solo en los botones de WhatsApp (hero, precios, contacto, chat y botón flotante), siempre con el logo oficial y texto en Tinta (8,2:1; en blanco daría 2,0:1 y no cumple AA). Clase `.btn-whatsapp` |
 | Cerro | `#1F5FA8` | Links y elementos interactivos secundarios |
 | Ascensor | `#C33C2E` | Uso puntual (un detalle por sección como máximo). Nunca como fondo grande. En el hero: la cabina del ascensor |
 | Verde cerro | `#4A7558` | El cerro de la ilustración del hero y el acento de un proyecto (ver abajo). Con texto Papel da 5,3:1 |
