@@ -36,8 +36,10 @@ export interface RealProject extends ProjectBase {
   url?: string;
   /** Captura para el caso de estudio de la home, si es distinta de images[0]. */
   caseImage?: { src: string; w: number; h: number };
-  /** Pantallas de la app móvil (390 px de ancho), para mostrarlas en marco de teléfono. */
+  /** Pantallas móviles (390 px de ancho), para mostrarlas en marco de teléfono. */
   appScreens?: { src: string; alt: string }[];
+  /** Pie de foto de las capturas del caso de estudio. */
+  mediaCaption?: string;
   problem: string;
   built: string[];
   stack: string[];
@@ -124,6 +126,7 @@ export const projects: Project[] = [
       { src: '/proyectos/clipcontrol/app-05-qr-valido.webp', alt: 'App del guardia: QR válido con los datos del trabajador y captura de foto' },
       { src: '/proyectos/clipcontrol/app-07-confirmacion.webp', alt: 'App del guardia: entrega registrada con foto y hora' },
     ],
+    mediaCaption: 'Panel de administración web y app del guardia, con datos de prueba.',
   },
   {
     slug: 'qepd',
@@ -179,6 +182,32 @@ export const projects: Project[] = [
     ],
     caseImage: { src: '/proyectos/automatizador/generador.webp', w: 1600, h: 670 },
     toConfirm: ['La captura del generador dice "+25 Templates" y el texto dice "más de 30 cartas tipo"'],
+  },
+
+  {
+    slug: 'mageh',
+    type: 'real',
+    featured: false,
+    accent: 'cerro',
+    title: 'Grupo Mageh',
+    category: 'Sitio corporativo',
+    location: 'Villa Alemana, Quilpué y Viña del Mar',
+    summary: 'Sitio de arquitectos y administradores de comunidades en Villa Alemana, Quilpué y Viña del Mar.',
+    problem:
+      'Grupo Mageh combina dos servicios que rara vez van juntos, arquitectura y regularizaciones por un lado y administración de comunidades por otro, y necesitaba presentarlos de forma clara para convertir visitas en solicitudes de diagnóstico.',
+    built: [
+      'Sitio con sus seis servicios',
+      'Su propuesta de transparencia: etapas y entregables definidos antes de empezar',
+      'Llamada a diagnóstico gratuito',
+    ],
+    // Detectado con Playwright: HTML, CSS y JS propios (sin framework), servido por Apache
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    role: 'Diseño y desarrollo completo',
+    url: 'https://mageh.cl/',
+    images: ['/proyectos/mageh/inicio.webp', '/proyectos/mageh/servicios.webp', '/proyectos/mageh/movil.webp'],
+    caseImage: { src: '/proyectos/mageh/inicio.webp', w: 1600, h: 1000 },
+    appScreens: [{ src: '/proyectos/mageh/movil.webp', alt: 'Inicio de mageh.cl en el celular, con el botón Solicitar diagnóstico gratuito' }],
+    mediaCaption: 'Inicio de mageh.cl en escritorio y en el celular.',
   },
 
   // ---------- Ejercicios de diseño ----------

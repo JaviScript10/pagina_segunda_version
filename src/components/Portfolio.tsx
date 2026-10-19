@@ -148,11 +148,7 @@ function CaseStudy({ project: p }: { project: RealProject }) {
               </ul>
             )}
           </div>
-          {p.appScreens && (
-            <figcaption className="mt-3 text-[0.95rem] text-tinta/75">
-              Panel de administración web y app del guardia, con datos de prueba.
-            </figcaption>
-          )}
+          {p.mediaCaption && <figcaption className="mt-3 text-[0.95rem] text-tinta/75">{p.mediaCaption}</figcaption>}
         </figure>
       )}
 
