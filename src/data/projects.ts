@@ -150,7 +150,7 @@ export const projects: Project[] = [
       '/proyectos/qepd/registro-fallecido.webp',
       '/proyectos/qepd/dashboard.webp',
     ],
-    toConfirm: ['Cliente y ubicación (¿se nombran?)'],
+    // El cliente no se nombra (decisión de Javier)
   },
   {
     slug: 'automatizador-cartas',
