@@ -153,6 +153,7 @@ export const projects: Project[] = [
       '/proyectos/qepd/registro-fallecido.webp',
       '/proyectos/qepd/dashboard.webp',
     ],
+    caseImage: { src: '/proyectos/qepd/busqueda-publica.webp', w: 1600, h: 798 },
     // El cliente no se nombra (decisión de Javier)
   },
   {
