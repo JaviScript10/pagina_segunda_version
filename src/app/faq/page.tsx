@@ -23,7 +23,7 @@ export default function FAQPage() {
         },
         {
             question: '¿Cuál es el costo de desarrollar un sitio web?',
-            answer: `Una landing page parte en ${formatCLP(landing.from)}, un sitio corporativo en ${formatCLP(corporativo.from)}, una tienda online en ${formatCLP(tienda.from)} y un sistema o app a medida en ${formatCLP(medida.from)}. ${pricing.ivaNote} Antes de empezar te cotizo el total según lo que necesites.`,
+            answer: `Una landing page parte en ${formatCLP(landing.from)}, un sitio corporativo en ${formatCLP(corporativo.from)}, una tienda online en ${formatCLP(tienda.from)} y un sistema o app a medida en ${formatCLP(medida.from)}. ${pricing.ivaNote}`,
         },
         {
             question: '¿Ofrecen mantenimiento después del lanzamiento?',

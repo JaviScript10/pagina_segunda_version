@@ -16,7 +16,7 @@ export default function Pricing() {
             Qué hago y cuánto cuesta
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-tinta/80">
-            Estos son los precios base. Antes de empezar te cotizo según lo que necesites.
+            {pricing.ivaNote}
           </p>
         </div>
 
@@ -50,10 +50,6 @@ export default function Pricing() {
             </li>
           ))}
         </ul>
-
-        <p className="mt-5 max-w-[70ch] text-tinta/75">
-          {pricing.ivaNote} {pricing.terms.join(' ')}
-        </p>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:items-end">
           {/* Servicio secundario y presencial: bloque aparte, más chico que la tabla */}

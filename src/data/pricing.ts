@@ -89,7 +89,7 @@ export const pricing: Pricing = {
       scope: 'Solo Valparaíso y alrededores',
     },
   ],
-  ivaNote: 'Precios finales, sin cargos ocultos.',
+  ivaNote: 'Precios desde, sin cargos ocultos: te doy el valor final antes de empezar.',
   terms: [HOSTING_TERM, PAYMENT_TERM],
 };
 
