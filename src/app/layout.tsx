@@ -5,9 +5,10 @@ import { Analytics } from '@vercel/analytics/next';
 import { SITE_URL } from '@/lib/site';
 import ChatDock from '@/components/ChatDock';
 
-// Títulos: Archivo variable con eje de ancho (rotulación de micros y ascensores)
+// Títulos: Archivo variable con eje de ancho (rotulación de micros y ascensores).
+// Solo el subset latin: cubre el español (á, ñ, ¿, ¡) y evita precargar archivos que no se usan.
 const archivo = Archivo({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   axes: ['wdth'],
   display: 'swap',
   variable: '--font-archivo',
@@ -15,9 +16,8 @@ const archivo = Archivo({
 
 // Texto: Atkinson Hyperlegible 400/700
 const atkinson = Atkinson_Hyperlegible({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   weight: ['400', '700'],
-  style: ['normal', 'italic'],
   display: 'swap',
   variable: '--font-atkinson',
 });
