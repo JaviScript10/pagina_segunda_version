@@ -36,7 +36,7 @@ entienda qué cuesta y cuánto demora, y escriba por WhatsApp.
   "trabajo") o "CiberByte" como marca.
 - Nada de fotos de oficinas o equipos, ni de stock ni generadas con IA. El sitio no lleva foto
   personal (decisión de Javier): la presencia de la persona se transmite con la voz en primera
-  persona, el nombre y el trabajo real.
+  persona y el trabajo real. "Sobre mí" tampoco lleva el nombre (decisión de Javier).
 - Las maquetas del portafolio antiguo (Sabores del Sur, Verde Nativo, Espacio Urbano, FitChile,
   Café Andino, Innova Gestión) solo pueden aparecer en una sección aparte, rotuladas
   claramente como **ejercicios de diseño**, sin testimonios, sin resultados y sin "inversión".
@@ -310,6 +310,7 @@ Hoy el chat, el FAQ y el portafolio muestran precios distintos. La tabla final v
 
 Resueltas:
 - [x] Sin foto personal.
+- [x] "Sobre mí" va sin el nombre de Javier.
 - [x] Alcance nacional (todo Chile), con base en Valparaíso.
 - [x] Permisos para mostrar ClipControl y el automatizador de cartas: autorizados.
 - [x] Se mantiene el soporte de PC, como servicio secundario y presencial.
