@@ -5,7 +5,7 @@ import Precios from '@/components/Precios';
 import Proyectos from '@/components/Proyectos';
 import ComoTrabajo from '@/components/ComoTrabajo';
 import SobreMi from '@/components/SobreMi';
-import Contact from '@/components/Contact';
+import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function Home() {
         <Precios />
         <ComoTrabajo />
         <SobreMi />
-        <Contact />
+        <Contacto />
       </main>
       <Footer />
     </>

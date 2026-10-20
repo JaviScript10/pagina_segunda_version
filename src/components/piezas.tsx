@@ -24,13 +24,34 @@ export function IconoAnidado({ className = 'bg-tinta/10' }: { className?: string
   );
 }
 
-/** Botón de WhatsApp con logo oficial, texto e ícono anidado. */
-export function BotonWhatsApp({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
+/**
+ * Botón de WhatsApp con logo oficial, texto e ícono anidado.
+ * `inverso`: fondo blanco para fondos oscuros. `grande`: para el cierre de la página.
+ */
+export function BotonWhatsApp({
+  href,
+  children,
+  className = '',
+  inverso = false,
+  grande = false,
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+  inverso?: boolean;
+  grande?: boolean;
+}) {
+  const tamano = grande ? 'py-2 pl-5 pr-2 text-lg' : 'py-1.5 pl-4 pr-1.5 text-[0.9375rem]';
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={`btn-whatsapp group py-1.5 pl-4 pr-1.5 text-[0.9375rem] ${className}`}>
-      <LogoWhatsApp size={18} />
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${inverso ? 'btn-whatsapp-inverso' : 'btn-whatsapp'} group ${tamano} ${className}`}
+    >
+      <LogoWhatsApp size={grande ? 22 : 18} />
       <span className="flex-1 text-left">{children}</span>
-      <IconoAnidado className="bg-papel/15" />
+      <IconoAnidado className={`${inverso ? 'bg-tinta/10' : 'bg-papel/15'} ${grande ? 'h-10 w-10' : ''}`} />
     </a>
   );
 }
