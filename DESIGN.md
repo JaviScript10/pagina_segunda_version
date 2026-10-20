@@ -101,6 +101,10 @@ Botones de WhatsApp (excepción de marca):
   otros dibujos. Javier aceptó los términos de uso de marca de Meta al descargarlo (2026-10-20).
 - El glifo oficial 2026 es la burbuja en contorno con el teléfono, ambos en `#25D366` sobre fondo
   transparente. Meta no publica una versión con la burbuja rellena; no se fabrica una.
+- Botón flotante: círculo blanco de 60 px con el logo oficial a color al centro (34 px) y una
+  **sombra suave** (`0 10px 28px -8px` Tinta al 35% + `0 2px 6px -1px` al 12%). Es la única
+  excepción a "sombras casi inexistentes": el botón flota sobre todo el contenido y tiene que
+  separarse de cualquier fondo. Abre el chat, cuya primera opción es "Escribir directo por WhatsApp".
 | Cerro | `#1F5FA8` | Links y elementos interactivos secundarios |
 | Ascensor | `#C33C2E` | Uso puntual (un detalle por sección como máximo). Nunca como fondo grande. En el hero: la cabina del ascensor |
 | Verde cerro | `#4A7558` | El cerro de la ilustración del hero y el acento de un proyecto (ver abajo). Con texto Papel da 5,3:1 |
@@ -137,7 +141,7 @@ Reglas:
 
 - Radios según jerarquía, no uno igual para todo: botones 8px, capturas de proyecto 4px dentro
   de un marco de navegador simple, bloques grandes de sección sin radio.
-- Sombras casi inexistentes. La separación se logra con fondo (Niebla vs Papel) y espacio.
+- Sombras casi inexistentes. La separación se logra con fondo (Niebla vs Papel) y espacio. Única excepción: el botón flotante de WhatsApp (ver "Botones de WhatsApp").
 - Las secciones tienen su alto natural. Nada de `min-h-screen` en cada sección.
 
 ### Movimiento (criterio Emil Kowalski)

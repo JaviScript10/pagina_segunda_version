@@ -2,7 +2,6 @@
 
 import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { FaPaperPlane, FaTimes } from 'react-icons/fa';
-import { SiWhatsapp } from 'react-icons/si';
 import LogoWhatsApp from './LogoWhatsApp';
 import { useDialog } from '@/hooks/useDialog';
 import { WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
@@ -257,9 +256,10 @@ export default function ChatDock() {
         aria-label="Abrir chat de contacto"
         aria-expanded={open}
         aria-controls="chatdock"
-        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-lg border-2 border-tinta bg-whatsapp text-tinta transition-transform duration-150 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro motion-reduce:transition-none"
+        // Excepción de sombras (DESIGN.md): el logo oficial flota sobre el contenido con una sombra suave
+        className="fixed bottom-5 right-5 z-40 grid h-[3.75rem] w-[3.75rem] place-items-center rounded-full bg-papel shadow-[0_10px_28px_-8px_rgb(23_32_51/0.35),0_2px_6px_-1px_rgb(23_32_51/0.12)] transition-transform duration-150 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro motion-reduce:transition-none"
       >
-        <SiWhatsapp className="h-7 w-7" aria-hidden="true" />
+        <LogoWhatsApp size={34} />
       </button>
 
       <div
