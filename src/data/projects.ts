@@ -20,8 +20,6 @@ interface ProjectBase {
 /** Proyecto real, con cliente y usuarios reales. */
 export interface RealProject extends ProjectBase {
   type: 'real';
-  /** Aparece en la home (3 destacados). */
-  featured: boolean;
   /** Color de su fachada en los casos de estudio y su etiqueta. */
   accent: Acento;
   client?: string;
@@ -62,7 +60,6 @@ export const projects: Project[] = [
   {
     slug: 'pacificoclean',
     type: 'real',
-    featured: true,
     accent: 'cerro',
     title: 'PacificoClean',
     category: 'Tienda online',
@@ -84,7 +81,6 @@ export const projects: Project[] = [
   {
     slug: 'clipcontrol',
     type: 'real',
-    featured: true,
     accent: 'calamina',
     title: 'ClipControl',
     category: 'Sistema a medida',
@@ -131,7 +127,6 @@ export const projects: Project[] = [
   {
     slug: 'qepd',
     type: 'real',
-    featured: false,
     accent: 'verde',
     title: 'QEPD',
     category: 'Sistema a medida',
@@ -159,7 +154,6 @@ export const projects: Project[] = [
   {
     slug: 'automatizador-cartas',
     type: 'real',
-    featured: true,
     accent: 'ascensor',
     title: 'Automatizador de cartas',
     category: 'Herramienta interna',
@@ -188,7 +182,6 @@ export const projects: Project[] = [
   {
     slug: 'mageh',
     type: 'real',
-    featured: false,
     accent: 'cerro',
     title: 'Grupo Mageh',
     category: 'Sitio corporativo',
@@ -214,7 +207,6 @@ export const projects: Project[] = [
   {
     slug: 'callme',
     type: 'real',
-    featured: false,
     accent: 'ascensor',
     title: 'Call Me',
     category: 'Sitio comercial',
@@ -348,5 +340,4 @@ export const projects: Project[] = [
 ];
 
 export const realProjects = projects.filter((p): p is RealProject => p.type === 'real');
-export const featuredProjects = realProjects.filter((p) => p.featured);
 export const designExercises = projects.filter((p): p is DesignExercise => p.type === 'ejercicio');

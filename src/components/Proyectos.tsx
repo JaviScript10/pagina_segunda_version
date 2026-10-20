@@ -12,7 +12,8 @@ import { Flecha, lugar, rolCorto, stack } from './piezas';
  * teclado. En móvil cada proyecto se muestra completo, uno bajo otro.
  */
 
-export const ORDEN_PROYECTOS = ['pacificoclean', 'mageh', 'clipcontrol', 'automatizador-cartas', 'qepd'];
+// Todos los proyectos reales; QEPD al final y rotulado como colaboración
+export const ORDEN_PROYECTOS = ['pacificoclean', 'clipcontrol', 'mageh', 'callme', 'automatizador-cartas', 'qepd'];
 
 export default function Proyectos({
   slugs = ORDEN_PROYECTOS,
