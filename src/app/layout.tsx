@@ -69,16 +69,22 @@ export const metadata: Metadata = {
     locale: 'es_CL',
     url: SITE_URL,
     siteName: 'CiberByte',
-    title: 'CiberByte - Soluciones Digitales Profesionales',
-    description:
-      'Desarrollo web, apps y e-commerce en Chile. Diseño moderno, carga rápida y optimización SEO.',
-    // Falta /og-image.jpg (1200x630). Agregar `images` cuando exista.
+    title: 'CiberByte: páginas web que trabajan por tu negocio',
+    description: 'Desarrollo a medida desde Valparaíso, para todo Chile. Sin plantillas y sin intermediarios.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'CiberByte. Páginas web que trabajan por tu negocio. Ilustración de un cerro de Valparaíso.',
+      },
+    ],
   },
   twitter: {
-    // Volver a 'summary_large_image' cuando exista la imagen OG.
-    card: 'summary',
-    title: 'CiberByte - Soluciones Digitales Profesionales',
-    description: 'Desarrollo web, apps y e-commerce en Chile.',
+    card: 'summary_large_image',
+    title: 'CiberByte: páginas web que trabajan por tu negocio',
+    description: 'Desarrollo a medida desde Valparaíso, para todo Chile. Sin plantillas y sin intermediarios.',
+    images: ['/og-image.jpg'],
   },
   icons: {
     icon: [
