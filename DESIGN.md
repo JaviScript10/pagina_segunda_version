@@ -36,7 +36,7 @@ entienda qué cuesta y cuánto demora, y escriba por WhatsApp.
   "trabajo") o "CiberByte" como marca.
 - Nada de fotos de oficinas o equipos, ni de stock ni generadas con IA. El sitio no lleva foto
   personal (decisión de Javier): la presencia de la persona se transmite con la voz en primera
-  persona y el trabajo real. "Sobre mí" tampoco lleva el nombre (decisión de Javier).
+  persona y el trabajo real.
 - Las maquetas del portafolio antiguo (Sabores del Sur, Verde Nativo, Espacio Urbano, FitChile,
   Café Andino, Innova Gestión) solo pueden aparecer en una sección aparte, rotuladas
   claramente como **ejercicios de diseño**, sin testimonios, sin resultados y sin "inversión".
@@ -168,9 +168,7 @@ Orden y propósito de cada sección:
 2. **Proyectos:** 3 casos reales destacados y un link a `/proyectos`.
 3. **Qué hago y cuánto cuesta:** servicios con precio "desde" y plazo.
 4. **Cómo trabajo:** 4 pasos. Es una secuencia real, así que aquí sí van números.
-5. **Sobre mí:** sin foto. Historia corta (de las telecomunicaciones al desarrollo), estudios,
-   stack con el que trabajo y la base en Valparaíso con trabajo remoto para todo Chile.
-6. **Contacto:** WhatsApp como principal y email como alternativa, con tiempo de respuesta real.
+5. **Contacto:** WhatsApp como principal y email como alternativa, con tiempo de respuesta real.
 
 El soporte y hardware de PC se mantiene, pero como un bloque secundario "También hago…" dentro de
 la sección 3, no como pestaña al mismo nivel que el desarrollo web. Al ser presencial, se aclara que
@@ -180,7 +178,7 @@ es solo para la zona de Valparaíso y alrededores.
 
 ```
 +--------------------------------------------------------------------------+
-| CiberByte                        Proyectos  Precios  Sobre mí  Contacto  |
+| CiberByte                                  Proyectos  Precios  Contacto  |
 |                                                        casas de fondo _.-|
 |  Sitios web y sistemas a medida,                     _.-'  [ ][ ]  /[]|[]|
 |  desde Valparaíso.                               _.-'  [ ][ ]  //  [][][]|
@@ -313,7 +311,6 @@ Hoy el chat, el FAQ y el portafolio muestran precios distintos. La tabla final v
 
 Resueltas:
 - [x] Sin foto personal.
-- [x] "Sobre mí" va sin el nombre de Javier.
 - [x] Alcance nacional (todo Chile), con base en Valparaíso.
 - [x] Permisos para mostrar ClipControl y el automatizador de cartas: autorizados.
 - [x] Se mantiene el soporte de PC, como servicio secundario y presencial.

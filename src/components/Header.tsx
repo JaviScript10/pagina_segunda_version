@@ -7,7 +7,6 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 const NAV = [
   { label: 'Proyectos', href: '/proyectos' },
   { label: 'Precios', href: '/#precios' },
-  { label: 'Sobre mí', href: '/#sobre-mi' },
   { label: 'Contacto', href: '/#contacto' },
 ];
 

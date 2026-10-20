@@ -4,7 +4,6 @@ import LogoWhatsApp from './LogoWhatsApp';
 const SITIO = [
   { label: 'Proyectos', href: '/proyectos' },
   { label: 'Precios', href: '/#precios' },
-  { label: 'Sobre mí', href: '/#sobre-mi' },
   { label: 'Contacto', href: '/#contacto' },
   { label: 'Preguntas frecuentes', href: '/faq' },
 ];
