@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, WHATSAPP_DISPLAY } from '@/lib/site';
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 import LogoWhatsApp from './LogoWhatsApp';
 
 const SITIO = [
@@ -66,10 +66,17 @@ export default function Footer() {
                   {CONTACT_EMAIL}
                 </a>
               </li>
-              <li className="inline-flex items-center gap-2">
-                <LogoWhatsApp size={16} />
-                <span className="sr-only">WhatsApp:</span>
-                {WHATSAPP_DISPLAY}
+              <li>
+                <a
+                  href={whatsappUrl('Hola, vengo desde el sitio de CiberByte.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 ${enlace}`}
+                >
+                  <LogoWhatsApp size={16} />
+                  <span className="sr-only">WhatsApp:</span>
+                  {WHATSAPP_DISPLAY}
+                </a>
               </li>
               <li className="text-tinta/70">Valparaíso, Chile</li>
             </ul>

@@ -93,8 +93,8 @@ Reglas de la ilustración:
 
 Botones de WhatsApp (excepción de marca):
 - Botones de WhatsApp del sitio, y solo estos: el flotante (con su chat), el "Cotizar" de cada
-  precio (incluido el soporte de PC) y el de la sección Contacto. En el footer el número queda
-  como dato, sin link. El hero y los cierres de `/proyectos` y `/faq` usan `.btn-principal`
+  precio (incluido el soporte de PC) y el de la sección Contacto. En el footer el número es un
+  link a WhatsApp con estilo de texto, como el resto de los links del footer (no es un botón). El hero y los cierres de `/proyectos` y `/faq` usan `.btn-principal`
   (Tinta, sin logo) hacia "Ver proyectos" o "Ir a contacto".
 - Estilo de los botones de WhatsApp (incluidos los chips del chat): fondo
   Tinta, texto blanco (16:1), sin borde, y a la izquierda el **logo oficial** de WhatsApp a color.
