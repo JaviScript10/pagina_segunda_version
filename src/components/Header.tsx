@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -14,11 +14,16 @@ const NAV = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const botonRef = useRef<HTMLButtonElement>(null);
 
-  // El menú móvil se cierra con Escape, igual que los modales
+  // El menú móvil se cierra con Escape, igual que los modales, y el foco vuelve al botón
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setIsOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setIsOpen(false);
+      botonRef.current?.focus();
+    };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [isOpen]);
@@ -56,6 +61,7 @@ export default function Header() {
         </nav>
 
         <button
+          ref={botonRef}
           type="button"
           onClick={() => setIsOpen((o) => !o)}
           aria-expanded={isOpen}
@@ -76,7 +82,7 @@ export default function Header() {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   aria-current={item.href === pathname ? 'page' : undefined}
-                  className="block py-4 font-display text-2xl font-bold active:text-cerro aria-[current=page]:underline aria-[current=page]:underline-offset-[6px]"
+                  className="block rounded-sm py-4 font-display text-2xl font-bold active:text-cerro focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro aria-[current=page]:underline aria-[current=page]:underline-offset-[6px]"
                 >
                   {item.label}
                 </a>
