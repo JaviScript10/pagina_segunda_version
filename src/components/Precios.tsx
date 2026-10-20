@@ -2,7 +2,7 @@ import LogoWhatsApp from './LogoWhatsApp';
 import { formatCLP, getService, pricing, type PricingItem } from '@/data/pricing';
 import { whatsappUrl } from '@/lib/site';
 import { Money } from '@/lib/money';
-import { BotonWhatsApp, IconoAnidado } from './piezas';
+import { IconoAnidado } from './piezas';
 
 /*
  * Precios: carta de precios. Intro fija a la izquierda; a la derecha cada servicio es una fila
@@ -24,12 +24,6 @@ export default function Precios() {
               Precios claros, sin sorpresas.
             </h2>
             <p className="mt-6 max-w-sm text-lg leading-relaxed text-tinta/70">{pricing.ivaNote}</p>
-            <BotonWhatsApp
-              href={whatsappUrl('Hola, vengo desde el sitio de CiberByte. Quiero cotizar un proyecto.')}
-              className="mt-8"
-            >
-              Escríbeme por WhatsApp
-            </BotonWhatsApp>
           </div>
         </div>
 
