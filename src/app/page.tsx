@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Pricing from '@/components/Pricing';
-import Portfolio from '@/components/Portfolio';
+import Precios from '@/components/Precios';
+import Proyectos from '@/components/Proyectos';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -18,8 +18,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Portfolio />
-        <Pricing />
+        <Proyectos />
+        <Precios />
         <About />
         <Contact />
       </main>

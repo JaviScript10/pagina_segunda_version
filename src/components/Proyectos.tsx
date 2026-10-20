@@ -4,28 +4,36 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { realProjects, type RealProject } from '@/data/projects';
 import { ACENTO } from '@/lib/acento';
-import { Flecha, lugar, rolCorto, stack } from './comun';
+import { Flecha, lugar, rolCorto, stack } from './piezas';
 
 /*
- * Proyectos B: índice de trabajos. A la izquierda los nombres en grande; a la derecha una vista
- * previa fija que cambia (fundido) según el proyecto activo, al pasar el mouse o con el teclado.
- * En móvil cada proyecto se muestra completo, uno bajo otro.
+ * Índice de trabajos (home y /proyectos). A la izquierda los nombres en grande; a la derecha una
+ * vista previa fija que cambia (fundido) según el proyecto activo, al pasar el mouse o con el
+ * teclado. En móvil cada proyecto se muestra completo, uno bajo otro.
  */
 
-const ORDEN = ['pacificoclean', 'mageh', 'clipcontrol', 'automatizador-cartas', 'qepd'];
+export const ORDEN_PROYECTOS = ['pacificoclean', 'mageh', 'clipcontrol', 'automatizador-cartas', 'qepd'];
 
-export default function ProyectosB() {
-  const proyectos = ORDEN.map((s) => realProjects.find((p) => p.slug === s)).filter((p): p is RealProject => !!p);
+export default function Proyectos({
+  slugs = ORDEN_PROYECTOS,
+  nivel = 'h2',
+}: {
+  slugs?: string[];
+  /** h1 en /proyectos, h2 en la home. */
+  nivel?: 'h1' | 'h2';
+}) {
+  const Titulo = nivel;
+  const proyectos = slugs.map((s) => realProjects.find((p) => p.slug === s)).filter((p): p is RealProject => !!p);
   const [activo, setActivo] = useState(0);
   const p = proyectos[activo];
 
   return (
-    <section aria-labelledby="proyectos-b-titulo" className="bg-niebla py-24 text-tinta lg:py-36">
+    <section id="proyectos" aria-labelledby="proyectos-titulo" className="bg-niebla py-24 text-tinta lg:py-36">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 id="proyectos-b-titulo" className="font-display text-5xl font-extrabold tracking-[-0.03em] sm:text-6xl">
+          <Titulo id="proyectos-titulo" className="font-display text-5xl font-extrabold tracking-[-0.03em] sm:text-6xl">
             Proyectos
-          </h2>
+          </Titulo>
           <p className="max-w-sm text-tinta/70">
             {proyectos.length} proyectos reales: sitios, sistemas a medida y herramientas internas.
           </p>
@@ -44,7 +52,7 @@ export default function ProyectosB() {
                     onFocus={() => setActivo(i)}
                     onClick={() => setActivo(i)}
                     aria-pressed={esActivo}
-                    aria-controls="proyectos-b-vista"
+                    aria-controls="proyectos-vista"
                     className="group flex w-full items-center justify-between gap-6 py-6 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro"
                   >
                     <span>
@@ -75,7 +83,7 @@ export default function ProyectosB() {
             })}
           </ol>
 
-          <div id="proyectos-b-vista" aria-live="polite" className="lg:col-span-7">
+          <div id="proyectos-vista" aria-live="polite" className="lg:col-span-7">
             <div className="sticky top-28 rounded-2xl bg-papel p-1.5 ring-1 ring-tinta/[0.06]">
               <div className="overflow-hidden rounded-[calc(1rem-0.375rem)]">
                 {/* Paneles apilados: solo cambia la opacidad, así el fundido no mueve el layout */}

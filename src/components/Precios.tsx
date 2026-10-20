@@ -1,26 +1,26 @@
-import LogoWhatsApp from '../LogoWhatsApp';
+import LogoWhatsApp from './LogoWhatsApp';
 import { formatCLP, getService, pricing, type PricingItem } from '@/data/pricing';
 import { whatsappUrl } from '@/lib/site';
 import { Money } from '@/lib/money';
-import { BotonWhatsApp, IconoAnidado } from './comun';
+import { BotonWhatsApp, IconoAnidado } from './piezas';
 
 /*
- * Precios B: carta de precios. Intro fija a la izquierda; a la derecha cada servicio es una fila
+ * Precios: carta de precios. Intro fija a la izquierda; a la derecha cada servicio es una fila
  * tipográfica (nombre grande, qué incluye, plazo y monto) con su botón para cotizarlo.
  */
 
 const cotizar = (s: PricingItem) => whatsappUrl(`Hola, vengo desde el sitio de CiberByte. Quiero cotizar: ${s.name}.`);
 
-export default function PreciosB() {
+export default function Precios() {
   const filas = pricing.items.filter((i) => i.kind !== 'presencial');
   const pc = getService('soporte-pc');
 
   return (
-    <section aria-labelledby="precios-b-titulo" className="bg-niebla py-24 text-tinta lg:py-36">
+    <section id="precios" aria-labelledby="precios-titulo" className="bg-niebla py-24 text-tinta lg:py-36">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
-            <h2 id="precios-b-titulo" className="font-display text-5xl font-extrabold leading-[0.95] tracking-[-0.03em] sm:text-6xl">
+            <h2 id="precios-titulo" className="font-display text-5xl font-extrabold leading-[0.95] tracking-[-0.03em] sm:text-6xl">
               Precios
             </h2>
             <p className="mt-6 max-w-sm text-lg leading-relaxed text-tinta/70">{pricing.ivaNote}</p>

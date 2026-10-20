@@ -1,5 +1,6 @@
+// Piezas compartidas de las secciones de proyectos y precios.
 import type { ReactNode } from 'react';
-import LogoWhatsApp from '../LogoWhatsApp';
+import LogoWhatsApp from './LogoWhatsApp';
 import type { RealProject } from '@/data/projects';
 
 /** Flecha diagonal de línea fina (1.5), para links y botones. */
@@ -31,18 +32,6 @@ export function BotonWhatsApp({ href, children, className = '' }: { href: string
       <span className="flex-1 text-left">{children}</span>
       <IconoAnidado className="bg-papel/15" />
     </a>
-  );
-}
-
-/** Rótulo de cada propuesta del laboratorio. */
-export function Rotulo({ nombre, descripcion }: { nombre: string; descripcion: string }) {
-  return (
-    <div className="border-y border-tinta/15 bg-tinta text-papel">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-baseline gap-x-4 gap-y-1 px-4 py-4 sm:px-6 lg:px-8">
-        <p className="font-display text-xl font-extrabold">{nombre}</p>
-        <p className="text-sm text-papel/75">{descripcion}</p>
-      </div>
-    </div>
   );
 }
 

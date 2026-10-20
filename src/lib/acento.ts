@@ -10,7 +10,3 @@ export const ACENTO: Record<Acento, { fondo: string; texto: string }> = {
   ascensor: { fondo: 'bg-ascensor', texto: 'text-papel' },
   verde: { fondo: 'bg-verde-cerro', texto: 'text-papel' },
 };
-
-/** Calamina corrugada: líneas verticales finas en Tinta sobre el color de la fachada. */
-export const CORRUGADO =
-  'repeating-linear-gradient(90deg, rgb(var(--color-tinta) / 0.1) 0 1.5px, transparent 1.5px 7px)';
