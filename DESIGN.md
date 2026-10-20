@@ -199,8 +199,10 @@ es solo para la zona de Valparaíso y alrededores.
   justificadas.
 - La ilustración ocupa la columna derecha, se apoya en la calle (franja de ancho completo al pie
   del hero) y sigue hasta el borde derecho de la pantalla.
-- En móvil: título, bajada, botón, y la ilustración debajo, de borde a borde, en un recorte más
-  bajo (el ascensor y las terrazas) y simplificado (sin el cerro de atrás, dos cables por tramo).
+- En móvil: título, bajada, botón, y la ilustración debajo, en un recorte más bajo (el ascensor y
+  las terrazas) y simplificado (sin el cerro de atrás, dos cables por tramo). Siempre anclada al
+  borde derecho de la pantalla, sin margen, igual que en escritorio: si el alto no alcanza para el
+  ancho completo, se achica hacia la derecha.
 
 ---
 

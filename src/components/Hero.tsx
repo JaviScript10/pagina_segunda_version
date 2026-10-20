@@ -26,16 +26,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* El cerro se apoya en la calle y sigue hasta el borde derecho de la pantalla */}
-        <div className="-mx-4 sm:mx-0 lg:-mr-8 lg:self-end xl:mr-[calc((80rem-100vw)/2-2rem)]">
+        {/* El cerro se apoya en la calle y sigue hasta el borde derecho de la pantalla, en todos los anchos */}
+        <div className="-mx-4 sm:-mr-6 sm:ml-0 lg:-mr-8 lg:self-end xl:mr-[calc((80rem-100vw)/2-2rem)]">
           {/* Escritorio: el cerro completo. Pantallas chicas: recorte más bajo y simplificado. */}
           <Ilustracion vista={VISTA_COMPLETA} className="hidden lg:block" />
-          {/* Ancho según el alto disponible: 100svh menos header, textos, botones y calle (~31rem) */}
+          {/* Ancho según el alto disponible: 100svh menos header, textos, el botón y la calle (~28,5rem; el título ocupa más líneas a 360 px) */}
           <Ilustracion
             vista={VISTA_MOVIL}
             simple
-            className="mx-auto lg:hidden"
-            style={{ width: `min(100%, 42rem, calc((100svh - 31rem) * ${VISTA_MOVIL.w / VISTA_MOVIL.h}))` }}
+            className="ml-auto lg:hidden"
+            style={{ width: `min(100%, 42rem, calc((100svh - 28.5rem) * ${VISTA_MOVIL.w / VISTA_MOVIL.h}))` }}
           />
         </div>
       </div>
