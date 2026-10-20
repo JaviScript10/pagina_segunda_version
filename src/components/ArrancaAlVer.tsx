@@ -5,6 +5,8 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 /**
  * Contenedor que marca data-en-pantalla cuando entra en pantalla (una sola vez).
  * El CSS deja la animación en pausa hasta ese momento, así arranca cuando se ve y no al cargar.
+ * Ojo: este contenedor no debe animarse. Si lleva el transform de la animación, el observador mide
+ * la posición desplazada (fuera de la ventana) y en pantallas grandes nunca llega al umbral.
  */
 export default function ArrancaAlVer({
   className,
@@ -27,13 +29,16 @@ export default function ArrancaAlVer({
     }
     const io = new IntersectionObserver(
       ([entrada]) => {
-        if (entrada.isIntersecting) {
+        // Que se vea buena parte del recorrido antes de arrancar: la mitad del elemento o, si es
+        // más alto que la ventana, la mitad de la ventana
+        const ventana = entrada.rootBounds?.height ?? window.innerHeight;
+        const suficiente = entrada.intersectionRatio >= 0.5 || entrada.intersectionRect.height >= ventana / 2;
+        if (entrada.isIntersecting && suficiente) {
           setVisto(true);
           io.disconnect();
         }
       },
-      // Que se vea buena parte del recorrido antes de arrancar
-      { threshold: 0.5 }
+      { threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
     io.observe(el);
     return () => io.disconnect();

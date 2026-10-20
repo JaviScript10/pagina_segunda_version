@@ -64,7 +64,7 @@ h4,
     /* En pausa (cabina arriba) hasta que ArrancaAlVer marca que entró en pantalla */
     animation-play-state: paused;
   }
-  .ascensor-cabina[data-en-pantalla] {
+  [data-en-pantalla] > .ascensor-cabina {
     animation-play-state: running;
   }
 }

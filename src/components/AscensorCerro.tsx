@@ -136,13 +136,13 @@ function Cabina() {
 export function CabinaAscensor({ vista = VISTA_COMPLETA }: { vista?: Vista }) {
   const r = recorrido(vista);
   return (
-    <ArrancaAlVer
-      className="ascensor-cabina pointer-events-none absolute inset-0"
-      style={{ ['--sube-x' as string]: r.x, ['--sube-y' as string]: r.y }}
-    >
-      <svg viewBox={viewBox(vista)} className="h-full w-full" aria-hidden="true">
-        <Cabina />
-      </svg>
+    // El observador va en un contenedor quieto; la animación, en la capa de adentro
+    <ArrancaAlVer className="pointer-events-none absolute inset-0">
+      <div className="ascensor-cabina h-full w-full" style={{ ['--sube-x' as string]: r.x, ['--sube-y' as string]: r.y }}>
+        <svg viewBox={viewBox(vista)} className="h-full w-full" aria-hidden="true">
+          <Cabina />
+        </svg>
+      </div>
     </ArrancaAlVer>
   );
 }
