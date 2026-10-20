@@ -1,97 +1,65 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { CONTACT_EMAIL } from '@/lib/site';
+import PaginaLegal, { CorreoContacto, type SeccionLegal } from '@/components/PaginaLegal';
+import { HOSTING_TERM, PAYMENT_TERM } from '@/data/pricing';
 
 export const metadata: Metadata = {
-  title: 'Términos y Condiciones',
+  title: 'Términos y condiciones',
   alternates: { canonical: '/terminos' },
 };
 
-export default function TermsPage() {
-    return (
-        <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-grow">
-                <section className="pt-24 pb-12 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24 bg-white">
-                    <div className="container-custom max-w-4xl">
-                        <div className="text-center mb-12">
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-                                Términos y{' '}
-                                <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-                                    Condiciones
-                                </span>
-                            </h1>
-                            <p className="text-gray-600">Última actualización: Agosto 2026</p>
-                        </div>
+const SECCIONES: SeccionLegal[] = [
+  {
+    titulo: 'Aceptación',
+    contenido: <p>Estos términos aplican a los servicios que ofrezco como CiberByte. Al contratar un proyecto conmigo, los aceptas.</p>,
+  },
+  {
+    titulo: 'Servicios',
+    contenido: (
+      <p>
+        Hago landing pages, sitios corporativos, tiendas online y sistemas o apps a medida. También ofrezco mantención mensual y
+        soporte de PC presencial, solo en Valparaíso y alrededores. Lo que incluye cada proyecto queda por escrito en la propuesta.
+      </p>
+    ),
+  },
+  {
+    titulo: 'Contratación',
+    contenido: (
+      <p>
+        Partimos con una conversación. Después te mando una propuesta con el precio final, el plazo y lo que incluye. El proyecto
+        queda contratado cuando aceptas la propuesta y pagas el primer 50%.
+      </p>
+    ),
+  },
+  {
+    titulo: 'Pagos',
+    contenido: (
+      <p>
+        {PAYMENT_TERM} Si un proyecto necesita otro calendario de pagos, lo dejo escrito en la propuesta. {HOSTING_TERM}
+      </p>
+    ),
+  },
+  {
+    titulo: 'Propiedad intelectual',
+    contenido: <p>Cuando pagas el total, recibes todos los derechos de uso del trabajo entregado, incluidos el código fuente y los diseños.</p>,
+  },
+  {
+    titulo: 'Garantía',
+    contenido: <p>Después de publicar tienes 30 días de garantía: corrijo sin costo los errores técnicos y los ajustes menores.</p>,
+  },
+  {
+    titulo: 'Responsabilidad',
+    contenido: <p>No respondo por daños indirectos o consecuentes. Mi responsabilidad máxima es el monto total que pagaste por el servicio.</p>,
+  },
+  {
+    titulo: 'Contacto',
+    contenido: (
+      <p>
+        Si tienes dudas sobre estos términos, escríbeme a <CorreoContacto />.
+      </p>
+    ),
+  },
+];
 
-                        <div className="space-y-8 text-gray-700">
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Aceptación de Términos</h2>
-                                <p className="leading-relaxed">
-                                    Al acceder y utilizar los servicios de CiberByte, usted acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguna parte, no debe utilizar nuestros servicios.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Descripción de Servicios</h2>
-                                <p className="leading-relaxed">
-                                    CiberByte ofrece servicios de desarrollo web, aplicaciones móviles, diseño UX/UI y soluciones digitales personalizadas. Los servicios específicos se detallan en cada propuesta comercial.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Proceso de Contratación</h2>
-                                <p className="leading-relaxed">
-                                    El proceso se inicia con una consulta inicial, seguida de una propuesta comercial detallada. El proyecto se considera contratado una vez que el cliente acepta la propuesta y realiza el pago inicial.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Pagos y Facturación</h2>
-                                <p className="leading-relaxed">
-                                    Los pagos se realizan según el calendario acordado. Generalmente: 50% al inicio y 50% al finalizar, pero puede variar según el proyecto.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Propiedad Intelectual</h2>
-                                <p className="leading-relaxed">
-                                    Una vez completado el pago total, el cliente recibe todos los derechos de uso del trabajo entregado, incluyendo código fuente y diseños.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Garantía y Soporte</h2>
-                                <p className="leading-relaxed">
-                                    Ofrecemos 30 días de garantía después del lanzamiento, cubriendo errores técnicos y ajustes menores sin costo adicional.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Limitación de Responsabilidad</h2>
-                                <p className="leading-relaxed">
-                                    CiberByte no será responsable por daños indirectos o consecuentes. Nuestra responsabilidad máxima se limita al monto total pagado por el servicio.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Contacto</h2>
-                                <p className="leading-relaxed">
-                                    Para consultas sobre estos términos: <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-600 font-semibold">{CONTACT_EMAIL}</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-16 text-center">
-                            <a href="/" className="inline-block bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-8 rounded-lg hover:scale-105 transition-transform">
-                                Volver al Inicio
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
-    );
+export default function TerminosPage() {
+  return <PaginaLegal titulo="Términos y condiciones" bajada="Cómo trabajo con mis clientes, por escrito." secciones={SECCIONES} />;
 }
