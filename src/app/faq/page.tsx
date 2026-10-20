@@ -31,7 +31,7 @@ export default function FAQPage() {
         },
         {
             question: '¿El sitio web será responsive (adaptable a móviles)?',
-            answer: 'Absolutamente. Todos nuestros proyectos son 100% responsive y se adaptan perfectamente a cualquier dispositivo: móviles, tablets y computadores. Probamos en múltiples dispositivos antes de entregar.',
+            answer: 'Sí. Cada sitio se diseña para el celular desde el principio y lo pruebo en celular, tablet y computador antes de entregarlo.',
         },
         {
             question: '¿Puedo actualizar el contenido yo mismo después?',
@@ -47,7 +47,7 @@ export default function FAQPage() {
         },
         {
             question: '¿Trabajan con empresas fuera de Chile?',
-            answer: 'Sí, trabajamos con clientes en toda Latinoamérica y el mundo. Usamos herramientas de comunicación remota para coordinarnos eficientemente sin importar tu ubicación.',
+            answer: 'Trabajo desde Valparaíso, de forma remota, con clientes de todo Chile. Nos coordinamos por WhatsApp y videollamada.',
         },
         {
             question: '¿Ofrecen garantía?',
