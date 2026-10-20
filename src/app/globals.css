@@ -14,21 +14,6 @@
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
-  /* Paleta antigua: se elimina cuando los componentes migren a los tokens. */
-  --primary: #0066ff;
-  --primary-dark: #0052cc;
-  --accent: #0ea5e9;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --bg-white: #ffffff;
-  --bg-light: #f8fafc;
-  --bg-lighter: #fafbfc;
-  --bg-subtle: #f7f9fb;
-  --border-light: #e2e8f0;
-  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 * {
@@ -45,8 +30,8 @@ html {
 
 body {
   font-family: var(--font-atkinson), system-ui, sans-serif;
-  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 50%, #fafbfc 100%);
-  color: var(--text-primary);
+  background: rgb(var(--color-niebla));
+  color: rgb(var(--color-tinta));
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -103,41 +88,6 @@ h4,
   .text-balance {
     text-wrap: balance;
   }
-
-  .container-custom {
-    width: 100%;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .container-custom {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container-custom {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-
-  /* Patrón de puntos sutil para fondos */
-  .bg-dots-pattern {
-    background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .bg-grid-pattern {
-    background-image: linear-gradient(to right, #f3f4f6 1px, transparent 1px),
-      linear-gradient(to bottom, #f3f4f6 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
 }
 
 /* Componentes reutilizables */
@@ -149,22 +99,6 @@ h4,
   }
   .btn-whatsapp-inverso {
     @apply btn-whatsapp bg-papel text-tinta hover:bg-papel/90 focus-visible:outline-calamina;
-  }
-
-  .btn-primary {
-    @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:bg-primary-700 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-  }
-
-  .btn-secondary {
-    @apply px-6 py-3 bg-white text-primary-600 font-medium rounded-lg border-2 border-primary-600 shadow-md hover:shadow-lg transition-all duration-200 hover:bg-primary-50 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-  }
-
-  .section-padding {
-    @apply py-12 md:py-20 lg:py-24;
-  }
-
-  .card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100;
   }
 }
 
@@ -180,107 +114,4 @@ img {
   html {
     scroll-behavior: smooth;
   }
-}
-
-/* Accesibilidad */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* Loading states */
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.loading {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Fix de contraste para gradientes en títulos */
-.bg-gradient-to-r.bg-clip-text {
-  /* Solo aplicar a elementos con ambas clases */
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Mejorar contraste de gradientes solo en textos */
-h1 .bg-clip-text,
-h2 .bg-clip-text,
-h3 .bg-clip-text {
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  background-image: linear-gradient(to right, #0052cc, #0ea5e9) !important;
-}
-
-/* ============================================
-   AGREGAR ESTAS ANIMACIONES A globals.css
-   ============================================ */
-
-/* Fade in para overlay del modal */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.2s ease-out;
-}
-
-/* Slide up para contenido del modal */
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-slide-up {
-  animation: slide-up 0.3s ease-out;
-}
-
-/* OPCIONAL: Si ya tienes animate-slide-up para WhatsApp,
-   puedes usar este nombre alternativo */
-@keyframes modalSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-modal-up {
-  animation: modalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

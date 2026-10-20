@@ -20,7 +20,7 @@ const enlace =
 
 export default function Footer() {
   return (
-    <footer className="bg-niebla text-tinta">
+    <footer className="border-t border-tinta/15 bg-niebla text-tinta">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-12">
           <div className="col-span-2 lg:col-span-4">
