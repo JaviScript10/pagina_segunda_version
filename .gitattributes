@@ -1,0 +1,2 @@
+# Archivos de marca oficiales: se guardan byte a byte, sin convertir finales de línea
+public/marcas/** -text

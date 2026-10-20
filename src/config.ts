@@ -1,1 +1,0 @@
-export const WA_PHONE = "56934341783"; // NÚMERO DE WHATSAPP

@@ -1,39 +1,22 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
+
+const routes: { path: string; changeFrequency: 'weekly' | 'monthly' | 'yearly'; priority: number }[] = [
+  { path: '/', changeFrequency: 'weekly', priority: 1 },
+  { path: '/proyectos', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/faq', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/terminos', changeFrequency: 'yearly', priority: 0.3 },
+  { path: '/privacidad', changeFrequency: 'yearly', priority: 0.3 },
+  { path: '/cookies', changeFrequency: 'yearly', priority: 0.3 },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://ciberbyte.cl';
-  const currentDate = new Date().toISOString();
+  const lastModified = new Date();
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/#servicios`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#proyectos`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#nosotros`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/#contacto`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-  ];
+  return routes.map(({ path, changeFrequency, priority }) => ({
+    url: path === '/' ? SITE_URL : `${SITE_URL}${path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+  }));
 }

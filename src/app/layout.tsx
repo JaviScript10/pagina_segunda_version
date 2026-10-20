@@ -1,12 +1,25 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { Inter } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/next'; 
+import { Archivo, Atkinson_Hyperlegible } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SITE_URL } from '@/lib/site';
+import ChatDock from '@/components/ChatDock';
 
-const inter = Inter({
+// Títulos: Archivo variable con eje de ancho (rotulación de micros y ascensores).
+// Solo el subset latin: cubre el español (á, ñ, ¿, ¡) y evita precargar archivos que no se usan.
+const archivo = Archivo({
   subsets: ['latin'],
+  axes: ['wdth'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-archivo',
+});
+
+// Texto: Atkinson Hyperlegible 400/700
+const atkinson = Atkinson_Hyperlegible({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-atkinson',
 });
 
 export const viewport: Viewport = {
@@ -14,28 +27,25 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: '#ffffff',
+  themeColor: '#E9EEF1',
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ciberbyte.cl'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'CiberByte - Soluciones Digitales Profesionales en Chile',
+    default: 'CiberByte: páginas web que trabajan por tu negocio',
     template: '%s | CiberByte',
   },
   description:
-    'Desarrollo web profesional en Chile: Landing pages, sitios corporativos, E-commerce, Apps móviles y soluciones digitales. Diseño moderno, carga ultra-rápida y SEO optimizado.',
+    'Sitios web, tiendas online y sistemas a medida, desde Valparaíso para todo Chile. Hablas directo con quien los construye, con precios claros desde el inicio.',
   keywords: [
     'desarrollo web chile',
-    'páginas web',
-    'diseño web',
-    'e-commerce',
-    'apps móviles',
-    'landing pages',
-    'sitios corporativos',
-    'desarrollo software',
+    'páginas web valparaíso',
+    'landing page',
+    'sitio corporativo',
+    'tienda online',
+    'sistema a medida',
     'ciberbyte',
-    'soluciones digitales',
   ],
   authors: [{ name: 'CiberByte' }],
   creator: 'CiberByte',
@@ -51,44 +61,38 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://ciberbyte.cl',
-  },
   openGraph: {
     type: 'website',
     locale: 'es_CL',
-    url: 'https://ciberbyte.cl',
+    url: SITE_URL,
     siteName: 'CiberByte',
-    title: 'CiberByte - Soluciones Digitales Profesionales',
-    description:
-      'Desarrollo web, apps y e-commerce en Chile. Diseño moderno, carga rápida y optimización SEO.',
+    title: 'CiberByte: páginas web que trabajan por tu negocio',
+    description: 'Desarrollo a medida desde Valparaíso, para todo Chile. Sin plantillas y sin intermediarios.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image-v2.jpg',
         width: 1200,
         height: 630,
-        alt: 'CiberByte - Soluciones Digitales',
+        alt: 'CiberByte. Páginas web que trabajan por tu negocio. Ilustración de un cerro de Valparaíso.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CiberByte - Soluciones Digitales Profesionales',
-    description: 'Desarrollo web, apps y e-commerce en Chile.',
-    images: ['/og-image.jpg'],
+    title: 'CiberByte: páginas web que trabajan por tu negocio',
+    description: 'Desarrollo a medida desde Valparaíso, para todo Chile. Sin plantillas y sin intermediarios.',
+    images: ['/og-image-v2.jpg'],
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-v2.ico', sizes: '48x48' },
+      { url: '/favicon-v2.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32-v2.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16-v2.png', sizes: '16x16', type: 'image/png' },
     ],
-    apple: [
-      { url: '/apple-touch-icon.png' },
-    ],
+    apple: [{ url: '/apple-touch-icon-v2.png', sizes: '180x180' }],
   },
-  manifest: '/site.webmanifest',
+  manifest: '/site-v2.webmanifest',
 };
 
 export default function RootLayout({
@@ -97,9 +101,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-CL" className={inter.variable}>
+    <html lang="es-CL" className={`${archivo.variable} ${atkinson.variable}`}>
       <body className="antialiased">
         {children}
+        <ChatDock />
         <Analytics /> {/* <-- 2. Coloca el componente de analíticas aquí */}
       </body>
     </html>

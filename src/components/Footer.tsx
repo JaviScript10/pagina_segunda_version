@@ -1,216 +1,90 @@
-'use client';
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
+import LogoWhatsApp from './LogoWhatsApp';
 
-import { useState } from 'react';
-import { FaLaptopCode, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
-import Logo from './Logo';
+const SITIO = [
+  { label: 'Proyectos', href: '/proyectos' },
+  { label: 'Precios', href: '/#precios' },
+  { label: 'Contacto', href: '/#contacto' },
+  { label: 'Preguntas frecuentes', href: '/faq' },
+];
+
+const LEGAL = [
+  { label: 'Términos y condiciones', href: '/terminos' },
+  { label: 'Política de privacidad', href: '/privacidad' },
+  { label: 'Política de cookies', href: '/cookies' },
+];
+
+const enlace =
+  'rounded-sm transition-colors duration-150 ease-out hover:text-cerro hover:underline hover:decoration-2 hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro';
 
 export default function Footer() {
-  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
-  const currentYear = new Date().getFullYear();
-
-  const companyLinks = [
-    { label: 'Sobre Nosotros', href: '#nosotros' },
-    { label: 'Nuestra Historia', href: '#', action: 'modal' },
-    { label: 'Proyectos', href: '#proyectos' },
-    { label: 'Preguntas Frecuentes', href: '/faq' },
-    { label: 'Contacto', href: '#contacto' },
-  ];
-
-  const legalLinks = [
-    { label: 'Términos y Condiciones', href: '/terminos' },
-    { label: 'Política de Privacidad', href: '/privacidad' },
-    { label: 'Política de Cookies', href: '/cookies' },
-  ];
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, link: any) => {
-    if (link.action === 'modal') {
-      e.preventDefault();
-      setIsHistoryModalOpen(true);
-    }
-  };
-
   return (
-    <>
-      <footer className="bg-gray-950 text-white border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          
-          {/* Main Footer Content - 4 Columnas balanceadas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            
-            {/* 1. Brand Column & Info */}
-            <div className="lg:col-span-2 space-y-4">
-              <div className="mb-2">
-                <Logo variant="full" size="md" theme="dark" />
-              </div>
-              <p className="text-gray-400 max-w-sm leading-relaxed text-sm">
-                Transformamos ideas en experiencias digitales excepcionales. Desarrollo web, apps móviles y soluciones tecnológicas que impulsan tu negocio.
-              </p>
-              
-              {/* Datos de contacto movidos al Footer */}
-              <div className="pt-2 space-y-2.5 text-sm text-gray-300">
-                <a href="mailto:contacto@ciberbyte.cl" className="flex items-center gap-2.5 hover:text-primary-400 transition-colors w-fit">
-                  <FaEnvelope className="text-primary-500 text-xs" />
-                  <span>contacto@ciberbyte.cl</span>
-                </a>
-                <a href="https://wa.me/56934341783" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 hover:text-emerald-400 transition-colors w-fit">
-                  <FaWhatsapp className="text-emerald-500 text-sm" />
-                  <span>+56 9 3434 1783</span>
-                </a>
-                <div className="flex items-center gap-2.5 text-gray-400">
-                  <FaMapMarkerAlt className="text-primary-500 text-xs" />
-                  <span>Valparaíso, Chile</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 2. Company Links */}
-            <div>
-              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white mb-4">Empresa</h3>
-              <ul className="space-y-2.5">
-                {companyLinks.map((link, index) => (
-                  <li key={index}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link)}
-                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 cursor-pointer text-sm"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* 3. Legal Links */}
-            <div>
-              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white mb-4">Legal</h3>
-              <ul className="space-y-2.5">
-                {legalLinks.map((link, index) => (
-                  <li key={index}>
-                    <a
-                      href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200 text-sm"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-gray-500 text-xs sm:text-sm">
-              © {currentYear} CiberByte. Todos los derechos reservados.
-            </p>
-            <p className="text-gray-400 text-xs sm:text-sm flex items-center space-x-2">
-              <span>Creado con Tecnología y Pasión</span>
-              <FaLaptopCode className="w-4 h-4 text-primary-500" />
+    <footer className="border-t border-tinta/15 bg-niebla text-tinta">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-12">
+          <div className="col-span-2 lg:col-span-4">
+            <a href="/" className={`inline-flex items-center gap-2.5 ${enlace} hover:no-underline`}>
+              <img src="/logo-v2.svg" alt="" className="h-8 w-8" />
+              <span className="font-display text-[1.375rem] font-extrabold tracking-[-0.01em]">CiberByte</span>
+            </a>
+            <p className="mt-4 max-w-xs leading-relaxed text-tinta/70">
+              Sitios web y sistemas a medida, desde Valparaíso para todo Chile.
             </p>
           </div>
 
-        </div>
-      </footer>
+          <nav aria-label="Sitio" className="lg:col-span-2">
+            <h2 className="text-sm font-bold text-tinta/70">Sitio</h2>
+            <ul className="mt-4 space-y-2.5">
+              {SITIO.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className={enlace}>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-      {/* MODAL NUESTRA HISTORIA */}
-      {isHistoryModalOpen && (
-        <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn"
-          onClick={() => setIsHistoryModalOpen(false)}
-        >
-          <div 
-            className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-slide-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between z-10 rounded-t-2xl">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Nuestra Historia
-              </h2>
-              <button
-                onClick={() => setIsHistoryModalOpen(false)}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                aria-label="Cerrar"
-              >
-                <FaTimes className="w-5 h-5 text-gray-600" />
-              </button>
-            </div>
+          <nav aria-label="Legal" className="lg:col-span-3">
+            <h2 className="text-sm font-bold text-tinta/70">Legal</h2>
+            <ul className="mt-4 space-y-2.5">
+              {LEGAL.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className={enlace}>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-            {/* Modal Content */}
-            <div className="p-6 md:p-8">
-              <div className="relative rounded-xl overflow-hidden mb-6 h-48 md:h-64">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: 'url("/historia.jpg")',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              </div>
-
-              <div className="space-y-4 text-gray-700 leading-relaxed text-sm sm:text-base">
-                <p>
-                  CiberByte nació de la pasión por crear soluciones digitales que realmente marquen la diferencia. Sabemos que cada proyecto es único y merece atención personalizada.
-                </p>
-                <p>
-                  Trabajamos con startups, PyMEs y empresas establecidas, ayudándolas a establecer o mejorar su presencia en línea con tecnología de punta y diseño excepcional.
-                </p>
-                <p>
-                  Nuestro enfoque combina creatividad, tecnología y estrategia para entregar productos que no solo se ven bien, sino que funcionan perfectamente y generan resultados medibles.
-                </p>
-
-                {/* Stats mini */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-gray-200">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">50+</div>
-                    <div className="text-xs text-gray-600">Proyectos</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">40+</div>
-                    <div className="text-xs text-gray-600">Clientes</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">5+</div>
-                    <div className="text-xs text-gray-600">Años</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">100%</div>
-                    <div className="text-xs text-gray-600">Entrega</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={() => {
-                    setIsHistoryModalOpen(false);
-                    setTimeout(() => {
-                      const element = document.querySelector('#contacto');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }, 300);
-                  }}
-                  className="bg-primary-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-primary-700 transition-all shadow-md text-sm"
+          <div className="col-span-2 lg:col-span-3">
+            <h2 className="text-sm font-bold text-tinta/70">Contacto</h2>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <a href={`mailto:${CONTACT_EMAIL}`} className={enlace}>
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={whatsappUrl('Hola, vengo desde el sitio de CiberByte.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 ${enlace}`}
                 >
-                  Trabajemos Juntos
-                </button>
-                <button
-                  onClick={() => setIsHistoryModalOpen(false)}
-                  className="bg-gray-100 text-gray-900 font-semibold py-3 px-8 rounded-xl hover:bg-gray-200 transition-all text-sm"
-                >
-                  Cerrar
-                </button>
-              </div>
-            </div>
+                  <LogoWhatsApp size={16} />
+                  <span className="sr-only">WhatsApp:</span>
+                  {WHATSAPP_DISPLAY}
+                </a>
+              </li>
+              <li className="text-tinta/70">Valparaíso, Chile</li>
+            </ul>
           </div>
         </div>
-      )}
-    </>
+
+        <p className="mt-16 border-t border-tinta/15 pt-6 text-sm text-tinta/70">© {new Date().getFullYear()} CiberByte</p>
+      </div>
+    </footer>
   );
 }

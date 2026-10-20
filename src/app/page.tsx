@@ -1,12 +1,16 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
-import Portfolio from '@/components/Portfolio';
-import About from '@/components/About';
-import Contact from '@/components/Contact';
+import Precios from '@/components/Precios';
+import Proyectos from '@/components/Proyectos';
+import ComoTrabajo from '@/components/ComoTrabajo';
+import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
-//import ChatDock from '@/components/ChatDock';
+
+export const metadata: Metadata = {
+  title: { absolute: 'CiberByte: páginas web que trabajan por tu negocio' },
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
   return (
@@ -14,14 +18,12 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Services />
-        <Portfolio />
-        <About />
-        <Contact />
+        <Proyectos />
+        <Precios />
+        <ComoTrabajo />
+        <Contacto />
       </main>
       <Footer />
-      <WhatsAppButton />
-
     </>
   );
 }

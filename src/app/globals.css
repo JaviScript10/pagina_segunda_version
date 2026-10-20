@@ -3,20 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --primary: #0066ff;
-  --primary-dark: #0052cc;
-  --accent: #0ea5e9;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --bg-white: #ffffff;
-  --bg-light: #f8fafc;
-  --bg-lighter: #fafbfc;
-  --bg-subtle: #f7f9fb;
-  --border-light: #e2e8f0;
-  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  /* Tokens del brief (DESIGN.md §4). Canales RGB para que Tailwind admita opacidad (bg-tinta/80). */
+  --color-niebla: 233 238 241;   /* #E9EEF1 fondo general */
+  --color-papel: 255 255 255;    /* #FFFFFF superficies */
+  --color-tinta: 23 32 51;       /* #172033 texto, bordes fuertes */
+  --color-calamina: 242 184 7;   /* #F2B807 solo WhatsApp; texto encima en tinta */
+  --color-cerro: 31 95 168;      /* #1F5FA8 links e interactivos secundarios */
+  --color-ascensor: 195 60 46;   /* #C33C2E un detalle por sección, nunca fondo grande */
+  --color-verde-cerro: 74 117 88; /* #4A7558 verde sobrio: cerro del hero y acento de QEPD (5,3:1 con Papel) */
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
 }
 
 * {
@@ -26,29 +23,64 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 15px; /* <--- Agrega esta línea para frenar justo debajo del header fijo */
+  scroll-padding-top: 5rem; /* altura del header fijo (h-20) */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
-  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 50%, #fafbfc 100%);
-  color: var(--text-primary);
+  font-family: var(--font-atkinson), system-ui, sans-serif;
+  background: rgb(var(--color-niebla));
+  color: rgb(var(--color-tinta));
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* Optimización de fuentes - preload crítico */
-@layer base {
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400 700;
-    font-display: swap;
-    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Títulos en Archivo expandido (eje wdth 62–125) */
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-stretch: 112%;
+}
+
+/* Montos de precio: siempre en Archivo (lib/money.tsx), con cifras tabulares */
+.money {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Ascensor del hero (AscensorCerro.tsx): el único momento orquestado del sitio.
+   La cabina baja una vez desde la estación de arriba, cuando entra en pantalla, y se queda abajo.
+   transform sobre una capa HTML: corre en el compositor. Con reduced motion, queda quieta abajo. */
+@media (prefers-reduced-motion: no-preference) {
+  .ascensor-cabina {
+    /* easeInOutSine (easings.net): arranque y frenado suaves, como un cable que tira */
+    animation: ascensor-baja 3000ms cubic-bezier(0.37, 0, 0.63, 1) 400ms both;
+    /* En pausa (cabina arriba) hasta que ArrancaAlVer marca que entró en pantalla */
+    animation-play-state: paused;
   }
+  [data-en-pantalla] > .ascensor-cabina {
+    animation-play-state: running;
+  }
+}
+
+@keyframes ascensor-baja {
+  from {
+    transform: translate(var(--sube-x), var(--sube-y));
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+::selection {
+  background: rgb(var(--color-cerro));
+  color: rgb(var(--color-papel));
 }
 
 /* Utilidades custom */
@@ -56,59 +88,21 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-
-  .container-custom {
-    width: 100%;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .container-custom {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container-custom {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-
-  /* Patrón de puntos sutil para fondos */
-  .bg-dots-pattern {
-    background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .bg-grid-pattern {
-    background-image: linear-gradient(to right, #f3f4f6 1px, transparent 1px),
-      linear-gradient(to bottom, #f3f4f6 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
 }
 
 /* Componentes reutilizables */
 @layer components {
-  .btn-primary {
-    @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:bg-primary-700 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  /* Botón de WhatsApp: fondo Tinta, texto blanco y el logo oficial a color (LogoWhatsApp), sin borde.
+     El tamaño va aparte. Sobre fondos oscuros: .btn-whatsapp-inverso (fondo blanco, texto Tinta). */
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-lg bg-tinta font-bold text-papel transition-[transform,background-color] duration-150 ease-out hover:bg-tinta/90 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro motion-reduce:transition-none;
   }
-
-  .btn-secondary {
-    @apply px-6 py-3 bg-white text-primary-600 font-medium rounded-lg border-2 border-primary-600 shadow-md hover:shadow-lg transition-all duration-200 hover:bg-primary-50 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  .btn-whatsapp-inverso {
+    @apply btn-whatsapp bg-papel text-tinta hover:bg-papel/90 focus-visible:outline-calamina;
   }
-
-  .section-padding {
-    @apply py-12 md:py-20 lg:py-24;
-  }
-
-  .card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100;
+  /* Botón principal que no es de WhatsApp ("Ver proyectos", "Ir a contacto"): mismo Tinta, sin logo */
+  .btn-principal {
+    @apply inline-flex items-center justify-center rounded-lg bg-tinta font-bold text-papel transition-[transform,background-color] duration-150 ease-out hover:bg-tinta/90 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro;
   }
 }
 
@@ -126,105 +120,14 @@ img {
   }
 }
 
-/* Accesibilidad */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* Loading states */
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-
+/* Reduced motion: fuera las transiciones y animaciones no esenciales (fundidos, desplazamientos al pasar el mouse).
+   La cabina del ascensor ya queda quieta abajo por su propia regla. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.loading {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Fix de contraste para gradientes en títulos */
-.bg-gradient-to-r.bg-clip-text {
-  /* Solo aplicar a elementos con ambas clases */
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Mejorar contraste de gradientes solo en textos */
-h1 .bg-clip-text,
-h2 .bg-clip-text,
-h3 .bg-clip-text {
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  background-image: linear-gradient(to right, #0052cc, #0ea5e9) !important;
-}
-
-/* ============================================
-   AGREGAR ESTAS ANIMACIONES A globals.css
-   ============================================ */
-
-/* Fade in para overlay del modal */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.2s ease-out;
-}
-
-/* Slide up para contenido del modal */
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-slide-up {
-  animation: slide-up 0.3s ease-out;
-}
-
-/* OPCIONAL: Si ya tienes animate-slide-up para WhatsApp,
-   puedes usar este nombre alternativo */
-@keyframes modalSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-modal-up {
-  animation: modalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

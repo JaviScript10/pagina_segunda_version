@@ -1,72 +1,86 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+import PaginaLegal, { CorreoContacto, type SeccionLegal } from '@/components/PaginaLegal';
 
-export default function PrivacyPage() {
-    return (
-        <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-grow">
-                <section className="pt-24 pb-12 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24 bg-white">
-                    <div className="container-custom max-w-4xl">
-                        <div className="text-center mb-12">
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-                                Política de{' '}
-                                <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-                                    Privacidad
-                                </span>
-                            </h1>
-                            <p className="text-gray-600">Última actualización: Agosto 2026</p>
-                        </div>
+export const metadata: Metadata = {
+  title: 'Política de privacidad',
+  alternates: { canonical: '/privacidad' },
+};
 
-                        <div className="space-y-8 text-gray-700">
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Información que Recopilamos</h2>
-                                <p className="leading-relaxed mb-3">
-                                    En CiberByte recopilamos información que usted nos proporciona directamente cuando completa nuestro formulario de contacto, solicita una cotización o se comunica con nosotros.
-                                </p>
-                                <p className="leading-relaxed">Esta información puede incluir: nombre, email, teléfono, empresa y detalles sobre su proyecto.</p>
-                            </div>
+// Solo lo que el sitio hace de verdad: Vercel Analytics sin cookies y botones que abren WhatsApp
+const SECCIONES: SeccionLegal[] = [
+  {
+    titulo: 'Quién responde',
+    contenido: (
+      <p>
+        Este sitio es de CiberByte y yo respondo por él. Cualquier consulta sobre tus datos, escríbeme a <CorreoContacto />.
+      </p>
+    ),
+  },
+  {
+    titulo: 'Lo que el sitio no guarda',
+    contenido: (
+      <>
+        <p>El sitio no tiene cuentas de usuario ni formularios que guarden datos.</p>
+        <p>
+          El chat y los botones de WhatsApp solo arman un mensaje y abren WhatsApp. Lo que escribes ahí no pasa por ningún servidor
+          mío ni queda guardado en el sitio: se envía recién cuando tú lo mandas desde WhatsApp.
+        </p>
+      </>
+    ),
+  },
+  {
+    titulo: 'Si me escribes',
+    contenido: (
+      <>
+        <p>
+          Si me escribes por WhatsApp o por correo, recibo lo que me mandas: tu nombre, tu número o tu correo y lo que me cuentes de
+          tu proyecto. Lo uso solo para responderte, cotizar y hacer el trabajo si me lo encargas. No lo vendo ni lo comparto.
+        </p>
+        <p>WhatsApp es un servicio de Meta y se rige por su propia política de privacidad.</p>
+      </>
+    ),
+  },
+  {
+    titulo: 'Estadísticas de visitas',
+    contenido: (
+      <>
+        <p>
+          Para saber cuántas personas visitan el sitio uso Vercel Web Analytics, que no usa cookies. Registra datos generales de
+          cada visita: la página, el sitio desde el que llegaste, la ubicación aproximada (país, región y ciudad), el sistema
+          operativo, el navegador y el tipo de dispositivo.
+        </p>
+        <p>
+          No guarda tu dirección IP ni te identifica. Para contar visitas usa un identificador calculado a partir de la conexión,
+          que se descarta a las 24 horas. Yo solo veo totales.
+        </p>
+      </>
+    ),
+  },
+  {
+    titulo: 'Alojamiento',
+    contenido: (
+      <p>
+        El sitio está alojado en Vercel. Como cualquier servidor, procesa datos técnicos de la conexión, como tu dirección IP, para
+        poder mostrarte las páginas.
+      </p>
+    ),
+  },
+  {
+    titulo: 'Tus derechos',
+    contenido: (
+      <p>
+        Puedes pedirme ver, corregir o borrar lo que me hayas enviado por WhatsApp o por correo. Escríbeme a <CorreoContacto />.
+      </p>
+    ),
+  },
+];
 
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Cómo Usamos su Información</h2>
-                                <p className="leading-relaxed">Utilizamos su información para responder consultas, proporcionar cotizaciones personalizadas, ejecutar proyectos contratados y mejorar nuestros servicios.</p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Protección de Datos</h2>
-                                <p className="leading-relaxed">Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger su información personal contra acceso no autorizado, alteración o destrucción.</p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Compartir Información</h2>
-                                <p className="leading-relaxed">No vendemos, alquilamos ni compartimos su información personal con terceros para fines de marketing sin su consentimiento explícito.</p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Sus Derechos</h2>
-                                <p className="leading-relaxed mb-3">Usted tiene derecho a acceder, corregir, eliminar u oponerse al procesamiento de su información personal en cualquier momento.</p>
-                                <p className="leading-relaxed">
-                                    Para ejercer estos derechos: <a href="mailto:contacto@ciberbyte.cl" className="text-primary-600 font-semibold">contacto@ciberbyte.cl</a>
-                                </p>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Contacto</h2>
-                                <p className="leading-relaxed">
-                                    Si tiene preguntas sobre esta política de privacidad: <a href="mailto:contacto@ciberbyte.cl" className="text-primary-600 font-semibold">contacto@ciberbyte.cl</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-16 text-center">
-                            <a href="/" className="inline-block bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold py-4 px-8 rounded-lg hover:scale-105 transition-transform">
-                                Volver al Inicio
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
-    );
+export default function PrivacidadPage() {
+  return (
+    <PaginaLegal
+      titulo="Política de privacidad"
+      bajada="Qué datos recibe este sitio y qué hago con ellos. La versión corta: casi ninguno."
+      secciones={SECCIONES}
+    />
+  );
 }
