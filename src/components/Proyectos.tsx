@@ -24,6 +24,7 @@ export default function Proyectos({
   nivel?: 'h1' | 'h2';
 }) {
   const Titulo = nivel;
+  const Subtitulo = nivel === 'h1' ? 'h2' : 'h3';
   const proyectos = slugs.map((s) => realProjects.find((p) => p.slug === s)).filter((p): p is RealProject => !!p);
   const [activo, setActivo] = useState(0);
   const p = proyectos[activo];
@@ -59,15 +60,15 @@ export default function Proyectos({
                     <span>
                       <span
                         className={`block font-display text-[2.5rem] font-extrabold leading-none tracking-[-0.02em] transition-colors duration-200 ease-out ${
-                          esActivo ? 'text-tinta' : 'text-tinta/30 group-hover:text-tinta/60'
+                          esActivo ? 'text-tinta' : 'text-tinta/55 group-hover:text-tinta/75'
                         }`}
                       >
                         {q.title}
                       </span>
-                      <span className="mt-2.5 flex items-center gap-2 text-sm text-tinta/60">
+                      <span className="mt-2.5 flex items-center gap-2 text-sm text-tinta/70">
                         <span aria-hidden="true" className={`h-2.5 w-2.5 rounded-sm ${ACENTO[q.accent].fondo}`} />
                         {q.category}
-                        {lugar(q) && <span className="text-tinta/45">{lugar(q)}</span>}
+                        {lugar(q) && <span className="text-tinta/70">{lugar(q)}</span>}
                       </span>
                     </span>
                     <span
@@ -95,7 +96,7 @@ export default function Proyectos({
                       aria-hidden={i !== activo}
                       className={`absolute inset-0 ${ACENTO[q.accent].fondo} transition-opacity duration-300 ease-out ${i === activo ? 'opacity-100' : 'opacity-0'}`}
                     >
-                      <Vista p={q} />
+                      <Vista p={q} prioridad={nivel === 'h1' && i === 0} />
                     </div>
                   ))}
                 </div>
@@ -107,17 +108,17 @@ export default function Proyectos({
 
         {/* Móvil y tablet: cada proyecto completo */}
         <ol className="mt-12 space-y-14 lg:hidden">
-          {proyectos.map((q) => (
+          {proyectos.map((q, i) => (
             <li key={q.slug}>
-              <p className="flex items-center gap-2 text-sm text-tinta/60">
+              <p className="flex items-center gap-2 text-sm text-tinta/70">
                 <span aria-hidden="true" className={`h-2.5 w-2.5 rounded-sm ${ACENTO[q.accent].fondo}`} />
                 {q.category}
               </p>
-              <h3 className="mt-2 font-display text-[2.25rem] font-extrabold leading-none tracking-[-0.02em]">{q.title}</h3>
+              <Subtitulo className="mt-2 font-display text-[2.25rem] font-extrabold leading-none tracking-[-0.02em]">{q.title}</Subtitulo>
               <div className="mt-5 rounded-2xl bg-papel p-1.5 ring-1 ring-tinta/[0.06]">
                 <div className="overflow-hidden rounded-[calc(1rem-0.375rem)]">
                   <div className={`relative h-[15rem] overflow-hidden sm:h-[22rem] ${ACENTO[q.accent].fondo}`}>
-                    <Vista p={q} />
+                    <Vista p={q} prioridad={nivel === 'h1' && i === 0} />
                   </div>
                   <Ficha p={q} />
                 </div>
@@ -131,14 +132,14 @@ export default function Proyectos({
 }
 
 /** Captura sobre el panel de color: escritorio asomando desde abajo, o el teléfono si es lo mejor. */
-function Vista({ p }: { p: RealProject }) {
+function Vista({ p, prioridad = false }: { p: RealProject; prioridad?: boolean }) {
   const img = p.caseImage;
   const tel = p.appScreens?.[0];
   return (
     <>
       {img && (
         <div className="absolute inset-x-[8%] bottom-0 top-10 overflow-hidden rounded-t-md bg-papel shadow-[0_24px_48px_-24px_rgb(23_32_51/0.45)] ring-1 ring-tinta/10">
-          <Image src={img.src} width={img.w} height={img.h} alt={`Captura de ${p.title}`} sizes="(min-width: 1280px) 640px, (min-width: 1024px) 50vw, 84vw" className="block h-auto w-full" />
+          <Image src={img.src} width={img.w} height={img.h} alt={`Captura de ${p.title}`} priority={prioridad} sizes="(min-width: 1280px) 640px, (min-width: 1024px) 50vw, 84vw" className="block h-auto w-full" />
         </div>
       )}
       {tel && (
@@ -159,11 +160,15 @@ function Ficha({ p }: { p: RealProject }) {
     <div className="grid gap-6 bg-papel p-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-8">
       <div>
         <p className="leading-relaxed text-tinta/75">{p.problem}</p>
-        <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
-          <dt className="text-tinta/50">{p.collaboration ? 'Participación' : 'Rol'}</dt>
-          <dt className="text-tinta/50">Stack</dt>
-          <dd className="font-bold">{rolCorto(p)}</dd>
-          <dd className="font-bold">{stack(p)}</dd>
+        <dl className="mt-5 grid grid-cols-2 gap-x-6 text-sm">
+          <div>
+            <dt className="text-tinta/70">{p.collaboration ? 'Participación' : 'Rol'}</dt>
+            <dd className="mt-1 font-bold">{rolCorto(p)}</dd>
+          </div>
+          <div>
+            <dt className="text-tinta/70">Stack</dt>
+            <dd className="mt-1 font-bold">{stack(p)}</dd>
+          </div>
         </dl>
       </div>
       {p.url && (
