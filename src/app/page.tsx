@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Precios from '@/components/Precios';
 import Proyectos from '@/components/Proyectos';
+import ComoTrabajo from '@/components/ComoTrabajo';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Proyectos />
         <Precios />
+        <ComoTrabajo />
         <Contact />
       </main>
       <Footer />
