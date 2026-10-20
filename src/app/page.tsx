@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import Precios from '@/components/Precios';
 import Proyectos from '@/components/Proyectos';
 import ComoTrabajo from '@/components/ComoTrabajo';
+import SobreMi from '@/components/SobreMi';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -21,6 +22,7 @@ export default function Home() {
         <Proyectos />
         <Precios />
         <ComoTrabajo />
+        <SobreMi />
         <Contact />
       </main>
       <Footer />
