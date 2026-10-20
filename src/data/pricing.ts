@@ -1,5 +1,5 @@
 // Tabla única de precios (DESIGN.md §7). La usan la home, el FAQ y el ChatDock.
-// Propuesta: Javier confirma valores e IVA antes de publicar.
+// Precios finales confirmados por Javier: no son "+ IVA".
 
 export type ServiceId =
   | 'landing'

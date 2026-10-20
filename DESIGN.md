@@ -171,8 +171,10 @@ Orden y propósito de cada sección:
    "Ver proyectos" (fondo Tinta, texto blanco). El hero no lleva botón de WhatsApp.
 2. **Proyectos:** 3 casos reales destacados y un link a `/proyectos`.
 3. **Qué hago y cuánto cuesta:** servicios con precio "desde" y plazo.
-4. **Cómo trabajo:** 4 pasos. Es una secuencia real, así que aquí sí van números.
-5. **Contacto:** WhatsApp como principal y email como alternativa, con tiempo de respuesta real.
+4. **Cómo trabajo:** 4 pasos. Es una secuencia real, así que aquí sí van números. Durante el
+   desarrollo el cliente ve los avances en un link de vista previa (confirmado por Javier).
+5. **Contacto:** WhatsApp como principal y email como alternativa, con tiempo de respuesta real:
+   "Respondo en menos de 24 horas" (confirmado por Javier).
 
 El soporte y hardware de PC se mantiene, pero como un bloque secundario "También hago…" dentro de
 la sección 3, no como pestaña al mismo nivel que el desarrollo web. Al ser presencial, se aclara que
@@ -206,7 +208,7 @@ es solo para la zona de Valparaíso y alrededores.
 
 ---
 
-## 6. Contenido de proyectos (borrador, Javier confirma)
+## 6. Contenido de proyectos
 
 Cada caso lleva: qué problema había, qué se construyó, stack, tu rol y una captura real.
 Sin métricas que no se puedan respaldar.
@@ -234,7 +236,7 @@ Los datos de proyectos viven en un solo archivo `data/projects.ts` que usan la h
 
 ---
 
-## 7. Precios (propuesta, Javier confirma)
+## 7. Precios
 
 | Servicio | Desde | Plazo típico | Incluye como base |
 |---|---|---|---|
@@ -249,7 +251,7 @@ Los datos de proyectos viven en un solo archivo `data/projects.ts` que usan la h
 - Forma de pago: 50% al inicio y 50% al entregar (igual que en Términos).
 - Garantía: 30 días de garantía desde la publicación: corrijo errores técnicos y ajustes menores de lo entregado. Las funciones nuevas o los cambios de diseño se cotizan aparte.
   Mismo texto en Términos, "Cómo trabajo" y el FAQ.
-- Pendiente: definir si los valores son "+ IVA" o exentos según cómo factura CiberByte.
+- Son precios finales, no "+ IVA" (confirmado por Javier).
 
 Hoy el chat, el FAQ y el portafolio muestran precios distintos. La tabla final vive en
 `data/pricing.ts` y la usan la home, el FAQ y cualquier otro lugar.
@@ -321,8 +323,11 @@ Resueltas:
 - [x] Permisos para mostrar ClipControl y el automatizador de cartas: autorizados.
 - [x] Se mantiene el soporte de PC, como servicio secundario y presencial.
 - [x] El ChatDock se arregla y se mantiene (ver sección 9).
+- [x] Tabla de precios (sección 7) confirmada: son precios finales, no "+ IVA".
+- [x] Capturas reales de cada proyecto.
+- [x] Automatizador de cartas: se mantiene "más de 30 cartas tipo", aunque la captura del
+      generador diga "+25 Templates".
+- [x] "Respondo en menos de 24 horas" y el link de vista previa durante el desarrollo son ciertos.
 
 Pendientes:
-- [ ] Confirmar la tabla de precios (sección 7) y el tema del IVA.
-- [ ] Capturas reales de cada proyecto (con datos de ejemplo donde haga falta).
 - [ ] ¿Se conecta `ciberbyte.cl` a Vercel?

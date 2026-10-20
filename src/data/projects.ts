@@ -176,7 +176,6 @@ export const projects: Project[] = [
       '/proyectos/automatizador/registro-uso.webp',
     ],
     caseImage: { src: '/proyectos/automatizador/generador.webp', w: 1600, h: 670 },
-    toConfirm: ['La captura del generador dice "+25 Templates" y el texto dice "más de 30 cartas tipo"'],
   },
 
   {
