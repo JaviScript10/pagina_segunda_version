@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SiWhatsapp } from 'react-icons/si';
+import LogoWhatsApp from './LogoWhatsApp';
 import { whatsappUrl } from '@/lib/site';
 
 export default function Contact() {
@@ -121,7 +121,7 @@ export default function Contact() {
                 type="submit"
                 className="btn-whatsapp w-full px-6 py-3.5 text-sm sm:text-base"
               >
-                <SiWhatsapp className="w-5 h-5" aria-hidden="true" />
+                <LogoWhatsApp size={20} />
                 <span>Enviar por WhatsApp</span>
               </button>
             </div>

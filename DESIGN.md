@@ -89,7 +89,18 @@ Reglas de la ilustración:
 | Papel | `#FFFFFF` | Superficies que necesitan separarse del fondo (formulario, capturas) |
 | Tinta | `#172033` | Texto principal, líneas de la ilustración del hero, bordes fuertes |
 | Calamina | `#F2B807` | Acento de marca: casas de la ilustración y fachada de un proyecto. El texto sobre Calamina siempre va en Tinta |
-| WhatsApp | `#25D366` | **Excepción:** verde oficial de WhatsApp, solo en los botones de WhatsApp (hero, precios, contacto, chat y botón flotante), siempre con el logo oficial y texto en Tinta (8,2:1; en blanco daría 2,0:1 y no cumple AA). Clase `.btn-whatsapp` |
+| WhatsApp | `#25D366` | **Excepción:** el verde oficial vive solo dentro del logo oficial de WhatsApp. Ver "Botones de WhatsApp" abajo |
+
+Botones de WhatsApp (excepción de marca):
+- Todos los botones de WhatsApp (hero, precios, cada servicio, contacto, chips del chat): fondo
+  Tinta, texto blanco (16:1), sin borde, y a la izquierda el **logo oficial** de WhatsApp a color.
+  Clase `.btn-whatsapp`. Sobre fondos oscuros, `.btn-whatsapp-inverso`: fondo blanco y texto Tinta.
+- El logo es el archivo oficial del WhatsApp Brand Resource Center de Meta
+  (`public/marcas/whatsapp/Digital_Glyph_Green_RGB_2026.svg`), copiado sin cambios y usado como
+  imagen (`LogoWhatsApp`): no se recolorea, no se deforma (1:1), no se rellena ni se combina con
+  otros dibujos. Javier aceptó los términos de uso de marca de Meta al descargarlo (2026-10-20).
+- El glifo oficial 2026 es la burbuja en contorno con el teléfono, ambos en `#25D366` sobre fondo
+  transparente. Meta no publica una versión con la burbuja rellena; no se fabrica una.
 | Cerro | `#1F5FA8` | Links y elementos interactivos secundarios |
 | Ascensor | `#C33C2E` | Uso puntual (un detalle por sección como máximo). Nunca como fondo grande. En el hero: la cabina del ascensor |
 | Verde cerro | `#4A7558` | El cerro de la ilustración del hero y el acento de un proyecto (ver abajo). Con texto Papel da 5,3:1 |

@@ -1,5 +1,5 @@
 import { FaLaptopCode, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import { SiWhatsapp } from 'react-icons/si';
+import LogoWhatsApp from './LogoWhatsApp';
 import Logo from './Logo';
 import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 
@@ -44,7 +44,7 @@ export default function Footer() {
                   <span>{CONTACT_EMAIL}</span>
                 </a>
                 <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 hover:text-emerald-400 transition-colors w-fit">
-                  <SiWhatsapp className="text-whatsapp text-sm" aria-hidden="true" />
+                  <LogoWhatsApp size={14} />
                   <span>{WHATSAPP_DISPLAY}</span>
                 </a>
                 <div className="flex items-center gap-2.5 text-gray-400">

@@ -1,4 +1,4 @@
-import { SiWhatsapp } from 'react-icons/si';
+import LogoWhatsApp from './LogoWhatsApp';
 import { formatCLP, getService, pricing } from '@/data/pricing';
 import { whatsappUrl } from '@/lib/site';
 import { Money } from '@/lib/money';
@@ -68,7 +68,7 @@ export default function Pricing() {
               rel="noopener noreferrer"
               className="btn-whatsapp mt-4 px-6 py-3.5 text-lg"
             >
-              <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
+              <LogoWhatsApp size={20} />
               Escríbeme por WhatsApp
             </a>
           </div>

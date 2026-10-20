@@ -3,6 +3,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { SiWhatsapp } from 'react-icons/si';
+import LogoWhatsApp from './LogoWhatsApp';
 import { useDialog } from '@/hooks/useDialog';
 import { WHATSAPP_DISPLAY, whatsappUrl } from '@/lib/site';
 import { formatFrom, getService, pricing, type ServiceId } from '@/data/pricing';
@@ -325,11 +326,11 @@ export default function ChatDock() {
                     onClick={() => onChip(chip)}
                     className={`rounded-lg border px-3 py-2.5 text-sm font-bold leading-snug transition-[transform,background-color,border-color] duration-150 ease-out active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro ${
                       isWhatsApp
-                        ? 'col-span-2 flex items-center justify-center gap-2 border-tinta bg-whatsapp text-tinta hover:bg-whatsapp/85'
+                        ? 'col-span-2 flex items-center justify-center gap-2 border-tinta bg-tinta text-papel hover:bg-tinta/90'
                         : 'border-cerro/40 bg-papel text-cerro hover:border-cerro hover:bg-cerro/5'
                     }`}
                   >
-                    {isWhatsApp && <SiWhatsapp className="h-4 w-4" aria-hidden="true" />}
+                    {isWhatsApp && <LogoWhatsApp size={16} />}
                     {withMoney(chip.label)}
                   </button>
                 );

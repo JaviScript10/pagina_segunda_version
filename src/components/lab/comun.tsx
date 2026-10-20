@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { SiWhatsapp } from 'react-icons/si';
+import LogoWhatsApp from '../LogoWhatsApp';
 import type { RealProject } from '@/data/projects';
 
 /** Flecha diagonal de línea fina (1.5), para links y botones. */
@@ -27,9 +27,9 @@ export function IconoAnidado({ className = 'bg-tinta/10' }: { className?: string
 export function BotonWhatsApp({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={`btn-whatsapp group py-1.5 pl-4 pr-1.5 text-[0.9375rem] ${className}`}>
-      <SiWhatsapp className="h-[1.125rem] w-[1.125rem]" aria-hidden="true" />
+      <LogoWhatsApp size={18} />
       <span className="flex-1 text-left">{children}</span>
-      <IconoAnidado />
+      <IconoAnidado className="bg-papel/15" />
     </a>
   );
 }

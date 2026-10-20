@@ -1,4 +1,4 @@
-import { SiWhatsapp } from 'react-icons/si';
+import LogoWhatsApp from './LogoWhatsApp';
 import { whatsappUrl } from '@/lib/site';
 import { VISTA_COMPLETA, VISTA_MOVIL, viewBox, type Vista } from '@/lib/cerro';
 import CerroIlustracion from './CerroIlustracion';
@@ -24,7 +24,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="btn-whatsapp px-5 py-3 text-base sm:px-6 sm:py-3.5 sm:text-lg"
             >
-              <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
+              <LogoWhatsApp size={20} />
               Escríbeme por WhatsApp
             </a>
             <a

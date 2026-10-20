@@ -1,4 +1,4 @@
-import { SiWhatsapp } from 'react-icons/si';
+import LogoWhatsApp from '../LogoWhatsApp';
 import { formatCLP, getService, pricing, type PricingItem } from '@/data/pricing';
 import { whatsappUrl } from '@/lib/site';
 import { Money } from '@/lib/money';
@@ -60,9 +60,9 @@ export default function PreciosB() {
                       aria-label={`Cotizar ${s.name} por WhatsApp`}
                       className="btn-whatsapp group py-1.5 pl-3.5 pr-1.5 text-sm"
                     >
-                      <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
+                      <LogoWhatsApp size={16} />
                       Cotizar
-                      <IconoAnidado />
+                      <IconoAnidado className="bg-papel/15" />
                     </a>
                   </div>
                 </div>
