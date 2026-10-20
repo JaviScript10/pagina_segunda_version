@@ -374,7 +374,8 @@ function rich(text: string): ReactNode {
 }
 
 function normalize(s: string) {
-  return s.trim().toLowerCase().replace(/\s+/g, ' ');
+  // Guion y raya cuentan igual: "1-2 semanas" escrito a mano coincide con el chip "1–2 semanas"
+  return s.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[‐-―]/g, '-');
 }
 
 function placeholder(step: WizardStep) {
