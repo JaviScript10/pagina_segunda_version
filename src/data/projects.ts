@@ -32,6 +32,8 @@ export interface RealProject extends ProjectBase {
   usage?: string;
   /** Sitio en producción. */
   url?: string;
+  /** Demo pública con acceso de prueba (se muestra junto al botón "Ver demo"). */
+  demo?: { url: string; acceso: string; nota?: string };
   /** Captura para el caso de estudio de la home, si es distinta de images[0]. */
   caseImage?: { src: string; w: number; h: number };
   /** Pantallas móviles (390 px de ancho), para mostrarlas en marco de teléfono. */
@@ -169,6 +171,11 @@ export const projects: Project[] = [
     stack: ['Python', 'Streamlit'],
     role: 'Diseño y desarrollo completo',
     usage: 'Lo usan a diario mis compañeros de trabajo',
+    demo: {
+      url: 'https://generadordecartas.streamlit.app/',
+      acceso: 'Acceso demo — usuario: demo / contraseña: demo2026',
+      nota: 'La primera carga puede tardar unos segundos.',
+    },
     // Capturas sin datos de clientes: solo el usuario admin y textos de ejemplo
     images: [
       '/proyectos/automatizador/generador.webp',

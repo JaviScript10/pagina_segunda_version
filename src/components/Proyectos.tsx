@@ -155,6 +155,23 @@ function Vista({ p, prioridad = false }: { p: RealProject; prioridad?: boolean }
   );
 }
 
+/** Botón secundario con borde que abre otra pestaña ("Ver sitio", "Ver demo"). */
+function BotonExterno({ href, children, className = 'self-end' }: { href: string; children: React.ReactNode; className?: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group inline-flex items-center gap-3 rounded-lg border border-tinta/15 py-1.5 pl-4 pr-1.5 font-bold transition-colors duration-200 ease-out hover:border-tinta/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro ${className}`}
+    >
+      {children}
+      <span className="grid h-8 w-8 place-items-center rounded-md bg-niebla transition-transform duration-200 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-px [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5">
+        <Flecha />
+      </span>
+    </a>
+  );
+}
+
 function Ficha({ p }: { p: RealProject }) {
   return (
     <div className="grid gap-6 bg-papel p-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-8">
@@ -171,18 +188,18 @@ function Ficha({ p }: { p: RealProject }) {
           </div>
         </dl>
       </div>
-      {p.url && (
-        <a
-          href={p.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group inline-flex items-center gap-3 self-end rounded-lg border border-tinta/15 py-1.5 pl-4 pr-1.5 font-bold transition-colors duration-200 ease-out hover:border-tinta/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerro"
-        >
-          Ver sitio
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-niebla transition-transform duration-200 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-px [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5">
-            <Flecha />
-          </span>
-        </a>
+      {p.url && <BotonExterno href={p.url}>Ver sitio</BotonExterno>}
+      {/* Demo: fila completa bajo la ficha, para no quitarle ancho al texto del problema */}
+      {p.demo && (
+        <div className="flex flex-col gap-3 border-t border-tinta/10 pt-5 sm:col-span-2 sm:flex-row sm:items-center sm:gap-5">
+          <BotonExterno href={p.demo.url} className="shrink-0 self-start sm:self-center">
+            Ver demo
+          </BotonExterno>
+          <div className="text-sm">
+            <p className="font-bold">{p.demo.acceso}</p>
+            {p.demo.nota && <p className="mt-0.5 text-tinta/70">{p.demo.nota}</p>}
+          </div>
+        </div>
       )}
     </div>
   );

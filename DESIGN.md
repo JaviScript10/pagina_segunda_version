@@ -327,6 +327,10 @@ Resueltas:
 - [x] Capturas reales de cada proyecto.
 - [x] Automatizador de cartas: se mantiene "más de 30 cartas tipo", aunque la captura del
       generador diga "+25 Templates".
+- [x] Automatizador de cartas: su caso (home y `/proyectos`) lleva un botón "Ver demo" que abre
+      https://generadordecartas.streamlit.app/ en otra pestaña, con el texto "Acceso demo —
+      usuario: demo / contraseña: demo2026" y la nota "La primera carga puede tardar unos segundos."
+      (cuenta de demostración pública, decisión de Javier).
 - [x] "Respondo en menos de 24 horas" y el link de vista previa durante el desarrollo son ciertos.
 
 Pendientes:
