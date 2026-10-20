@@ -1,17 +1,15 @@
 {
-  "name": "CiberByte - Soluciones Digitales",
+  "name": "CiberByte",
   "short_name": "CiberByte",
-  "description": "Desarrollo web profesional, e-commerce y apps móviles en Chile",
+  "description": "Sitios web y sistemas a medida, desde Valparaíso para todo Chile.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0066ff",
-  "orientation": "portrait-primary",
+  "background_color": "#E9EEF1",
+  "theme_color": "#E9EEF1",
   "icons": [
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    }
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512x512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

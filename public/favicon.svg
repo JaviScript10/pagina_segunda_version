@@ -1,21 +1,10 @@
-<svg width="512" height="512" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Hexágono -->
-  <path d="M50 5L90 27.5V72.5L50 95L10 72.5V27.5L50 5Z" fill="url(#gradient)" stroke="#06B6D4" stroke-width="2"/>
-  
-  <!-- Ondas -->
-  <g opacity="0.9">
-    <path d="M35 40 Q50 35 65 40" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M30 50 Q50 45 70 50" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M35 60 Q50 55 65 60" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CiberByte">
+  <!-- Hexágono plano en Tinta con esquinas suavizadas -->
+  <path d="M32 4.5 56 18.25v27.5L32 59.5 8 45.75v-27.5Z" fill="#172033" stroke="#172033" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Tres cables en catenaria, en Calamina -->
+  <g fill="none" stroke="#F2B807" stroke-width="4.2" stroke-linecap="round">
+    <path d="M17 21.5Q32 29.5 47 21.5"/>
+    <path d="M17 31Q32 39 47 31"/>
+    <path d="M17 40.5Q32 48.5 47 40.5"/>
   </g>
-  
-  <!-- Punto central -->
-  <circle cx="50" cy="50" r="4" fill="#FFFFFF"/>
-  
-  <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3B82F6"/>
-      <stop offset="100%" stop-color="#06B6D4"/>
-    </linearGradient>
-  </defs>
 </svg>
