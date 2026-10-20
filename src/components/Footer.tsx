@@ -68,7 +68,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 ${enlace}`}>
+                <a href={whatsappUrl('Hola, vengo desde el sitio de CiberByte.')} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 ${enlace}`}>
                   <LogoWhatsApp size={16} />
                   {WHATSAPP_DISPLAY}
                 </a>
