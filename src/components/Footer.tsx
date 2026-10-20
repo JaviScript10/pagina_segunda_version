@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-12">
           <div className="col-span-2 lg:col-span-4">
             <a href="/" className={`inline-flex items-center gap-2.5 ${enlace} hover:no-underline`}>
-              <img src="/favicon.svg" alt="" className="h-8 w-8" />
+              <img src="/logo-v2.svg" alt="" className="h-8 w-8" />
               <span className="font-display text-[1.375rem] font-extrabold tracking-[-0.01em]">CiberByte</span>
             </a>
             <p className="mt-4 max-w-xs leading-relaxed text-tinta/70">

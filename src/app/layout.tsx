@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     description: 'Desarrollo a medida desde Valparaíso, para todo Chile. Sin plantillas y sin intermediarios.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CiberByte. Páginas web que trabajan por tu negocio. Ilustración de un cerro de Valparaíso.',
@@ -81,18 +81,18 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'CiberByte: páginas web que trabajan por tu negocio',
     description: 'Desarrollo a medida desde Valparaíso, para todo Chile. Sin plantillas y sin intermediarios.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image-v2.jpg'],
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '48x48' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-v2.ico', sizes: '48x48' },
+      { url: '/favicon-v2.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32-v2.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16-v2.png', sizes: '16x16', type: 'image/png' },
     ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    apple: [{ url: '/apple-touch-icon-v2.png', sizes: '180x180' }],
   },
-  manifest: '/site.webmanifest',
+  manifest: '/site-v2.webmanifest',
 };
 
 export default function RootLayout({

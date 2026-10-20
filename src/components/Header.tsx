@@ -34,7 +34,7 @@ export default function Header() {
           href="/"
           className="flex items-center gap-2.5 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro"
         >
-          <img src="/favicon.svg" alt="" className="h-8 w-8" />
+          <img src="/logo-v2.svg" alt="" className="h-8 w-8" />
           <span className="font-display text-[1.375rem] font-extrabold tracking-[-0.01em]">CiberByte</span>
         </Link>
 
