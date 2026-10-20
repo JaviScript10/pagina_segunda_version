@@ -9,7 +9,7 @@ import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: { absolute: 'CiberByte - Soluciones Digitales Profesionales en Chile' },
+  title: { absolute: 'CiberByte: páginas web que trabajan por tu negocio' },
   alternates: { canonical: '/' },
 };
 
