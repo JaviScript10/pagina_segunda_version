@@ -242,6 +242,8 @@ Los datos de proyectos viven en un solo archivo `data/projects.ts` que usan la h
 
 - Dominio y hosting se cobran aparte, al costo.
 - Forma de pago: 50% al inicio y 50% al entregar (igual que en Términos).
+- Garantía: 30 días de garantía desde la publicación: corrijo errores técnicos y ajustes menores de lo entregado. Las funciones nuevas o los cambios de diseño se cotizan aparte.
+  Mismo texto en Términos, "Cómo trabajo" y el FAQ.
 - Pendiente: definir si los valores son "+ IVA" o exentos según cómo factura CiberByte.
 
 Hoy el chat, el FAQ y el portafolio muestran precios distintos. La tabla final vive en

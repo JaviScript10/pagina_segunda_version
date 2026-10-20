@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import { BotonWhatsApp } from '@/components/piezas';
 import { withMoney } from '@/lib/money';
 import { CONTACT_EMAIL, whatsappUrl } from '@/lib/site';
-import { HOSTING_TERM, PAYMENT_TERM, formatCLP, formatFrom, getService, pricing } from '@/data/pricing';
+import { GUARANTEE_TERM, HOSTING_TERM, PAYMENT_TERM, formatCLP, formatFrom, getService, pricing } from '@/data/pricing';
 
 export const metadata: Metadata = {
   title: 'Preguntas frecuentes',
@@ -39,6 +39,10 @@ const FAQS = [
   {
     pregunta: '¿Voy a poder cambiar los textos yo mismo?',
     respuesta: `Depende del sitio. El sitio corporativo incluye textos editables y la tienda online, un panel para editar productos y precios. Para lo demás está la mantención mensual, que incluye cambios menores.`,
+  },
+  {
+    pregunta: '¿Tiene garantía?',
+    respuesta: `Sí. ${GUARANTEE_TERM}`,
   },
   {
     pregunta: '¿Qué pasa después de publicar?',

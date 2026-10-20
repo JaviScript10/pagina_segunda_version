@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import PaginaLegal, { CorreoContacto, type SeccionLegal } from '@/components/PaginaLegal';
-import { HOSTING_TERM, PAYMENT_TERM } from '@/data/pricing';
+import { GUARANTEE_TERM, HOSTING_TERM, PAYMENT_TERM } from '@/data/pricing';
 
 export const metadata: Metadata = {
   title: 'Términos y condiciones',
@@ -44,7 +44,7 @@ const SECCIONES: SeccionLegal[] = [
   },
   {
     titulo: 'Garantía',
-    contenido: <p>Después de publicar tienes 30 días de garantía: corrijo sin costo los errores técnicos y los ajustes menores.</p>,
+    contenido: <p>{GUARANTEE_TERM}</p>,
   },
   {
     titulo: 'Responsabilidad',

@@ -1,4 +1,4 @@
-import { PAYMENT_TERM } from '@/data/pricing';
+import { GUARANTEE_TERM, PAYMENT_TERM } from '@/data/pricing';
 
 /*
  * Cómo trabajo (DESIGN.md §5): cuatro pasos de una secuencia real, por eso van numerados.
@@ -9,7 +9,7 @@ const PASOS = [
   { titulo: 'Conversamos', texto: 'Me cuentas tu idea por WhatsApp o en una llamada corta.' },
   { titulo: 'Propuesta', texto: 'Te mando el precio final, el plazo y qué incluye, antes de empezar.' },
   { titulo: 'Desarrollo', texto: 'Ves los avances en un link de vista previa y pides cambios en el camino.' },
-  { titulo: 'Entrega', texto: 'Publico el sitio, te enseño a usarlo y tienes 30 días de garantía.' },
+  { titulo: 'Entrega', texto: 'Publico el sitio y desde ese día corren los 30 días de garantía.' },
 ];
 
 export default function ComoTrabajo() {
@@ -43,7 +43,10 @@ export default function ComoTrabajo() {
           ))}
         </ol>
 
-        <p className="mt-16 border-t border-tinta/15 pt-6 text-tinta/75 lg:mt-20">{PAYMENT_TERM}</p>
+        <div className="mt-16 grid grid-cols-1 gap-4 border-t border-tinta/15 pt-6 text-tinta/75 lg:mt-20 lg:grid-cols-2 lg:gap-16">
+          <p>{PAYMENT_TERM}</p>
+          <p className="max-w-[62ch]">Garantía: {GUARANTEE_TERM}</p>
+        </div>
       </div>
     </section>
   );

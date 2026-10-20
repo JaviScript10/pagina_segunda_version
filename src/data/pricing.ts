@@ -35,6 +35,8 @@ export interface Pricing {
 
 export const HOSTING_TERM = 'Dominio y hosting se cobran aparte, al costo.';
 export const PAYMENT_TERM = 'Forma de pago: 50% al inicio y 50% al entregar.';
+export const GUARANTEE_TERM =
+  '30 días de garantía desde la publicación: corrijo errores técnicos y ajustes menores de lo entregado. Las funciones nuevas o los cambios de diseño se cotizan aparte.';
 
 export const pricing: Pricing = {
   items: [
@@ -90,7 +92,7 @@ export const pricing: Pricing = {
     },
   ],
   ivaNote: 'Valores desde. Te doy el precio final antes de empezar.',
-  terms: [HOSTING_TERM, PAYMENT_TERM],
+  terms: [HOSTING_TERM, PAYMENT_TERM, GUARANTEE_TERM],
 };
 
 /** 180000 → "$180.000". Formato fijo para que servidor y cliente rendericen igual. */
