@@ -211,6 +211,35 @@ export const projects: Project[] = [
     mediaCaption: 'Inicio de mageh.cl en escritorio y en el celular.',
   },
 
+  {
+    slug: 'callme',
+    type: 'real',
+    featured: false,
+    accent: 'ascensor',
+    title: 'Call Me',
+    category: 'Sitio comercial',
+    location: 'Viña del Mar',
+    summary: 'Sitio de una central telefónica virtual y BPO de atención al cliente en Viña del Mar.',
+    problem:
+      'Call Me vende un servicio técnico, central telefónica en la nube, portabilidad de números y agentes de atención, a pymes que no son expertas en telefonía. Necesitaba explicarlo en lenguaje simple, mostrar precios claros y convertir visitas en contactos, compitiendo en búsquedas por región.',
+    built: [
+      'Sitio con planes y precios publicados',
+      'Calculadora interactiva de llamadas perdidas',
+      'Páginas por región: Valparaíso, Santiago y Coquimbo',
+      'Página de agentes y BPO',
+      'Casos de clientes y preguntas frecuentes',
+      'Formulario de contacto por tipo de necesidad',
+    ],
+    // Detectado con Playwright: HTML, CSS y JS propios (sin framework), servido por Apache
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    role: 'Diseño y desarrollo completo de todo el sitio, incluidas las páginas por región y la de BPO',
+    url: 'https://callme.cl/',
+    images: ['/proyectos/callme/inicio.webp', '/proyectos/callme/calculadora.webp', '/proyectos/callme/movil.webp'],
+    caseImage: { src: '/proyectos/callme/inicio.webp', w: 1600, h: 1000 },
+    appScreens: [{ src: '/proyectos/callme/movil.webp', alt: 'Inicio de callme.cl en el celular, con los botones Ver planes y Hablar por WhatsApp' }],
+    mediaCaption: 'Inicio de callme.cl en escritorio y en el celular.',
+  },
+
   // ---------- Ejercicios de diseño ----------
   {
     slug: 'sabores-del-sur',
