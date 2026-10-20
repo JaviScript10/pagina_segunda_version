@@ -76,9 +76,12 @@ export default function Precios() {
               href={cotizar(pc)}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 font-bold text-cerro underline decoration-2 underline-offset-[6px] hover:text-tinta"
+              aria-label={`Cotizar ${pc.name} por WhatsApp`}
+              className="btn-whatsapp group shrink-0 self-start py-1.5 pl-3.5 pr-1.5 text-sm sm:self-auto"
             >
-              Escríbeme por WhatsApp
+              <LogoWhatsApp size={16} />
+              Cotizar
+              <IconoAnidado className="bg-papel/15" />
             </a>
           </div>
         </div>

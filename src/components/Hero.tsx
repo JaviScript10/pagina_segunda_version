@@ -19,7 +19,7 @@ export default function Hero() {
           <div className="mt-6 sm:mt-10">
             <a
               href="#proyectos"
-              className="inline-flex items-center justify-center rounded-lg bg-tinta px-5 py-3 text-base font-bold text-papel transition-[transform,background-color] duration-150 ease-out hover:bg-tinta/90 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro sm:px-6 sm:py-3.5 sm:text-lg"
+              className="btn-principal px-5 py-3 text-base sm:px-6 sm:py-3.5 sm:text-lg"
             >
               Ver proyectos
             </a>

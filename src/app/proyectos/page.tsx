@@ -3,9 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Proyectos from '@/components/Proyectos';
 import Ejercicios from '@/components/Ejercicios';
-import { BotonWhatsApp } from '@/components/piezas';
 import { pricing } from '@/data/pricing';
-import { whatsappUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Proyectos',
@@ -30,9 +28,9 @@ export default function ProyectosPage() {
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-tinta/70">Cuéntame qué necesitas. {pricing.ivaNote}</p>
             </div>
-            <BotonWhatsApp href={whatsappUrl('Hola, vengo desde la página de proyectos de CiberByte.')} className="self-start lg:self-auto">
-              Escríbeme por WhatsApp
-            </BotonWhatsApp>
+            <a href="/#contacto" className="btn-principal self-start px-6 py-3.5 text-lg lg:self-auto">
+              Ir a contacto
+            </a>
           </div>
         </section>
       </main>

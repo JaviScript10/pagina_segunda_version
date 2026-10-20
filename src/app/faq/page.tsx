@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { BotonWhatsApp } from '@/components/piezas';
 import { withMoney } from '@/lib/money';
-import { CONTACT_EMAIL, whatsappUrl } from '@/lib/site';
 import { GUARANTEE_TERM, HOSTING_TERM, PAYMENT_TERM, formatCLP, formatFrom, getService, pricing } from '@/data/pricing';
 
 export const metadata: Metadata = {
@@ -109,20 +107,11 @@ export default function FAQPage() {
               <h2 id="faq-cierre" className="font-display text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">
                 ¿Te quedó una duda?
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-tinta/70">
-                Pregúntame directo. También puedes escribirme a{' '}
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="font-bold text-cerro underline decoration-2 underline-offset-4 transition-colors duration-150 ease-out hover:text-tinta focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro"
-                >
-                  {CONTACT_EMAIL}
-                </a>
-                .
-              </p>
+              <p className="mt-4 text-lg leading-relaxed text-tinta/70">Pregúntame directo. En Contacto están mi WhatsApp y mi correo.</p>
             </div>
-            <BotonWhatsApp href={whatsappUrl('Hola, tengo una pregunta que no está en el FAQ de CiberByte.')} className="self-start lg:self-auto">
-              Escríbeme por WhatsApp
-            </BotonWhatsApp>
+            <a href="/#contacto" className="btn-principal self-start px-6 py-3.5 text-lg lg:self-auto">
+              Ir a contacto
+            </a>
           </div>
         </section>
       </main>

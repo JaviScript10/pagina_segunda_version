@@ -92,7 +92,11 @@ Reglas de la ilustración:
 | WhatsApp | `#25D366` | **Excepción:** el verde oficial vive solo dentro del logo oficial de WhatsApp. Ver "Botones de WhatsApp" abajo |
 
 Botones de WhatsApp (excepción de marca):
-- Todos los botones de WhatsApp (hero, precios, cada servicio, contacto, chips del chat): fondo
+- Botones de WhatsApp del sitio, y solo estos: el flotante (con su chat), el "Cotizar" de cada
+  precio (incluido el soporte de PC) y el de la sección Contacto. En el footer el número queda
+  como dato, sin link. El hero y los cierres de `/proyectos` y `/faq` usan `.btn-principal`
+  (Tinta, sin logo) hacia "Ver proyectos" o "Ir a contacto".
+- Estilo de los botones de WhatsApp (incluidos los chips del chat): fondo
   Tinta, texto blanco (16:1), sin borde, y a la izquierda el **logo oficial** de WhatsApp a color.
   Clase `.btn-whatsapp`. Sobre fondos oscuros, `.btn-whatsapp-inverso`: fondo blanco y texto Tinta.
 - El logo es el archivo oficial del WhatsApp Brand Resource Center de Meta
