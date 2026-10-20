@@ -163,7 +163,8 @@ Reglas:
 
 Orden y propósito de cada sección:
 
-1. **Hero:** qué hago y desde dónde, la ilustración del cerro con el ascensor y el CTA de WhatsApp.
+1. **Hero:** qué hago y desde dónde, la ilustración del cerro con el ascensor y el botón principal
+   "Ver proyectos" (fondo Tinta, texto blanco). El hero no lleva botón de WhatsApp.
 2. **Proyectos:** 3 casos reales destacados y un link a `/proyectos`.
 3. **Qué hago y cuánto cuesta:** servicios con precio "desde" y plazo.
 4. **Cómo trabajo:** 4 pasos. Es una secuencia real, así que aquí sí van números.
@@ -187,7 +188,7 @@ es solo para la zona de Valparaíso y alrededores.
 |  Para negocios de todo Chile. Hablas     poste~~~~~cables~~~//~~~poste  |
 |  directo con quien lo construye.            |   [cabina]  //  [] [] [] |
 |                                             |  estación  // rieles      |
-|  [ Escríbeme por WhatsApp ]  Ver proyectos  |  [ ∩ ]  //  [] [] [] []  |
+|  [ Ver proyectos ]                          |  [ ∩ ]  //  [] [] [] []  |
 |==========================================================================| ← calle
 +--------------------------------------------------------------------------+
 ```

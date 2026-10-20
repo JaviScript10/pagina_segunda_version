@@ -1,5 +1,3 @@
-import LogoWhatsApp from './LogoWhatsApp';
-import { whatsappUrl } from '@/lib/site';
 import { VISTA_COMPLETA, VISTA_MOVIL, viewBox, type Vista } from '@/lib/cerro';
 import CerroIlustracion from './CerroIlustracion';
 import { CabinaAscensor } from './AscensorCerro';
@@ -17,19 +15,11 @@ export default function Hero() {
             Desarrollo a medida desde Valparaíso, para todo Chile. Sin plantillas y sin intermediarios.
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3 sm:mt-10 sm:gap-y-5">
-            <a
-              href={whatsappUrl('Hola, vengo desde el sitio de CiberByte.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp px-5 py-3 text-base sm:px-6 sm:py-3.5 sm:text-lg"
-            >
-              <LogoWhatsApp size={20} />
-              Escríbeme por WhatsApp
-            </a>
+          {/* Botón principal del hero: lleva al trabajo; WhatsApp queda en el flotante, los precios y Contacto */}
+          <div className="mt-6 sm:mt-10">
             <a
               href="#proyectos"
-              className="text-base font-bold text-cerro underline sm:text-lg decoration-2 underline-offset-[6px] transition-colors duration-150 ease-out hover:text-tinta focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro"
+              className="inline-flex items-center justify-center rounded-lg bg-tinta px-5 py-3 text-base font-bold text-papel transition-[transform,background-color] duration-150 ease-out hover:bg-tinta/90 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cerro sm:px-6 sm:py-3.5 sm:text-lg"
             >
               Ver proyectos
             </a>
