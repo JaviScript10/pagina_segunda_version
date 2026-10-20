@@ -21,7 +21,7 @@ export default function Precios() {
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <h2 id="precios-titulo" className="font-display text-5xl font-extrabold leading-[0.95] tracking-[-0.03em] sm:text-6xl">
-              Precios
+              Precios claros, sin sorpresas.
             </h2>
             <p className="mt-6 max-w-sm text-lg leading-relaxed text-tinta/70">{pricing.ivaNote}</p>
             <BotonWhatsApp
