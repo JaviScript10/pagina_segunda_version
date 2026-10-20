@@ -188,7 +188,7 @@ export const projects: Project[] = [
     location: 'Villa Alemana, Quilpué y Viña del Mar',
     summary: 'Sitio de arquitectos y administradores de comunidades en Villa Alemana, Quilpué y Viña del Mar.',
     problem:
-      'Grupo Mageh combina dos servicios que rara vez van juntos, arquitectura y regularizaciones por un lado y administración de comunidades por otro, y necesitaba presentarlos de forma clara para convertir visitas en solicitudes de diagnóstico.',
+      'Grupo Mageh combina dos servicios que rara vez van juntos (arquitectura y regularizaciones por un lado, administración de comunidades por otro) y necesitaba presentarlos de forma clara para convertir visitas en solicitudes de diagnóstico.',
     built: [
       'Sitio con sus seis servicios',
       'Su propuesta de transparencia: etapas y entregables definidos antes de empezar',
@@ -213,7 +213,7 @@ export const projects: Project[] = [
     location: 'Viña del Mar',
     summary: 'Sitio de una central telefónica virtual y BPO de atención al cliente en Viña del Mar.',
     problem:
-      'Call Me vende un servicio técnico, central telefónica en la nube, portabilidad de números y agentes de atención, a pymes que no son expertas en telefonía. Necesitaba explicarlo en lenguaje simple, mostrar precios claros y convertir visitas en contactos, compitiendo en búsquedas por región.',
+      'Call Me vende servicios técnicos (central telefónica en la nube, portabilidad de números y agentes de atención) a pymes que no son expertas en telefonía. Necesitaba explicarlo en lenguaje simple, mostrar precios claros y convertir visitas en contactos, compitiendo en búsquedas por región.',
     built: [
       'Sitio con planes y precios publicados',
       'Calculadora interactiva de llamadas perdidas',

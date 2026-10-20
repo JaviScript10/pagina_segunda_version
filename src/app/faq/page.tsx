@@ -25,7 +25,7 @@ const FAQS = [
     respuesta: `Una landing page parte en ${formatCLP(landing.from)}, un sitio corporativo en ${formatCLP(corporativo.from)}, una tienda online en ${formatCLP(tienda.from)} y un sistema o app a medida en ${formatCLP(medida.from)}. ${pricing.ivaNote}`,
   },
   {
-    pregunta: '¿Cuánto me demoro en hacerla?',
+    pregunta: '¿Cuánto te demoras en hacerla?',
     respuesta: `Una landing page toma ${landing.timeline}, un sitio corporativo ${corporativo.timeline} y una tienda online ${tienda.timeline}. Un sistema a medida depende del alcance. Te confirmo el plazo junto con el precio final, antes de empezar.`,
   },
   {

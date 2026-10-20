@@ -45,7 +45,7 @@ export default function ComoTrabajo() {
 
         <div className="mt-16 grid grid-cols-1 gap-4 border-t border-tinta/15 pt-6 text-tinta/75 lg:mt-20 lg:grid-cols-2 lg:gap-16">
           <p>{PAYMENT_TERM}</p>
-          <p className="max-w-[62ch]">Garantía: {GUARANTEE_TERM}</p>
+          <p className="max-w-[62ch]">{GUARANTEE_TERM}</p>
         </div>
       </div>
     </section>
