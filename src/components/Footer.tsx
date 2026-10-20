@@ -22,8 +22,8 @@ export default function Footer() {
   return (
     <footer className="bg-niebla text-tinta">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-12">
+          <div className="col-span-2 lg:col-span-4">
             {/* Logo actual (se redibuja en la próxima etapa) */}
             <a href="/" className={`inline-flex items-center gap-2.5 ${enlace} hover:no-underline`}>
               <img src="/favicon.svg" alt="" className="h-8 w-8" />
@@ -47,7 +47,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Legal" className="lg:col-span-2">
+          <nav aria-label="Legal" className="lg:col-span-3">
             <h2 className="text-sm font-bold text-tinta/55">Legal</h2>
             <ul className="mt-4 space-y-2.5">
               {LEGAL.map((l) => (
@@ -60,7 +60,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-2 lg:col-span-3">
             <h2 className="text-sm font-bold text-tinta/55">Contacto</h2>
             <ul className="mt-4 space-y-2.5">
               <li>

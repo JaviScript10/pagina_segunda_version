@@ -25,9 +25,10 @@ export default function ComoTrabajo() {
           </p>
         </div>
 
-        <ol className="mt-16 grid grid-cols-1 gap-x-8 lg:mt-24 lg:grid-cols-4">
+        {/* Sin espacio entre columnas: el riel es una sola línea continua */}
+        <ol className="mt-16 grid grid-cols-1 lg:mt-24 lg:grid-cols-4">
           {PASOS.map((paso, i) => (
-            <li key={paso.titulo} className="relative border-l-2 border-tinta pb-12 pl-8 last:pb-0 lg:border-l-0 lg:border-t-2 lg:pb-0 lg:pl-0 lg:pt-10">
+            <li key={paso.titulo} className="relative border-l-2 border-tinta pb-12 pl-8 last:pb-0 lg:border-l-0 lg:border-t-2 lg:pb-0 lg:pl-0 lg:pr-8 lg:pt-10">
               {/* Marcador sobre el riel */}
               <span
                 aria-hidden="true"

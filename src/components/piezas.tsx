@@ -41,7 +41,7 @@ export function BotonWhatsApp({
   inverso?: boolean;
   grande?: boolean;
 }) {
-  const tamano = grande ? 'py-2 pl-5 pr-2 text-lg' : 'py-1.5 pl-4 pr-1.5 text-[0.9375rem]';
+  const tamano = grande ? 'gap-3 py-2.5 pl-6 pr-2.5 text-xl' : 'py-1.5 pl-4 pr-1.5 text-[0.9375rem]';
   return (
     <a
       href={href}
@@ -49,9 +49,9 @@ export function BotonWhatsApp({
       rel="noopener noreferrer"
       className={`${inverso ? 'btn-whatsapp-inverso' : 'btn-whatsapp'} group ${tamano} ${className}`}
     >
-      <LogoWhatsApp size={grande ? 22 : 18} />
+      <LogoWhatsApp size={grande ? 26 : 18} />
       <span className="flex-1 text-left">{children}</span>
-      <IconoAnidado className={`${inverso ? 'bg-tinta/10' : 'bg-papel/15'} ${grande ? 'h-10 w-10' : ''}`} />
+      <IconoAnidado className={`${inverso ? 'bg-tinta/10' : 'bg-papel/15'} ${grande ? 'h-11 w-11' : ''}`} />
     </a>
   );
 }
