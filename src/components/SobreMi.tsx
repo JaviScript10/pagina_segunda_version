@@ -31,13 +31,13 @@ export default function SobreMi() {
           {/* Ficha: carcasa Niebla con núcleo Papel */}
           <div className="mt-12 rounded-2xl bg-niebla p-1.5 ring-1 ring-tinta/[0.06]">
             <dl className="grid grid-cols-1 rounded-[calc(1rem-0.375rem)] bg-papel sm:grid-cols-[10rem_minmax(0,1fr)]">
-              <dt className="px-6 pb-1 pt-6 text-sm text-tinta/55 sm:py-5">Base</dt>
+              <dt className="px-6 pb-1 pt-6 text-sm text-tinta/70 sm:py-5">Base</dt>
               <dd className="px-6 pb-5 font-bold sm:border-l sm:border-tinta/[0.08] sm:py-5">Valparaíso, trabajo remoto para todo Chile</dd>
 
-              <dt className="border-t border-tinta/[0.08] px-6 pb-1 pt-5 text-sm text-tinta/55 sm:py-5">Estudio</dt>
+              <dt className="border-t border-tinta/[0.08] px-6 pb-1 pt-5 text-sm text-tinta/70 sm:py-5">Estudio</dt>
               <dd className="px-6 pb-5 font-bold sm:border-l sm:border-t sm:border-tinta/[0.08] sm:py-5">Ingeniería en Informática, INACAP</dd>
 
-              <dt className="border-t border-tinta/[0.08] px-6 pb-1 pt-5 text-sm text-tinta/55 sm:py-5">Stack</dt>
+              <dt className="border-t border-tinta/[0.08] px-6 pb-1 pt-5 text-sm text-tinta/70 sm:py-5">Stack</dt>
               <dd className="px-6 pb-6 sm:border-l sm:border-t sm:border-tinta/[0.08] sm:py-5">
                 <ul className="flex flex-wrap gap-2">
                   {STACK.map((t) => (

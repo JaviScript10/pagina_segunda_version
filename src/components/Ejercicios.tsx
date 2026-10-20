@@ -34,7 +34,7 @@ export default function Ejercicios() {
                 <div className="flex flex-1 flex-col p-6">
                   <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
                     <span className="rounded bg-niebla px-2 py-0.5 font-bold text-tinta/80">Ejercicio de diseño</span>
-                    <span className="text-tinta/60">{e.category}</span>
+                    <span className="text-tinta/70">{e.category}</span>
                   </p>
                   <h3 className="mt-3 font-display text-2xl font-extrabold tracking-[-0.01em]">{e.title}</h3>
                   <p className="mt-2 leading-relaxed text-tinta/70">{e.summary}</p>

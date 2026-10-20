@@ -49,10 +49,10 @@ export default function Precios() {
                   </div>
                   <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 sm:flex-col sm:flex-nowrap sm:items-end sm:gap-4">
                     <p className="sm:text-right">
-                      <span className="block text-sm text-tinta/55">desde</span>
+                      <span className="block text-sm text-tinta/70">desde</span>
                       <Money>
                         <span className="text-[2.25rem] leading-none tracking-[-0.02em]">{formatCLP(s.from)}</span>
-                        {s.per && <span className="text-base text-tinta/55">/{s.per}</span>}
+                        {s.per && <span className="text-base text-tinta/70">/{s.per}</span>}
                       </Money>
                     </p>
                     <a

@@ -34,7 +34,7 @@ export default function ComoTrabajo() {
                 aria-hidden="true"
                 className="absolute -left-[7px] top-0 h-3 w-3 rounded-sm bg-calamina ring-2 ring-tinta lg:-top-[7px] lg:left-0"
               />
-              <span className="block font-display text-[4rem] font-extrabold leading-none tracking-[-0.04em] text-tinta/15 lg:text-[5rem]">
+              <span aria-hidden="true" className="block font-display text-[4rem] font-extrabold leading-none tracking-[-0.04em] text-tinta/15 lg:text-[5rem]">
                 {i + 1}
               </span>
               <h3 className="mt-4 font-display text-2xl font-extrabold tracking-[-0.01em]">{paso.titulo}</h3>

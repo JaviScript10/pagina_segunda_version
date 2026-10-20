@@ -345,7 +345,7 @@ export default function ChatDock() {
             onChange={(e) => setInput(e.target.value)}
             placeholder={placeholder(step)}
             aria-label="Mensaje"
-            className="h-11 min-w-0 flex-1 rounded-lg border border-tinta/20 bg-papel px-3.5 text-base text-tinta placeholder:text-tinta/60 focus:border-cerro focus:outline-none focus:ring-2 focus:ring-cerro/25"
+            className="h-11 min-w-0 flex-1 rounded-lg border border-tinta/20 bg-papel px-3.5 text-base text-tinta placeholder:text-tinta/65 focus:border-cerro focus:outline-none focus:ring-2 focus:ring-cerro/25"
           />
           <button
             type="submit"

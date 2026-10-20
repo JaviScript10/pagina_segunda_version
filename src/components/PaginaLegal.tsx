@@ -44,7 +44,7 @@ export default function PaginaLegal({
                   {titulo}
                 </h1>
                 <p className="mt-6 max-w-sm text-lg leading-relaxed text-tinta/70">{bajada}</p>
-                <p className="mt-6 text-sm text-tinta/60">Última actualización: {ACTUALIZACION}</p>
+                <p className="mt-6 text-sm text-tinta/70">Última actualización: {ACTUALIZACION}</p>
               </div>
             </header>
 

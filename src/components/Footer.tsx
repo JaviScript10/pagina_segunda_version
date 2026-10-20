@@ -34,7 +34,7 @@ export default function Footer() {
           </div>
 
           <nav aria-label="Sitio" className="lg:col-span-2">
-            <h2 className="text-sm font-bold text-tinta/55">Sitio</h2>
+            <h2 className="text-sm font-bold text-tinta/70">Sitio</h2>
             <ul className="mt-4 space-y-2.5">
               {SITIO.map((l) => (
                 <li key={l.href}>
@@ -47,7 +47,7 @@ export default function Footer() {
           </nav>
 
           <nav aria-label="Legal" className="lg:col-span-3">
-            <h2 className="text-sm font-bold text-tinta/55">Legal</h2>
+            <h2 className="text-sm font-bold text-tinta/70">Legal</h2>
             <ul className="mt-4 space-y-2.5">
               {LEGAL.map((l) => (
                 <li key={l.href}>
@@ -60,7 +60,7 @@ export default function Footer() {
           </nav>
 
           <div className="col-span-2 lg:col-span-3">
-            <h2 className="text-sm font-bold text-tinta/55">Contacto</h2>
+            <h2 className="text-sm font-bold text-tinta/70">Contacto</h2>
             <ul className="mt-4 space-y-2.5">
               <li>
                 <a href={`mailto:${CONTACT_EMAIL}`} className={enlace}>
@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="mt-16 border-t border-tinta/15 pt-6 text-sm text-tinta/60">© {new Date().getFullYear()} CiberByte</p>
+        <p className="mt-16 border-t border-tinta/15 pt-6 text-sm text-tinta/70">© {new Date().getFullYear()} CiberByte</p>
       </div>
     </footer>
   );
