@@ -116,7 +116,7 @@ export default function Proyectos({
               <h3 className="mt-2 font-display text-[2.25rem] font-extrabold leading-none tracking-[-0.02em]">{q.title}</h3>
               <div className="mt-5 rounded-2xl bg-papel p-1.5 ring-1 ring-tinta/[0.06]">
                 <div className="overflow-hidden rounded-[calc(1rem-0.375rem)]">
-                  <div className={`relative h-[15rem] sm:h-[22rem] ${ACENTO[q.accent].fondo}`}>
+                  <div className={`relative h-[15rem] overflow-hidden sm:h-[22rem] ${ACENTO[q.accent].fondo}`}>
                     <Vista p={q} />
                   </div>
                   <Ficha p={q} />

@@ -16,7 +16,7 @@ export default function Precios() {
   const pc = getService('soporte-pc');
 
   return (
-    <section id="precios" aria-labelledby="precios-titulo" className="bg-niebla py-24 text-tinta lg:py-36">
+    <section id="precios" aria-labelledby="precios-titulo" className="bg-papel py-24 text-tinta lg:py-36">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
@@ -34,10 +34,12 @@ export default function Precios() {
         </div>
 
         <div className="lg:col-span-8">
-          <ul className="rounded-2xl bg-papel p-1.5 ring-1 ring-tinta/[0.06]">
+          {/* Marco doble sobre Papel: carcasa Niebla y núcleo Papel */}
+          <div className="rounded-2xl bg-niebla p-1.5 ring-1 ring-tinta/[0.06]">
+          <ul className="rounded-[calc(1rem-0.375rem)] bg-papel">
             {filas.map((s, i) => (
               <li key={s.id} className={i > 0 ? 'border-t border-tinta/[0.08]' : undefined}>
-                <div className="grid grid-cols-1 gap-5 rounded-xl px-6 py-7 transition-colors duration-200 ease-out sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-8 sm:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-niebla/60">
+                <div className="grid grid-cols-1 gap-5 rounded-xl px-6 py-7 transition-colors duration-200 ease-out sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-8 sm:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-niebla/70">
                   <div>
                     <h3 className="font-display text-[1.75rem] font-extrabold leading-tight tracking-[-0.02em]">{s.name}</h3>
                     <p className="mt-2 max-w-[44ch] text-[0.9375rem] leading-relaxed text-tinta/65">{s.includes}.</p>
@@ -45,7 +47,7 @@ export default function Precios() {
                       <p className="mt-3 inline-flex rounded bg-niebla px-2 py-0.5 text-sm text-tinta/70">Plazo típico: {s.timeline.charAt(0).toLowerCase() + s.timeline.slice(1)}</p>
                     )}
                   </div>
-                  <div className="flex items-end justify-between gap-6 sm:flex-col sm:items-end sm:gap-4">
+                  <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 sm:flex-col sm:flex-nowrap sm:items-end sm:gap-4">
                     <p className="sm:text-right">
                       <span className="block text-sm text-tinta/55">desde</span>
                       <Money>
@@ -69,6 +71,7 @@ export default function Precios() {
               </li>
             ))}
           </ul>
+          </div>
 
           <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-tinta/10 px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
             <p className="max-w-lg leading-relaxed text-tinta/75">
